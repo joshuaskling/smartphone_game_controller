@@ -24,12 +24,14 @@ import org.json.JSONObject;
 
 public class MainActivity extends Activity implements SensorEventListener {
 
+
     private IOSocket socket;
     private SensorManager mSensorManager;
     static long time = System.currentTimeMillis();
     //long positionTimer = System.currentTimeMillis();
     public static Vibrator vibrator;
 
+    public final String DEBUGMSG = "MainActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +47,8 @@ public class MainActivity extends Activity implements SensorEventListener {
         final int screenWidth = size.x;
         final int screenHeight = size.y;
 
-        connect();
+        // Connection to server
+        //connect();
 
         setContentView(R.layout.activity_main);
 
@@ -55,9 +58,9 @@ public class MainActivity extends Activity implements SensorEventListener {
         final ImageButton button4 = (ImageButton) findViewById(R.id.button4);
 
         //radio buttons
-        final RadioButton radio1 = (RadioButton) findViewById(R.id.radioButton1);
-        final RadioButton radio2 = (RadioButton) findViewById(R.id.radioButton2);
-        final RadioButton radio3 = (RadioButton) findViewById(R.id.radioButton3);
+//        final RadioButton radio1 = (RadioButton) findViewById(R.id.radioButton1);
+//        final RadioButton radio2 = (RadioButton) findViewById(R.id.radioButton2);
+//        final RadioButton radio3 = (RadioButton) findViewById(R.id.radioButton3);
 
         //setContentView(R.layout.main);
         final RelativeLayout textView = (RelativeLayout)findViewById(R.id.joystickLayout);
@@ -67,6 +70,7 @@ public class MainActivity extends Activity implements SensorEventListener {
         final RelativeLayout bgElement = (RelativeLayout) findViewById(R.id.background);
 
         //radio controls
+        /*
         radio1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,12 +85,14 @@ public class MainActivity extends Activity implements SensorEventListener {
             }
         });
 
+
         radio3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 bgElement.setBackgroundResource(R.drawable.wood_texture);
             }
         });
+        */
 
         //joystick controls
         touchView.setOnTouchListener(new View.OnTouchListener() {
@@ -101,6 +107,8 @@ public class MainActivity extends Activity implements SensorEventListener {
                     //float y = (event.getRawY() - 250);
                     float x = (event.getRawX()-(screenWidth/5));
                     float y = (event.getRawY()-(screenHeight/2))*-1;
+
+                    Log.d(DEBUGMSG, "(" + Float.toString(x) + "," + Float.toString(y) + ")");
                     sendMovement(x, y);
                     time = System.currentTimeMillis();
                 }
@@ -116,7 +124,7 @@ public class MainActivity extends Activity implements SensorEventListener {
                         switch (event.getAction()) {
                             case MotionEvent.ACTION_DOWN: {
                                 //button1.setBackgroundResource(R.drawable.x_button_small_pressed);
-                                vibrator.vibrate(30);
+                                //vibrator.vibrate(30);
                                 sendFire("btn1", "down");
                                 //Log.i("AIPSERVER", "Message sent to server: fire!");
                                 break;
@@ -150,7 +158,7 @@ public class MainActivity extends Activity implements SensorEventListener {
                             case MotionEvent.ACTION_UP: {
                                 //v.getBackground().clearColorFilter();
                                 //v.invalidate();
-                                sendFire("btn2", "down");
+                                sendFire("btn2", "up");
                                 break;
                             }
                         }
@@ -233,7 +241,7 @@ public class MainActivity extends Activity implements SensorEventListener {
     @Override
     protected void onPause() {
         super.onPause();
-
+        mSensorManager.unregisterListener(this);
         // to stop the listener and save battery
 
     }
@@ -241,7 +249,7 @@ public class MainActivity extends Activity implements SensorEventListener {
     @Override
     public void onSensorChanged(SensorEvent event) {
 
-
+        Log.d(DEBUGMSG, event.toString());
         //position resources COMMENT OUT FOR SENSOR CHANGES
         /*
         if (System.currentTimeMillis()-positionTimer > 200) {
@@ -263,6 +271,8 @@ public class MainActivity extends Activity implements SensorEventListener {
 
     void sendFire(String input, String state) {
         // get the angle around the z-axis rotated
+        Log.d(DEBUGMSG, "Input: " + input + ", State: " + state);
+        /*
         try {
 
             JSONObject message = new JSONObject(new String("{state: " + state + "}"));
@@ -276,6 +286,7 @@ public class MainActivity extends Activity implements SensorEventListener {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        */
 
     }
 
@@ -317,8 +328,8 @@ public class MainActivity extends Activity implements SensorEventListener {
     }
 
     void sendMovement(float x, float y) {
+        /*
         try {
-
             String messageContent = new String("{x: "+x+ ",y: " + y + "}");
 
             JSONObject message = new JSONObject(messageContent);
@@ -332,9 +343,10 @@ public class MainActivity extends Activity implements SensorEventListener {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        */
 
     }
-
+    /*
     void connect() {
 
         socket = new IOSocket("http://aipservers.com:3000", new MessageCallback() {
@@ -372,4 +384,6 @@ public class MainActivity extends Activity implements SensorEventListener {
 
         socket.connect();
     }
+    */
+
 }
