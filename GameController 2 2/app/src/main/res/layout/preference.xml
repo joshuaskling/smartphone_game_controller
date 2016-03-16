@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <Preference
+        android:key = "pref_key_customButtons"
+        android:title = "@string/pref_custom_buttons"
+        android:summary = "@string/pref_summary_custom_buttons"
+        android:persistent = "false"/>
+</PreferenceScreen>
