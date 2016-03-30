@@ -15,10 +15,12 @@ import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 
 import org.json.JSONObject;
 
@@ -55,9 +57,9 @@ public class MainActivity extends Activity implements SensorEventListener {
         final ImageButton button4 = (ImageButton) findViewById(R.id.button4);
 
         //radio buttons
-        final RadioButton radio1 = (RadioButton) findViewById(R.id.radioButton1);
-        final RadioButton radio2 = (RadioButton) findViewById(R.id.radioButton2);
-        final RadioButton radio3 = (RadioButton) findViewById(R.id.radioButton3);
+       // final RadioButton radio1 = (RadioButton) findViewById(R.id.radioButton1);
+        //final RadioButton radio2 = (RadioButton) findViewById(R.id.radioButton2);
+        //final RadioButton radio3 = (RadioButton) findViewById(R.id.radioButton3);
 
         //setContentView(R.layout.main);
         final RelativeLayout textView = (RelativeLayout)findViewById(R.id.joystickLayout);
@@ -66,8 +68,13 @@ public class MainActivity extends Activity implements SensorEventListener {
 
         final RelativeLayout bgElement = (RelativeLayout) findViewById(R.id.background);
 
+        Spinner spinner = (Spinner)findViewById(R.id.settings_spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.menu_array, R.layout.spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
         //radio controls
-        radio1.setOnClickListener(new View.OnClickListener() {
+/*        radio1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 bgElement.setBackgroundResource(R.drawable.nes_controller);
@@ -86,7 +93,7 @@ public class MainActivity extends Activity implements SensorEventListener {
             public void onClick(View v) {
                 bgElement.setBackgroundResource(R.drawable.wood_texture);
             }
-        });
+        });*/
 
         //joystick controls
         touchView.setOnTouchListener(new View.OnTouchListener() {

@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">Augment</string>
     <string name="action_settings">Settings</string>
+
+    <string-array name="menu_array">
+        <item>Settings</item>
+        <item>Layout</item>
+        <item>Custom Buttons</item>
+        <item>Custom Skins</item>
+        <item>Bluetooth Settings</item>
+    </string-array>
 </resources>
