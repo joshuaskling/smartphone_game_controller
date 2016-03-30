@@ -1,6 +1,7 @@
 package edu.csumb.gamecontroller;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
@@ -19,6 +20,5 @@ public class SettingsFragment extends PreferenceFragment {
 
         addPreferencesFromResource(R.xml.preference);
     }
-
 
 }

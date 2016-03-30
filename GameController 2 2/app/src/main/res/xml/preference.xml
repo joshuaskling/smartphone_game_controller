@@ -13,7 +13,12 @@
         android:title = "@string/pref_custom_skins" />
     <Preference
         android:key = "pref_key_bluetoothSettings"
-        android:title = "@string/pref_bluetooth_settings" />
+        android:title = "@string/pref_bluetooth_settings"
+    <intent
+        android:action="android.intent.action.VIEW"
+        android:targetPackage="my.notifier.ui"
+        android:targetClass="my.notifier.ui.EditCoursesNamesActivity">
+    />
     <Preference
         android:key = "pref_key_volumeSettings"
         android:title = "@string/pref_volume_controls" />
