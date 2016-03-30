@@ -3,8 +3,14 @@ package edu.csumb.gamecontroller;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Point;
+import android.graphics.Rect;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -16,6 +22,9 @@ import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EdgeEffect;
+
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -32,11 +41,14 @@ public class MainActivity extends Activity implements SensorEventListener {
     static long time = System.currentTimeMillis();
     //long positionTimer = System.currentTimeMillis();
     public static Vibrator vibrator;
+    public LinearLayout mLinearLayout;
 
     public final String DEBUGMSG = "MainActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mLinearLayout = new LinearLayout(this);
+
         vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
 
         //set orientation to landscape
@@ -52,26 +64,30 @@ public class MainActivity extends Activity implements SensorEventListener {
         // Connection to server
         //connect();
 
+        // Attempt to draw EdgeEffect on view
+        //setContentView(new DrawDemo(this));
         setContentView(R.layout.activity_main);
 
+        // Controller buttons
         final ImageButton button1 = (ImageButton) findViewById(R.id.button1);
         final ImageButton button2 = (ImageButton) findViewById(R.id.button2);
         final ImageButton button3 = (ImageButton) findViewById(R.id.button3);
         final ImageButton button4 = (ImageButton) findViewById(R.id.button4);
 
-        //radio buttons
 
-       // final RadioButton radio1 = (RadioButton) findViewById(R.id.radioButton1);
-        //final RadioButton radio2 = (RadioButton) findViewById(R.id.radioButton2);
-        //final RadioButton radio3 = (RadioButton) findViewById(R.id.radioButton3);
+        final Button settingsBtn = (Button) findViewById(R.id.settingsBtn);
+        final Button startBtn = (Button) findViewById(R.id.startBtn);
+        final Button selectBtn = (Button) findViewById(R.id.selectBtn);
 
 
-        //setContentView(R.layout.main);
-        final RelativeLayout textView = (RelativeLayout)findViewById(R.id.joystickLayout);
+        // final RelativeLayout textView = (RelativeLayout)findViewById(R.id.joystickLayout);
         // this is the view on which you will listen for touch events
         final View touchView = findViewById(R.id.joystickLayout);
 
-        final RelativeLayout bgElement = (RelativeLayout) findViewById(R.id.background);
+//        final RelativeLayout bgElement = (RelativeLayout) findViewById(R.id.background);
+//        bgElement.setBackgroundColor(getResources().getColor(R.color.black));
+        //bgElement.setBackgroundResource(R.drawable.wood_texture);
+
 
         Spinner spinner = (Spinner)findViewById(R.id.settings_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.menu_array, R.layout.spinner_item);
@@ -79,8 +95,6 @@ public class MainActivity extends Activity implements SensorEventListener {
         spinner.setAdapter(adapter);
 
         //radio controls
-
-/*        radio1.setOnClickListener(new View.OnClickListener() {
 
         /*
         radio1.setOnClickListener(new View.OnClickListener() {
@@ -119,14 +133,41 @@ public class MainActivity extends Activity implements SensorEventListener {
                     //        String.valueOf(event.getX()) + "x" + String.valueOf(event.getY()));
                     //float x = (event.getRawX() - 250);
                     //float y = (event.getRawY() - 250);
-                    float x = (event.getRawX()-(screenWidth/5));
-                    float y = (event.getRawY()-(screenHeight/2))*-1;
+                    float x = (event.getRawX() - (screenWidth / 5));
+                    float y = (event.getRawY() - (screenHeight / 2)) * -1;
 
                     Log.d(DEBUGMSG, "(" + Float.toString(x) + "," + Float.toString(y) + ")");
                     sendMovement(x, y);
                     time = System.currentTimeMillis();
                 }
                 return true;
+            }
+        });
+
+
+        /*
+        settingsBtn.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                Log.d(DEBUGMSG, "Settings btn touched");
+                return true;
+            }
+        });
+        */
+
+        startBtn.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                Log.d(DEBUGMSG, "Start btn touched");
+                return false;
+            }
+        });
+
+        selectBtn.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                Log.d(DEBUGMSG, "Select btn touched");
+                return false;
             }
         });
 
@@ -237,10 +278,13 @@ public class MainActivity extends Activity implements SensorEventListener {
 
     }
 
+    public void loadSettings(View view) {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
+
 
     //stick listeners
-
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -263,7 +307,7 @@ public class MainActivity extends Activity implements SensorEventListener {
     @Override
     public void onSensorChanged(SensorEvent event) {
 
-        Log.d(DEBUGMSG, event.toString());
+        //Log.d(DEBUGMSG, String.valueOf(event.values[0])  + "," + String.valueOf(event.values[1]) + "," + String.valueOf(event.values[2]));
         //position resources COMMENT OUT FOR SENSOR CHANGES
         /*
         if (System.currentTimeMillis()-positionTimer > 200) {
@@ -277,6 +321,7 @@ public class MainActivity extends Activity implements SensorEventListener {
             send2dMovement("stop");
         }*/
     }
+
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {

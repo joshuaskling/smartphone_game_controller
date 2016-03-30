@@ -13,6 +13,7 @@
 
 
     <RelativeLayout
+
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:id="@+id/joystickLayout"
@@ -35,16 +36,17 @@
     </Spinner>
 
     <RelativeLayout
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:id="@+id/relativeLayout"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
+
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:layout_marginRight="0dp"
+        android:id="@+id/buttonLayout"
+        android:layout_centerVertical="true"
         android:layout_alignParentEnd="true">
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:id="@+id/button1"
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
@@ -52,8 +54,8 @@
             android:background="@drawable/blue_xs_button" />
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:id="@+id/button2"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
@@ -61,22 +63,56 @@
             android:background="@drawable/red_xs_button" />
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:id="@+id/button3"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:background="@drawable/yellow_xs_button" />
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:id="@+id/button4"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:background="@drawable/green_xs_button" />
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/joystickLayout"
+        android:backgroundTint="@color/red">
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:text="Settings"
+            android:onClick="loadSettings"
+            android:id="@+id/settingsBtn" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="150dp"
+            android:layout_marginLeft="25dp"
+            android:text="Start"
+            android:id="@+id/startBtn" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="25dp"
+            android:text="Select"
+            android:id="@+id/selectBtn" />
+    </LinearLayout>
 
     <!--<Spinner
         android:layout_width="100dp"
