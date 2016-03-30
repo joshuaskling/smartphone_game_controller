@@ -124,7 +124,7 @@ namespace FeederDemoCS
             else
                 Console.WriteLine("Acquired: vJoy device number {0}.\n", id);
 
-            Console.WriteLine("\npress enter to stat feeding");
+            Console.WriteLine("\npress enter to start feeding");
             Console.ReadKey(true);
 
             int X, Y, Z, ZR, XR;
