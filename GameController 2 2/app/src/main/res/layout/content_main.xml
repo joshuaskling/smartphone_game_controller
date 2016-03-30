@@ -123,6 +123,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:text="Settings"
+            android:onClick="loadSettings"
             android:id="@+id/settingsBtn" />
 
         <Button

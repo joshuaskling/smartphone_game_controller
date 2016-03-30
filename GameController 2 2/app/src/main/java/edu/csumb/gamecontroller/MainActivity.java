@@ -3,6 +3,7 @@ package edu.csumb.gamecontroller;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -134,18 +135,21 @@ public class MainActivity extends Activity implements SensorEventListener {
             }
         });
 
+
+        /*
         settingsBtn.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-
+                Log.d(DEBUGMSG, "Settings btn touched");
                 return true;
             }
         });
+        */
 
         startBtn.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-
+                Log.d(DEBUGMSG, "Start btn touched");
                 return false;
             }
         });
@@ -153,7 +157,7 @@ public class MainActivity extends Activity implements SensorEventListener {
         selectBtn.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-
+                Log.d(DEBUGMSG, "Select btn touched");
                 return false;
             }
         });
@@ -263,6 +267,11 @@ public class MainActivity extends Activity implements SensorEventListener {
 
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 
+    }
+
+    public void loadSettings(View view) {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
     }
 
 
