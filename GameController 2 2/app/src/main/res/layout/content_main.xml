@@ -11,48 +11,6 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_main" tools:context=".MainActivity">
 
-    <!--<RadioGroup android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:weightSum="1"-->
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:layout_toRightOf="@+id/joystickLayout"-->
-        <!--android:layout_toEndOf="@+id/joystickLayout">-->
-
-        <!--<RadioButton-->
-            <!--android:layout_width="50dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="1"-->
-            <!--android:id="@+id/radioButton1"-->
-            <!--android:layout_alignParentTop="true"-->
-            <!--android:layout_alignParentLeft="true"-->
-            <!--android:layout_alignParentStart="true"-->
-            <!--android:checked="false"-->
-            <!--android:textColor="#FFFFFF" />-->
-
-        <!--<RadioButton-->
-            <!--android:layout_width="50dp"-->
-            <!--android:layout_height="40dp"-->
-            <!--android:text="2"-->
-            <!--android:id="@+id/radioButton2"-->
-            <!--android:layout_alignParentTop="true"-->
-            <!--android:layout_alignParentLeft="true"-->
-            <!--android:checked="false"-->
-            <!--android:textColor="#FFFFFF" />-->
-
-        <!--<RadioButton-->
-            <!--android:layout_width="50dp"-->
-            <!--android:text="3"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/radioButton3"-->
-            <!--android:layout_alignParentTop="true"-->
-            <!--android:layout_alignParentLeft="true"-->
-            <!--android:layout_toRightOf="@+id/radioButton2"-->
-            <!--android:layout_toEndOf="@+id/radioButton2"-->
-            <!--android:checked="false"-->
-            <!--android:textColor="#FFFFFF" />-->
-
-    <!--</RadioGroup>-->
-
 
     <RelativeLayout
         android:layout_width="200dp"
