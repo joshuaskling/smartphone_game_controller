@@ -83,13 +83,14 @@ namespace Bluetooth_v0._5
         }
         Guid mUUID = new Guid("00001101-0000-1000-8000-00805F9B34FB");
         bool serverStarted = false;
+        BluetoothClient conn;
         public void ServerConnectThread()
         {
             serverStarted = true;
             updateUI("Server started, waiting for clients");
             BluetoothListener blueListener = new BluetoothListener(mUUID);
             blueListener.Start();
-            BluetoothClient conn = blueListener.AcceptBluetoothClient();
+            conn = blueListener.AcceptBluetoothClient();
             updateUI("Client has connected");
             Stream mStream = conn.GetStream();
             while(true)
@@ -187,6 +188,9 @@ namespace Bluetooth_v0._5
             if(e.KeyChar == 13)
             {
                 message = Encoding.ASCII.GetBytes(tbInput.Text);
+                Stream mStream = conn.GetStream();
+                byte[] sent = Encoding.ASCII.GetBytes(tbInput.Text);
+                mStream.Write(sent, 0, sent.Length);
                 ready = true;
                 tbInput.Clear();
             }

@@ -13,10 +13,23 @@
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:layout_below="@+id/tvPD"
         >
     </ListView>
-
+    <EditText
+        android:id="@+id/ETSend"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/listView"
+        >
+    </EditText>
+    <Button
+        android:id="@+id/btSend"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@id/ETSend"
+        >
+    </Button>
 
 </RelativeLayout>

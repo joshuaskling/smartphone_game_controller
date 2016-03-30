@@ -23,6 +23,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -37,6 +39,8 @@ public class MainActivity extends Activity implements OnItemClickListener {
     public static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 	protected static final int SUCCESS_CONNECT = 0;
 	protected static final int MESSAGE_READ = 1;
+	protected static final int MESSAGE_SEND = 2;
+
 	IntentFilter filter;
 	BroadcastReceiver receiver;
 	String tag = "debugging";
@@ -47,21 +51,27 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			Log.i(tag, "in handler");
 			super.handleMessage(msg);
 			switch(msg.what){
-			case SUCCESS_CONNECT:
+				case SUCCESS_CONNECT:
 				// DO something
-				ConnectedThread connectedThread = new ConnectedThread((BluetoothSocket)msg.obj);
-				Toast.makeText(getApplicationContext(), "CONNECT", Toast.LENGTH_SHORT).show();
+					ConnectedThread connectedThread = new ConnectedThread((BluetoothSocket)msg.obj);
+					writeThread write = new writeThread((BluetoothSocket)msg.obj);
+					Toast.makeText(getApplicationContext(), "CONNECT", Toast.LENGTH_SHORT).show();
 				String s = "successfully connected";
 				connectedThread.write(s.getBytes());
 				Log.i(tag, "connected");
+					write.start();
 				connectedThread.start();
+
 				break;
-			case MESSAGE_READ:
+				case MESSAGE_READ:
 				byte[] readBuf = (byte[])msg.obj;
 				String string = new String(readBuf);
-				Toast.makeText(getApplicationContext(), "win", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), string, Toast.LENGTH_SHORT).show();
 				Log.i(tag, "msg");
 				break;
+				case MESSAGE_SEND:
+
+					break;
 			}
 		}
 	};
@@ -253,7 +263,66 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		        } catch (IOException e) { }
 		    }
 		}
+	private class writeThread extends Thread {
+		private final BluetoothSocket mmSocket;
+		EditText mEdit;
 
+		private final OutputStream mmOutStream;
+		private boolean sent = false;
+
+		public writeThread(BluetoothSocket socket)
+		{
+			mmSocket = socket;
+			OutputStream tmpOut = null;
+			mEdit   = (EditText)findViewById(R.id.ETSend);
+			Button clickButton = (Button) findViewById(R.id.btSend);
+			clickButton.setOnClickListener(new View.OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					sent = true;
+				}
+			});
+			// Get the input and output streams, using temp objects because
+			// member streams are final
+			try {
+				tmpOut = socket.getOutputStream();
+			} catch (IOException e) { }
+
+			mmOutStream = tmpOut;
+		}
+
+		public void run() {
+
+			while (true) {
+				if (sent) {
+					String s = mEdit.getText().toString();
+					try {
+						byte[] bytes = s.getBytes();
+						mmOutStream.write(bytes);
+					} catch (IOException e) {
+					}
+					sent = false;
+				}
+			}
+		}
+
+		/* Call this from the main activity to send data to the remote device */
+		public void write(byte[] bytes) {
+
+			try {
+				mmOutStream.write(bytes);
+			} catch (IOException e) { }
+		}
+
+		/* Call this from the main activity to shutdown the connection */
+		public void cancel() {
+			try {
+				mmSocket.close();
+			} catch (IOException e) { }
+		}
+	}
 		private class ConnectedThread extends Thread {
 		    private final BluetoothSocket mmSocket;
 		    private final InputStream mmInStream;
@@ -306,6 +375,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		 
 		    /* Call this from the main activity to send data to the remote device */
 		    public void write(byte[] bytes) {
+
 		        try {
 		            mmOutStream.write(bytes);
 		        } catch (IOException e) { }
