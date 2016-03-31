@@ -1,16 +1,6 @@
 <resources>
     <string name="app_name">Augment</string>
     <string name="action_settings">Settings</string>
-<<<<<<< HEAD
-
-    <string-array name="menu_array">
-        <item>Settings</item>
-        <item>Layout</item>
-        <item>Custom Buttons</item>
-        <item>Custom Skins</item>
-        <item>Bluetooth Settings</item>
-    </string-array>
-=======
     <string name="title_activity_settings">Settings</string>
 
     <!-- Strings related to Settings -->
@@ -82,5 +72,4 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
->>>>>>> 66c32dd8044e7da1f0e8733daa1847ca3dc0d6bb
 </resources>

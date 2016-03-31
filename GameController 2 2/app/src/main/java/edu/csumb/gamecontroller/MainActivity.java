@@ -21,15 +21,12 @@ import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EdgeEffect;
-
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
-import android.widget.Spinner;
 
 import org.json.JSONObject;
 
@@ -74,11 +71,9 @@ public class MainActivity extends Activity implements SensorEventListener {
         final ImageButton button3 = (ImageButton) findViewById(R.id.button3);
         final ImageButton button4 = (ImageButton) findViewById(R.id.button4);
 
-
         final Button settingsBtn = (Button) findViewById(R.id.settingsBtn);
         final Button startBtn = (Button) findViewById(R.id.startBtn);
         final Button selectBtn = (Button) findViewById(R.id.selectBtn);
-
 
         // final RelativeLayout textView = (RelativeLayout)findViewById(R.id.joystickLayout);
         // this is the view on which you will listen for touch events
@@ -89,16 +84,13 @@ public class MainActivity extends Activity implements SensorEventListener {
         //bgElement.setBackgroundResource(R.drawable.wood_texture);
 
 
-        Spinner spinner = (Spinner)findViewById(R.id.settings_spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.menu_array, R.layout.spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-
         //radio controls
 
+//        final RadioButton radio1 = (RadioButton) findViewById(R.id.radioButton1);
+//        final RadioButton radio2 = (RadioButton) findViewById(R.id.radioButton2);
+//        final RadioButton radio3 = (RadioButton) findViewById(R.id.radioButton3);
         /*
         radio1.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 bgElement.setBackgroundResource(R.drawable.nes_controller);
@@ -118,9 +110,8 @@ public class MainActivity extends Activity implements SensorEventListener {
             public void onClick(View v) {
                 bgElement.setBackgroundResource(R.drawable.wood_texture);
             }
-
-        });*/
-
+        });
+        */
 
         //joystick controls
         touchView.setOnTouchListener(new View.OnTouchListener() {
