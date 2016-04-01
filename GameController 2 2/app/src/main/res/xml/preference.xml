@@ -7,18 +7,18 @@
     <Preference
         android:key = "pref_key_customButtons"
         android:title = "@string/pref_custom_buttons"
-        android:summary = "@string/pref_summary_custom_buttons" />
+        android:summary = "@string/pref_summary_custom_buttons"/>
+
     <Preference
         android:key = "pref_key_customSkins"
-        android:title = "@string/pref_custom_skins" />
+        android:title = "@string/pref_custom_skins"
+    />
     <Preference
         android:key = "pref_key_bluetoothSettings"
-        android:title = "@string/pref_bluetooth_settings"
-    <intent
-        android:action="android.intent.action.VIEW"
-        android:targetPackage="my.notifier.ui"
-        android:targetClass="my.notifier.ui.EditCoursesNamesActivity">
-    />
+        android:title = "@string/pref_bluetooth_settings">
+        <intent android:action="android.intent.action.Bluetooth" />
+    </Preference>
+
     <Preference
         android:key = "pref_key_volumeSettings"
         android:title = "@string/pref_volume_controls" />
