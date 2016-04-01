@@ -24,6 +24,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
 
 // Don't forget to add this
 using vJoyInterfaceWrap;
@@ -40,6 +41,12 @@ namespace FeederDemoCS
 
         static void Main(string[] args)
         {
+
+            //create bluetooth device and search for bluetooth
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new Form1());
+
             // Create one joystick object and a position structure.
             joystick = new vJoy();
             iReport = new vJoy.JoystickState();

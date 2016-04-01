@@ -9,3 +9,6 @@ c:\users\smfg\documents\visual studio 2013\Projects\Bluetooth v0.5\Bluetooth v0.
 c:\users\smfg\documents\visual studio 2013\Projects\Bluetooth v0.5\Bluetooth v0.5\obj\Debug\Bluetooth v0.5.csproj.GenerateResource.Cache
 c:\users\smfg\documents\visual studio 2013\Projects\Bluetooth v0.5\Bluetooth v0.5\obj\Debug\Bluetooth v0.5.exe
 c:\users\smfg\documents\visual studio 2013\Projects\Bluetooth v0.5\Bluetooth v0.5\obj\Debug\Bluetooth v0.5.pdb
+C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\bin\Debug\Bluetooth v0.5.exe.config
+C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\obj\Debug\Bluetooth v0.5.exe
+C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\obj\Debug\Bluetooth v0.5.pdb
