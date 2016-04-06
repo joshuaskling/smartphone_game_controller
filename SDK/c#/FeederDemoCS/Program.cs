@@ -151,6 +151,8 @@ namespace FeederDemoCS
 	// Reset this device to default values
 	joystick.ResetVJD(id);
 
+    
+
 	// Feed the device in endless loop
     while (true)
     {
@@ -204,6 +206,8 @@ namespace FeederDemoCS
                 joystick.SetDiscPov(-1, id, 4);
             };
         };
+
+        //This is where we'll set axis data each time it goes through the loop
 
         System.Threading.Thread.Sleep(20);
         X += 150; if (X > maxval) X = 0;
