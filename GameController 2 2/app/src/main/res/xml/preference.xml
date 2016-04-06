@@ -2,24 +2,64 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:label="@string/pref_header_settings">
+    >
 
-    <Preference
-        android:key = "pref_key_customButtons"
-        android:title = "@string/pref_custom_buttons"
-        android:summary = "@string/pref_summary_custom_buttons" />
-    <Preference
-        android:key = "pref_key_customSkins"
-        android:title = "@string/pref_custom_skins" />
-    <Preference
-        android:key = "pref_key_bluetoothSettings"
-        android:title = "@string/pref_bluetooth_settings"
-    <intent
-        android:action="android.intent.action.VIEW"
-        android:targetPackage="my.notifier.ui"
-        android:targetClass="my.notifier.ui.EditCoursesNamesActivity">
-    />
-    <Preference
-        android:key = "pref_key_volumeSettings"
-        android:title = "@string/pref_volume_controls" />
+    <!--Buttons Category-->
+    <PreferenceCategory
+        android:title="@string/str_first_category_title"
+        android:textSize="40px"
+        >
+        <ListPreference
+            android:key="lp_list_preference"
+            android:title="@string/lp_list_preference_size"
+            android:icon="@drawable/a_button_small_pressed"
+            android:textSize="20px"
+            android:entries="@array/array_list_preference_size"
+            android:entryValues="@array/array_list_preference_entry__size_values"
+            />
+        <ListPreference
+            android:key="lp_list_preference"
+            android:title="@string/lp_list_preference_color"
+            android:icon="@drawable/b_button_small_pressed"
+            android:textSize="20px"
+            android:entries="@array/array_list_preference_color"
+            android:entryValues="@array/array_list_preference_entry_color"
+            />
+    </PreferenceCategory>
+
+    <!--Skins Category-->
+    <PreferenceCategory
+        android:title="@string/str_fourth_category_title"
+        >
+        <ListPreference
+            android:key="lp_list_preference4"
+            android:title="@string/lp_list_preference_background"
+            android:icon="@drawable/bb"
+            android:entries="@array/array_list_preference_entries_background"
+            android:entryValues="@array/array_list_preference_entry_values_background"
+            />
+    </PreferenceCategory>
+
+    <!--Volume Category-->
+    <PreferenceCategory
+        android:title="@string/str_second_category_title"
+        >
+        <ListPreference
+            android:key="lp_list_preference2"
+            android:title="@string/lp_list_preference_title"
+            android:icon="@drawable/sound"
+            android:entries="@array/array_list_preference_entries"
+            android:entryValues="@array/array_list_preference_entry_values"
+            />
+    </PreferenceCategory>
+
+    <!--Bluetooth Settings-->
+    <PreferenceScreen
+        android:title="@string/more"
+        >
+        <PreferenceCategory
+            android:title="@string/str_third_category_title"
+            >
+        </PreferenceCategory>
+    </PreferenceScreen>
 </PreferenceScreen>
