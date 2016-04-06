@@ -34,7 +34,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-import android.support.v4.app.DialogFragment;
+//import android.support.v4.app.DialogFragment;
 
 import org.json.JSONObject;
 
