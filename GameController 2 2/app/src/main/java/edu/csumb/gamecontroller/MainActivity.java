@@ -84,8 +84,6 @@ public class MainActivity extends Activity implements SensorEventListener {
         final Button startBtn = (Button) findViewById(R.id.startBtn);
         final Button selectBtn = (Button) findViewById(R.id.selectBtn);
 
-        // final RelativeLayout textView = (RelativeLayout)findViewById(R.id.joystickLayout);
-        // this is the view on which you will listen for touch events
         final View touchView = findViewById(R.id.joystickLayout);
 
         //joystick controls
@@ -95,10 +93,6 @@ public class MainActivity extends Activity implements SensorEventListener {
 
                 if (System.currentTimeMillis() - time > 100) {
 
-                    //textView.setText("Touch coordinates : " +
-                    //        String.valueOf(event.getX()) + "x" + String.valueOf(event.getY()));
-                    //float x = (event.getRawX() - 250);
-                    //float y = (event.getRawY() - 250);
                     float x = (event.getRawX() - (screenWidth / 5));
                     float y = (event.getRawY() - (screenHeight / 2)) * -1;
 
@@ -111,15 +105,6 @@ public class MainActivity extends Activity implements SensorEventListener {
         });
 
 
-        /*
-        settingsBtn.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                Log.d(DEBUGMSG, "Settings btn touched");
-                return true;
-            }
-        });
-        */
 
         startBtn.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -275,6 +260,8 @@ public class MainActivity extends Activity implements SensorEventListener {
     }
 
 
+
+
     //stick listeners
     @Override
     protected void onResume() {
@@ -298,19 +285,6 @@ public class MainActivity extends Activity implements SensorEventListener {
     @Override
     public void onSensorChanged(SensorEvent event) {
 
-        //Log.d(DEBUGMSG, String.valueOf(event.values[0])  + "," + String.valueOf(event.values[1]) + "," + String.valueOf(event.values[2]));
-        //position resources COMMENT OUT FOR SENSOR CHANGES
-        /*
-        if (System.currentTimeMillis()-positionTimer > 200) {
-            sendOrientation(event.values[0], event.values[1], event.values[2]);
-            // get the angle around the z-axis rotated
-            positionTimer = System.currentTimeMillis();
-        }
-        */
-
-        /*if (System.currentTimeMillis()-time > 500){
-            send2dMovement("stop");
-        }*/
     }
 
 
@@ -322,21 +296,6 @@ public class MainActivity extends Activity implements SensorEventListener {
     void sendFire(String input, String state) {
         // get the angle around the z-axis rotated
         Log.d(DEBUGMSG, "Input: " + input + ", State: " + state);
-        /*
-        try {
-
-            JSONObject message = new JSONObject(new String("{state: " + state + "}"));
-
-            if (socket.isConnected()) {
-                socket.emit(input, message);
-                //Log.i("AIPSERVER", "Message sent to server: fire!");
-                System.out.println(input);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        */
 
     }
 
@@ -378,62 +337,7 @@ public class MainActivity extends Activity implements SensorEventListener {
     }
 
     void sendMovement(float x, float y) {
-        /*
-        try {
-            String messageContent = new String("{x: "+x+ ",y: " + y + "}");
-
-            JSONObject message = new JSONObject(messageContent);
-
-            if (socket.isConnected()) {
-                socket.emit("joystick", message);
-                //Log.i("AIPSERVER", "Message sent to server: " + message.getString("movement"));
-                System.out.println("X: " + x + " Y: " + y);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        */
 
     }
-    /*
-    void connect() {
-
-        socket = new IOSocket("http://aipservers.com:3000", new MessageCallback() {
-
-            @Override
-            public void onMessage(String message) {
-                // Handle simple messages
-            }
-
-            @Override
-            public void onConnect() {
-                // Socket connection opened
-            }
-
-            @Override
-            public void onDisconnect() {
-                // Socket connection closed
-            }
-
-            @Override
-            public void on(String event, JSONObject... data) {
-
-            }
-
-            @Override
-            public void onMessage(JSONObject json) {
-
-            }
-
-            @Override
-            public void onConnectFailure() {
-
-            }
-        });
-
-        socket.connect();
-    }
-    */
 
 }
