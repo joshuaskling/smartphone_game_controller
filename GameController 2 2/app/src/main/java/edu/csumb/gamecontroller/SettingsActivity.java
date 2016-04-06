@@ -15,9 +15,7 @@ public class SettingsActivity extends Activity {
 
         getFragmentManager().beginTransaction()
                 .replace(android.R.id.content, new SettingsFragment()).commit();
+
     }
-    public void loadTest(View v) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
+
 }

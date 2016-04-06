@@ -1,9 +1,14 @@
 package edu.csumb.gamecontroller;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -17,6 +22,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
@@ -27,6 +33,8 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
+import android.support.v4.app.DialogFragment;
 
 import org.json.JSONObject;
 
@@ -41,6 +49,7 @@ public class MainActivity extends Activity implements SensorEventListener {
     public LinearLayout mLinearLayout;
 
     public final String DEBUGMSG = "MainActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,40 +87,6 @@ public class MainActivity extends Activity implements SensorEventListener {
         // final RelativeLayout textView = (RelativeLayout)findViewById(R.id.joystickLayout);
         // this is the view on which you will listen for touch events
         final View touchView = findViewById(R.id.joystickLayout);
-
-//        final RelativeLayout bgElement = (RelativeLayout) findViewById(R.id.background);
-//        bgElement.setBackgroundColor(getResources().getColor(R.color.black));
-        //bgElement.setBackgroundResource(R.drawable.wood_texture);
-
-
-        //radio controls
-
-//        final RadioButton radio1 = (RadioButton) findViewById(R.id.radioButton1);
-//        final RadioButton radio2 = (RadioButton) findViewById(R.id.radioButton2);
-//        final RadioButton radio3 = (RadioButton) findViewById(R.id.radioButton3);
-        /*
-        radio1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bgElement.setBackgroundResource(R.drawable.nes_controller);
-            }
-        });
-
-        radio2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bgElement.setBackgroundResource(R.drawable.xbox);
-            }
-        });
-
-
-        radio3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bgElement.setBackgroundResource(R.drawable.wood_texture);
-            }
-        });
-        */
 
         //joystick controls
         touchView.setOnTouchListener(new View.OnTouchListener() {
@@ -269,9 +244,34 @@ public class MainActivity extends Activity implements SensorEventListener {
 
     }
 
+
     public void loadSettings(View view) {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
+    }
+
+    public void displayAndroidBluetoothMenu(View view) {
+        // Display a dialog box when device is not connected to bluetooth host
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("No bluetooth connection");
+        builder.setMessage("Please connect to a bluetooth host before playing");
+
+        builder.setPositiveButton(R.string.alert_connect, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                Intent androidBluetoothMenu = new Intent(android.provider.Settings.ACTION_BLUETOOTH_SETTINGS);
+                startActivity(androidBluetoothMenu);
+            }
+        });
+
+        builder.setNegativeButton(R.string.alert_cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
     }
 
 
