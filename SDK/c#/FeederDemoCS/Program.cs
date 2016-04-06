@@ -94,9 +94,9 @@ namespace FeederDemoCS
             // Check which axes are supported
             bool AxisX = joystick.GetVJDAxisExist(id, HID_USAGES.HID_USAGE_X);
             bool AxisY = joystick.GetVJDAxisExist(id, HID_USAGES.HID_USAGE_Y);
-            bool AxisZ = joystick.GetVJDAxisExist(id, HID_USAGES.HID_USAGE_Z);
-            bool AxisRX = joystick.GetVJDAxisExist(id, HID_USAGES.HID_USAGE_RX);
-            bool AxisRZ = joystick.GetVJDAxisExist(id, HID_USAGES.HID_USAGE_RZ);
+            //bool AxisZ = joystick.GetVJDAxisExist(id, HID_USAGES.HID_USAGE_Z);
+            //bool AxisRX = joystick.GetVJDAxisExist(id, HID_USAGES.HID_USAGE_RX);
+            //bool AxisRZ = joystick.GetVJDAxisExist(id, HID_USAGES.HID_USAGE_RZ);
             // Get the number of buttons and POV Hat switchessupported by this vJoy device
             int nButtons = joystick.GetVJDButtonNumber(id);
             int ContPovNumber = joystick.GetVJDContPovNumber(id);
@@ -108,10 +108,10 @@ namespace FeederDemoCS
             Console.WriteLine("Numner of Continuous POVs\t{0}\n", ContPovNumber);
             Console.WriteLine("Numner of Descrete POVs\t\t{0}\n", DiscPovNumber);
             Console.WriteLine("Axis X\t\t{0}\n", AxisX ? "Yes" : "No");
-            Console.WriteLine("Axis Y\t\t{0}\n", AxisX ? "Yes" : "No");
-            Console.WriteLine("Axis Z\t\t{0}\n", AxisX ? "Yes" : "No");
-            Console.WriteLine("Axis Rx\t\t{0}\n", AxisRX ? "Yes" : "No");
-            Console.WriteLine("Axis Rz\t\t{0}\n", AxisRZ ? "Yes" : "No");
+            Console.WriteLine("Axis Y\t\t{0}\n", AxisY ? "Yes" : "No");
+            //Console.WriteLine("Axis Z\t\t{0}\n", AxisZ ? "Yes" : "No");
+            //Console.WriteLine("Axis Rx\t\t{0}\n", AxisRX ? "Yes" : "No");
+            //Console.WriteLine("Axis Rz\t\t{0}\n", AxisRZ ? "Yes" : "No");
 
             // Test if DLL matches the driver
             UInt32 DllVer = 0, DrvVer = 0;
@@ -140,9 +140,9 @@ namespace FeederDemoCS
 
             X = 20;
             Y = 30;
-            Z = 40;
-            XR = 60;
-            ZR = 80;
+            //Z = 40;
+            //XR = 60;
+            //ZR = 80;
 
             joystick.GetVJDAxisMax(id, HID_USAGES.HID_USAGE_X, ref maxval);
 
@@ -157,9 +157,9 @@ namespace FeederDemoCS
         // Set position of 4 axes
         res = joystick.SetAxis(X, id, HID_USAGES.HID_USAGE_X);
         res = joystick.SetAxis(Y, id, HID_USAGES.HID_USAGE_Y);
-        res = joystick.SetAxis(Z, id, HID_USAGES.HID_USAGE_Z);
-        res = joystick.SetAxis(XR, id, HID_USAGES.HID_USAGE_RX);
-        res = joystick.SetAxis(ZR, id, HID_USAGES.HID_USAGE_RZ);
+        //res = joystick.SetAxis(Z, id, HID_USAGES.HID_USAGE_Z);
+        //res = joystick.SetAxis(XR, id, HID_USAGES.HID_USAGE_RX);
+        //res = joystick.SetAxis(ZR, id, HID_USAGES.HID_USAGE_RZ);
 
         // Press/Release Buttons
         res = joystick.SetBtn(true, id, count / 50);
@@ -208,9 +208,9 @@ namespace FeederDemoCS
         System.Threading.Thread.Sleep(20);
         X += 150; if (X > maxval) X = 0;
         Y += 250; if (Y > maxval) Y = 0;
-        Z += 350; if (Z > maxval) Z = 0;
-        XR += 220; if (XR > maxval) XR = 0;  
-        ZR += 200; if (ZR > maxval) ZR = 0;  
+        //Z += 350; if (Z > maxval) Z = 0;
+        //XR += 220; if (XR > maxval) XR = 0;  
+        //ZR += 200; if (ZR > maxval) ZR = 0;  
         count++;
 
         if (count > 640)
