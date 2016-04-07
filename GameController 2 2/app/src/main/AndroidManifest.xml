@@ -24,10 +24,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".SettingsActivity">
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/pref_header_settings"
+            >
 
             <intent-filter>
-                <action android:name="SettingsAct" />
+                <action android:name="SettingsActivity" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 
@@ -43,7 +46,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".SettingsActivity" />
         <activity
             android:name=".BluetoothActivity"
             android:label="@string/title_activity_bluetooth"
