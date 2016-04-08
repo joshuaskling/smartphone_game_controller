@@ -3,28 +3,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 4ad417ec94c4d34d259356ea32e2ce1e36377e20
     <!--Buttons Category-->
     <PreferenceCategory
         android:title="@string/str_first_category_title"
         android:textSize="40px"
         >
         <ListPreference
-            android:key="lp_list_preference"
+            android:key="button_size_preference"
             android:title="@string/lp_list_preference_size"
             android:icon="@drawable/a_button_small_pressed"
             android:textSize="20px"
             android:entries="@array/array_list_preference_size"
-            android:entryValues="@array/array_list_preference_entry__size_values"
+            android:entryValues="@array/array_list_preference_size"
             />
         <ListPreference
-            android:key="lp_list_preference"
+            android:key="button_color_preference"
             android:title="@string/lp_list_preference_color"
             android:icon="@drawable/b_button_small_pressed"
             android:textSize="20px"
             android:entries="@array/array_list_preference_color"
-            android:entryValues="@array/array_list_preference_entry_color"
+            android:entryValues="@array/array_list_preference_color"
             />
     </PreferenceCategory>
 
@@ -33,7 +36,7 @@
         android:title="@string/str_fourth_category_title"
         >
         <ListPreference
-            android:key="lp_list_preference4"
+            android:key="background_preference"
             android:title="@string/lp_list_preference_background"
             android:icon="@drawable/bb"
             android:entries="@array/array_list_preference_entries_background"
@@ -46,7 +49,7 @@
         android:title="@string/str_second_category_title"
         >
         <ListPreference
-            android:key="lp_list_preference2"
+            android:key="volume_preference"
             android:title="@string/lp_list_preference_title"
             android:icon="@drawable/sound"
             android:entries="@array/array_list_preference_entries"
@@ -63,5 +66,8 @@
             >
         </PreferenceCategory>
     </PreferenceScreen>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4ad417ec94c4d34d259356ea32e2ce1e36377e20
 </PreferenceScreen>

@@ -1,0 +1,9 @@
+C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\SDK\c#\FeederDemoCS\FeederWithReceptor\bin\Debug\FeederWithReceptor.exe.config
+C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\SDK\c#\FeederDemoCS\FeederWithReceptor\bin\Debug\FeederWithReceptor.exe
+C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\SDK\c#\FeederDemoCS\FeederWithReceptor\bin\Debug\FeederWithReceptor.pdb
+C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\SDK\c#\FeederDemoCS\FeederWithReceptor\bin\Debug\vJoyInterfaceWrap.dll
+C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\SDK\c#\FeederDemoCS\FeederWithReceptor\obj\Debug\FeederWithReceptor.Properties.Resources.resources
+C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\SDK\c#\FeederDemoCS\FeederWithReceptor\obj\Debug\WrapperTest.TesterForm.resources
+C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\SDK\c#\FeederDemoCS\FeederWithReceptor\obj\Debug\FeederWithReceptor.csproj.GenerateResource.Cache
+C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\SDK\c#\FeederDemoCS\FeederWithReceptor\obj\Debug\FeederWithReceptor.exe
+C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\SDK\c#\FeederDemoCS\FeederWithReceptor\obj\Debug\FeederWithReceptor.pdb

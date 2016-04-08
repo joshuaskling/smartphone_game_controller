@@ -1,9 +1,15 @@
 package edu.csumb.gamecontroller;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -17,6 +23,8 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
@@ -27,6 +35,8 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
+//import android.support.v4.app.DialogFragment;
 
 import org.json.JSONObject;
 
@@ -41,6 +51,12 @@ public class MainActivity extends Activity implements SensorEventListener {
     public LinearLayout mLinearLayout;
 
     public final String DEBUGMSG = "MainActivity";
+    public final String KEY_PREF_BTN_SIZE = "button_size_preference";
+    public final String KEY_PREF_BTN_COLOR = "button_color_preference";
+    public final String KEY_PREF_BACKGROUND = "background_preference";
+    public final String KEY_PREF_VOLUME = "volume_preference";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +66,30 @@ public class MainActivity extends Activity implements SensorEventListener {
 
         //set orientation to landscape
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.OnSharedPreferenceChangeListener listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+            @Override
+            // Detects changes in Preference values
+            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+                if(s.equals(KEY_PREF_BTN_SIZE)) {
+                    Log.d(DEBUGMSG, sharedPreferences.getString(s, ""));
+                }
+                else if(s.equals(KEY_PREF_BTN_COLOR)) {
+                    Log.d(DEBUGMSG, sharedPreferences.getString(s, ""));
+                }
+                else if(s.equals(KEY_PREF_BACKGROUND)) {
+                    Log.d(DEBUGMSG, sharedPreferences.getString(s, ""));
+                }
+                else if(s.equals(KEY_PREF_VOLUME)) {
+                    Log.d(DEBUGMSG, sharedPreferences.getString(s, ""));
+                }
+            }
+        };
+        sharedPref.registerOnSharedPreferenceChangeListener(listener);
+
+
 
         //get size of screen
         Display display = getWindowManager().getDefaultDisplay();
@@ -75,8 +115,11 @@ public class MainActivity extends Activity implements SensorEventListener {
         final Button startBtn = (Button) findViewById(R.id.startBtn);
         final Button selectBtn = (Button) findViewById(R.id.selectBtn);
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 4ad417ec94c4d34d259356ea32e2ce1e36377e20
         final View touchView = findViewById(R.id.joystickLayout);
 
         //joystick controls
@@ -222,9 +265,34 @@ public class MainActivity extends Activity implements SensorEventListener {
 
     }
 
+
     public void loadSettings(View view) {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
+    }
+
+    public void displayAndroidBluetoothMenu(View view) {
+        // Display a dialog box when device is not connected to bluetooth host
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("No bluetooth connection");
+        builder.setMessage("Please connect to a bluetooth host before playing");
+
+        builder.setPositiveButton(R.string.alert_connect, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                Intent androidBluetoothMenu = new Intent(android.provider.Settings.ACTION_BLUETOOTH_SETTINGS);
+                startActivity(androidBluetoothMenu);
+            }
+        });
+
+        builder.setNegativeButton(R.string.alert_cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
     }
 
 
@@ -266,6 +334,8 @@ public class MainActivity extends Activity implements SensorEventListener {
         Log.d(DEBUGMSG, "Input: " + input + ", State: " + state);
 
     }
+
+
 
     void sendOrientation(float deltaAlpha, float deltaBeta, float deltaGamma) {
             try {
