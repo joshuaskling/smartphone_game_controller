@@ -43,6 +43,7 @@
   <component name="ProjectType">
     <option name="id" value="Android" />
   </component>
+<<<<<<< HEAD:BluetoothPhonev0.5/.idea/misc.xml
   <component name="masterDetails">
     <states>
       <state key="ProjectJDKs.UI">
@@ -59,4 +60,6 @@
       </state>
     </states>
   </component>
+=======
+>>>>>>> 4ad417ec94c4d34d259356ea32e2ce1e36377e20:GameController 2 2/.idea/misc.xml
 </project>
