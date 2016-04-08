@@ -11,11 +11,11 @@
 
     <string name="pref_custom_buttons">Custom Buttons</string>
     <string name="pref_summary_custom_buttons">Change the buttons size and colors</string>
-    
+
     <string name="pref_custom_skins">Custom Skins</string>
-    
+
     <string name="pref_bluetooth_settings">Bluetooth Settings</string>
-    
+
     <string name="pref_volume_controls">Volume Settings</string>
 
     <string name="pref_title_social_recommendations">Enable social recommendations</string>
@@ -73,6 +73,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 
     <string name="str_btn_settings">Settings</string>
@@ -151,6 +152,7 @@
         <item>md2</item>
         <item>md3</item>
     </string-array>
+
 
 
 

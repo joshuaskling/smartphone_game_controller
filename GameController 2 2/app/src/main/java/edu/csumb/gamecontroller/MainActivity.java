@@ -21,15 +21,12 @@ import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EdgeEffect;
-
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
-import android.widget.Spinner;
 
 import org.json.JSONObject;
 
@@ -74,10 +71,10 @@ public class MainActivity extends Activity implements SensorEventListener {
         final ImageButton button3 = (ImageButton) findViewById(R.id.button3);
         final ImageButton button4 = (ImageButton) findViewById(R.id.button4);
 
-
         final Button settingsBtn = (Button) findViewById(R.id.settingsBtn);
         final Button startBtn = (Button) findViewById(R.id.startBtn);
         final Button selectBtn = (Button) findViewById(R.id.selectBtn);
+
 
 
         final View touchView = findViewById(R.id.joystickLayout);
@@ -271,8 +268,6 @@ public class MainActivity extends Activity implements SensorEventListener {
     }
 
     void sendOrientation(float deltaAlpha, float deltaBeta, float deltaGamma) {
-
-
             try {
 
                 String messageContent = new String("{alpha: " + deltaAlpha + ",beta: " + deltaBeta + ", gamma:" + deltaGamma + "}");

@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     >
 
+
     <!--Buttons Category-->
     <PreferenceCategory
         android:title="@string/str_first_category_title"
@@ -62,4 +63,5 @@
             >
         </PreferenceCategory>
     </PreferenceScreen>
+
 </PreferenceScreen>
