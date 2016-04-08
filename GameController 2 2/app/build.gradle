@@ -6,7 +6,11 @@ android {
 
     defaultConfig {
         applicationId "edu.csumb.gamecontroller"
+<<<<<<< HEAD
+        minSdkVersion 15
+=======
         minSdkVersion 21
+>>>>>>> 885b9c0c8f74af190a459dd1ff5abb1bc01cbe73
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -22,8 +26,14 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
+<<<<<<< HEAD
+    compile 'com.android.support:appcompat-v7:23.1.0'
+    compile 'com.android.support:design:23.1.0'
+    compile files('libs/java_websocket.jar')
+=======
     compile files('libs/java_websocket.jar')
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
     compile 'com.android.support:support-v4:23.1.1'
+>>>>>>> 885b9c0c8f74af190a459dd1ff5abb1bc01cbe73
 }

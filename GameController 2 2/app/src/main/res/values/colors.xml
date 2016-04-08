@@ -3,7 +3,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+<<<<<<< HEAD
+=======
     <color name="red">#FF0000</color>
     <color name="green">#00FF00</color>
     <color name="black">#666666</color>
+>>>>>>> 885b9c0c8f74af190a459dd1ff5abb1bc01cbe73
 </resources>
