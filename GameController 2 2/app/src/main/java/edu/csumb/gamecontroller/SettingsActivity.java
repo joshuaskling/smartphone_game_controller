@@ -5,6 +5,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.preference.PreferenceManager;
+import android.widget.TextView;
+import android.content.SharedPreferences;
+import android.os.Bundle;
 
 public class SettingsActivity extends Activity {
 
@@ -16,8 +20,5 @@ public class SettingsActivity extends Activity {
         getFragmentManager().beginTransaction()
                 .replace(android.R.id.content, new SettingsFragment()).commit();
     }
-    public void loadTest(View v) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
+
 }
