@@ -115,11 +115,7 @@ public class MainActivity extends Activity implements SensorEventListener {
         final Button startBtn = (Button) findViewById(R.id.startBtn);
         final Button selectBtn = (Button) findViewById(R.id.selectBtn);
 
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 4ad417ec94c4d34d259356ea32e2ce1e36377e20
         final View touchView = findViewById(R.id.joystickLayout);
 
         //joystick controls

@@ -3,11 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 4ad417ec94c4d34d259356ea32e2ce1e36377e20
     <!--Buttons Category-->
     <PreferenceCategory
         android:title="@string/str_first_category_title"
@@ -66,8 +62,5 @@
             >
         </PreferenceCategory>
     </PreferenceScreen>
-<<<<<<< HEAD
 
-=======
->>>>>>> 4ad417ec94c4d34d259356ea32e2ce1e36377e20
 </PreferenceScreen>

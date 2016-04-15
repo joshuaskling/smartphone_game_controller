@@ -45,20 +45,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
 
-        <!--<activity android:name=".SettingsActivity" />-->
-        <!--<activity-->
-            <!--android:name=".BluetoothActivity"-->
-            <!--android:label="@string/title_activity_bluetooth"-->
-            <!--android:theme="@style/AppTheme.NoActionBar">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.Bluetooth" />-->
-                <!--<category android:name="android.intent.category.DEFAULT" />-->
-            <!--</intent-filter>-->
-        <!--</activity>-->
 
-=======
+
 
         <activity
             android:name=".BluetoothActivity"
@@ -70,7 +59,6 @@
             </intent-filter>
         </activity>
 
->>>>>>> 4ad417ec94c4d34d259356ea32e2ce1e36377e20
     </application>
 
 </manifest>
