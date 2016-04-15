@@ -49,6 +49,7 @@ public class MainActivity extends Activity implements SensorEventListener {
     //long positionTimer = System.currentTimeMillis();
     public static Vibrator vibrator;
     public LinearLayout mLinearLayout;
+    private JoystickView joystick;
 
     public final String DEBUGMSG = "MainActivity";
     public final String KEY_PREF_BTN_SIZE = "button_size_preference";
@@ -62,11 +63,24 @@ public class MainActivity extends Activity implements SensorEventListener {
         super.onCreate(savedInstanceState);
         mLinearLayout = new LinearLayout(this);
 
-        vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         //set orientation to landscape
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
+        //get size of screen
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        final int screenWidth = size.x;
+        final int screenHeight = size.y;
+
+        // Connection to server
+        //connect();
+
+        // Attempt to draw EdgeEffect on view
+        //setContentView(new DrawDemo(this));
+        setContentView(R.layout.activity_main);
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.OnSharedPreferenceChangeListener listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
@@ -89,21 +103,17 @@ public class MainActivity extends Activity implements SensorEventListener {
         };
         sharedPref.registerOnSharedPreferenceChangeListener(listener);
 
+        //Referencing also other views
+        joystick = (JoystickView) findViewById(R.id.joystickView);
+        //Event listener that always returns the variation of the angle in degrees, motion power in percentage and direction of movement
+        joystick.setOnJoystickMoveListener(new JoystickView.OnJoystickMoveListener() {
 
-
-        //get size of screen
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        final int screenWidth = size.x;
-        final int screenHeight = size.y;
-
-        // Connection to server
-        //connect();
-
-        // Attempt to draw EdgeEffect on view
-        //setContentView(new DrawDemo(this));
-        setContentView(R.layout.activity_main);
+            @Override
+            public void onValueChanged(double x, double y) {
+                // TODO Auto-generated method stub
+                Log.d(DEBUGMSG, String.valueOf(x) + ","  +String.valueOf(y));
+            }
+        }, JoystickView.DEFAULT_LOOP_INTERVAL);
 
         // Controller buttons
         final ImageButton button1 = (ImageButton) findViewById(R.id.button1);
@@ -115,25 +125,25 @@ public class MainActivity extends Activity implements SensorEventListener {
         final Button startBtn = (Button) findViewById(R.id.startBtn);
         final Button selectBtn = (Button) findViewById(R.id.selectBtn);
 
-        final View touchView = findViewById(R.id.joystickLayout);
+        //final View touchView = findViewById(R.id.joystickLayout);
 
         //joystick controls
-        touchView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                if (System.currentTimeMillis() - time > 100) {
-
-                    float x = (event.getRawX() - (screenWidth / 5));
-                    float y = (event.getRawY() - (screenHeight / 2)) * -1;
-
-                    Log.d(DEBUGMSG, "(" + Float.toString(x) + "," + Float.toString(y) + ")");
-                    sendMovement(x, y);
-                    time = System.currentTimeMillis();
-                }
-                return true;
-            }
-        });
+//        touchView.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//
+//                if (System.currentTimeMillis() - time > 100) {
+//
+//                    float x = (event.getRawX() - (screenWidth / 5));
+//                    float y = (event.getRawY() - (screenHeight / 2)) * -1;
+//
+//                    Log.d(DEBUGMSG, "(" + Float.toString(x) + "," + Float.toString(y) + ")");
+//                    sendMovement(x, y);
+//                    time = System.currentTimeMillis();
+//                }
+//                return true;
+//            }
+//        });
 
 
 
