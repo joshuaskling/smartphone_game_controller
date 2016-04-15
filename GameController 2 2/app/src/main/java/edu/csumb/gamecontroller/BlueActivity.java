@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.UUID;
 
-package seangardner.bluetoothphonev05;
 
 import java.io.IOException;
 import java.io.InputStream;
