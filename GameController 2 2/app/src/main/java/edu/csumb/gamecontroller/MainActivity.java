@@ -49,7 +49,14 @@ public class MainActivity extends Activity implements SensorEventListener {
     //long positionTimer = System.currentTimeMillis();
     public static Vibrator vibrator;
     public LinearLayout mLinearLayout;
-    private JoystickView joystick;
+    private JoystickView leftJoystick;
+    private RelativeLayout leftDPad;
+    private RelativeLayout leftButtonLayout;
+    private JoystickView rightJoystick;
+    private RelativeLayout rightDPad;
+    private RelativeLayout rightButtonLayout;
+    private boolean leftJoystickVisible = true;
+    private boolean rightJoystickVisble = false;
 
     public final String DEBUGMSG = "MainActivity";
     public final String KEY_PREF_BTN_SIZE = "button_size_preference";
@@ -104,10 +111,14 @@ public class MainActivity extends Activity implements SensorEventListener {
         sharedPref.registerOnSharedPreferenceChangeListener(listener);
 
         //Referencing also other views
-        joystick = (JoystickView) findViewById(R.id.joystickView);
-        //Event listener that always returns the variation of the angle in degrees, motion power in percentage and direction of movement
-        joystick.setOnJoystickMoveListener(new JoystickView.OnJoystickMoveListener() {
+        leftJoystick = (JoystickView) findViewById(R.id.leftJoystickView);
+        leftDPad = (RelativeLayout) findViewById(R.id.leftDpadView);
+        leftButtonLayout = (RelativeLayout) findViewById(R.id.leftButtonLayout);
+        rightJoystick = (JoystickView) findViewById(R.id.rightJoystickView);
+        rightDPad = (RelativeLayout) findViewById(R.id.rightDpadView);
+        rightButtonLayout = (RelativeLayout) findViewById(R.id.rightButtonLayout);
 
+        leftJoystick.setOnJoystickMoveListener(new JoystickView.OnJoystickMoveListener() {
             @Override
             public void onValueChanged(double x, double y) {
                 // TODO Auto-generated method stub
@@ -115,37 +126,63 @@ public class MainActivity extends Activity implements SensorEventListener {
             }
         }, JoystickView.DEFAULT_LOOP_INTERVAL);
 
-        // Controller buttons
-        final ImageButton button1 = (ImageButton) findViewById(R.id.button1);
-        final ImageButton button2 = (ImageButton) findViewById(R.id.button2);
-        final ImageButton button3 = (ImageButton) findViewById(R.id.button3);
-        final ImageButton button4 = (ImageButton) findViewById(R.id.button4);
+        rightJoystick.setOnJoystickMoveListener(new JoystickView.OnJoystickMoveListener() {
+            @Override
+            public void onValueChanged(double x, double y) {
+                Log.d(DEBUGMSG, String.valueOf(x) + ","  +String.valueOf(y));
+            }
+        }, JoystickView.DEFAULT_LOOP_INTERVAL);
+
+        // Left controller buttons
+        final ImageButton button1 = (ImageButton) findViewById(R.id.r_button1);
+        final ImageButton button2 = (ImageButton) findViewById(R.id.r_button2);
+        final ImageButton button3 = (ImageButton) findViewById(R.id.r_button3);
+        final ImageButton button4 = (ImageButton) findViewById(R.id.r_button4);
+
+        //Right controller buttons
+        final ImageButton r_button1 = (ImageButton) findViewById(R.id.l_button1);
+        final ImageButton r_button2 = (ImageButton) findViewById(R.id.l_button2);
+        final ImageButton r_button3 = (ImageButton) findViewById(R.id.l_button3);
+        final ImageButton r_button4 = (ImageButton) findViewById(R.id.l_button4);
 
         final Button settingsBtn = (Button) findViewById(R.id.settingsBtn);
         final Button startBtn = (Button) findViewById(R.id.startBtn);
         final Button selectBtn = (Button) findViewById(R.id.selectBtn);
 
-        //final View touchView = findViewById(R.id.joystickLayout);
+        //dPad output
+        leftDPad.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
 
-        //joystick controls
-//        touchView.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//
-//                if (System.currentTimeMillis() - time > 100) {
-//
-//                    float x = (event.getRawX() - (screenWidth / 5));
-//                    float y = (event.getRawY() - (screenHeight / 2)) * -1;
-//
-//                    Log.d(DEBUGMSG, "(" + Float.toString(x) + "," + Float.toString(y) + ")");
-//                    sendMovement(x, y);
-//                    time = System.currentTimeMillis();
-//                }
-//                return true;
-//            }
-//        });
+                if (System.currentTimeMillis() - time > 100) {
 
+                    float x = (event.getRawX() - (screenWidth / 5));
+                    float y = (event.getRawY() - (screenHeight / 2)) * -1;
 
+                    Log.d(DEBUGMSG, "(" + Float.toString(x) + "," + Float.toString(y) + ")");
+                    sendMovement(x, y);
+                    time = System.currentTimeMillis();
+                }
+                return true;
+            }
+        });
+
+        rightDPad.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                if (System.currentTimeMillis() - time > 100) {
+
+                    float x = (event.getRawX() - (screenWidth / 5));
+                    float y = (event.getRawY() - (screenHeight / 2)) * -1;
+
+                    Log.d(DEBUGMSG, "(" + Float.toString(x) + "," + Float.toString(y) + ")");
+                    sendMovement(x, y);
+                    time = System.currentTimeMillis();
+                }
+                return true;
+
+            }
+        });
 
         startBtn.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -266,6 +303,71 @@ public class MainActivity extends Activity implements SensorEventListener {
                 }
         );
 
+        r_button1.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch(motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {
+                        Log.d(DEBUGMSG, "btn 1 down");
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP: {
+                        Log.d(DEBUGMSG, "btn 1 up");
+                        break;
+                    }
+                }
+                return true;
+            }
+        });
+        r_button2.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch(motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {
+                        Log.d(DEBUGMSG, "btn 2 down");
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP: {
+                        Log.d(DEBUGMSG, "btn 2 up");
+                        break;
+                    }
+                }
+                return true;
+            }
+        });
+        r_button3.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch(motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {
+                        Log.d(DEBUGMSG, "btn 3 down");
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP: {
+                        Log.d(DEBUGMSG, "btn 3 up");
+                        break;
+                    }
+                }
+                return true;
+            }
+        });
+        r_button4.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch(motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {
+                        Log.d(DEBUGMSG, "btn 4 down");
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP: {
+                        Log.d(DEBUGMSG, "btn 4 up");
+                        break;
+                    }
+                }
+                return true;
+            }
+        });
+
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 
     }
@@ -297,11 +399,75 @@ public class MainActivity extends Activity implements SensorEventListener {
 
         AlertDialog dialog = builder.create();
         dialog.show();
-
     }
 
+    public void swapJoystickControl(View view) {
 
+        if(leftButtonLayout.getVisibility() == View.GONE) {
+            if(leftJoystick.getVisibility() == View.VISIBLE) {
+                leftJoystick.setVisibility(View.GONE);
+                leftDPad.setVisibility(View.VISIBLE);
+                leftJoystickVisible = false;
+            }
+            else {
+                leftJoystick.setVisibility(View.VISIBLE);
+                leftDPad.setVisibility(View.GONE);
+                leftJoystickVisible = true;
+            }
+        }
+        else if(rightButtonLayout.getVisibility() == View.GONE) {
+            if(rightJoystick.getVisibility() == View.VISIBLE) {
+                rightJoystick.setVisibility(View.GONE);
+                rightDPad.setVisibility(View.VISIBLE);
+                rightJoystickVisble = false;
+            }
+            else {
+                rightJoystick.setVisibility(View.VISIBLE);
+                rightDPad.setVisibility(View.GONE);
+                rightJoystickVisble = true;
+            }
+        }
+    }
 
+    public void swapJoystickAndButtons(View view) {
+
+        if(rightButtonLayout.getVisibility() == View.VISIBLE) {
+            leftJoystick.setVisibility(View.GONE);
+            leftDPad.setVisibility(View.GONE);
+            leftButtonLayout.setVisibility(View.VISIBLE);
+
+            rightButtonLayout.setVisibility(View.GONE);
+            if(leftJoystickVisible) {
+                rightJoystick.setVisibility(View.VISIBLE);
+                rightDPad.setVisibility(View.GONE);
+                rightJoystickVisble = true;
+            }
+            else {
+                rightJoystick.setVisibility(View.GONE);
+                rightDPad.setVisibility(View.VISIBLE);
+                rightJoystickVisble = false;
+            }
+
+        }
+        else if(leftButtonLayout.getVisibility() == View.VISIBLE) {
+            rightJoystick.setVisibility(View.GONE);
+            rightDPad.setVisibility(View.GONE);
+            rightButtonLayout.setVisibility(View.VISIBLE);
+
+            leftButtonLayout.setVisibility(View.GONE);
+            if(rightJoystickVisble) {
+                leftJoystick.setVisibility(View.VISIBLE);
+                leftDPad.setVisibility(View.GONE);
+                leftJoystickVisible = true;
+            }
+            else {
+                leftJoystick.setVisibility(View.GONE);
+                leftDPad.setVisibility(View.VISIBLE);
+                leftJoystickVisible = false;
+            }
+        }
+
+    }
 
     //stick listeners
     @Override
