@@ -95,6 +95,23 @@
 
     <string name="more">More Settings      \u00A0 \u00A0 \u00A0&gt;&gt;&gt;</string>
 
+    <string name="default_control_position">Sitck, Buttons</string>
+    <string name="default_stick_layout">Joystick</string>
+    <string name="default_button_style">Round</string>
+
+    <string-array name="control_positions">
+        <item>Sitck, Buttons</item>
+        <item>Buttons, Stick</item>
+    </string-array>
+    <string-array name="stick_layouts">
+        <item>Joystick</item>
+        <item>DPad</item>
+    </string-array>
+    <string-array name="button_styles">
+        <item>Round</item>
+        <item>Square</item>
+    </string-array>
+
     <!--Volume-->
     <string-array name="array_list_preference_entries">
         <item>Sound</item>
