@@ -3,6 +3,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
+    <PreferenceCategory
+        android:title="Layout Details"
+        android:textSize="40px">
+        <ListPreference
+            android:key="layout_preference"
+            android:title="Control Positions"
+            android:textSize="20px"
+            android:defaultValue="@string/default_control_position"
+            android:entries="@array/control_positions"
+            android:entryValues="@array/control_positions" />
+        <ListPreference
+            android:key="layout_stick"
+            android:title="Stick layout"
+            android:textSize="20px"
+            android:defaultValue="@string/default_stick_layout"
+            android:entries="@array/stick_layouts"
+            android:entryValues="@array/stick_layouts"/>
+    </PreferenceCategory>
 
     <!--Buttons Category-->
     <PreferenceCategory
@@ -15,16 +33,21 @@
             android:icon="@drawable/a_button_small_pressed"
             android:textSize="20px"
             android:entries="@array/array_list_preference_size"
-            android:entryValues="@array/array_list_preference_size"
-            />
+            android:entryValues="@array/array_list_preference_size" />
         <ListPreference
             android:key="button_color_preference"
             android:title="@string/lp_list_preference_color"
             android:icon="@drawable/b_button_small_pressed"
             android:textSize="20px"
             android:entries="@array/array_list_preference_color"
-            android:entryValues="@array/array_list_preference_color"
-            />
+            android:entryValues="@array/array_list_preference_color" />
+        <ListPreference
+            android:key="button_style"
+            android:title="Button Style"
+            android:textSize="20px"
+            android:entries="@array/button_styles"
+            android:entryValues="@array/button_styles" />
+
     </PreferenceCategory>
 
     <!--Skins Category-->

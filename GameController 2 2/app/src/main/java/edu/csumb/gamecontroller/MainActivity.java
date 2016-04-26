@@ -58,12 +58,17 @@ public class MainActivity extends Activity implements SensorEventListener {
     private boolean leftJoystickVisible = true;
     private boolean rightJoystickVisble = false;
 
+    public SharedPreferences prefs;
+    public SharedPreferences.OnSharedPreferenceChangeListener listener;
+
     public final String DEBUGMSG = "MainActivity";
     public final String KEY_PREF_BTN_SIZE = "button_size_preference";
     public final String KEY_PREF_BTN_COLOR = "button_color_preference";
     public final String KEY_PREF_BACKGROUND = "background_preference";
     public final String KEY_PREF_VOLUME = "volume_preference";
-
+    public final String KEY_PREF_CTRL_POS = "layout_preference";
+    public final String KEY_PREF_STICK_LAYOUT = "layout_stick";
+    public final String KEY_PREF_BTN_STYLE = "button_style";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,12 +94,23 @@ public class MainActivity extends Activity implements SensorEventListener {
         //setContentView(new DrawDemo(this));
         setContentView(R.layout.activity_main);
 
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.OnSharedPreferenceChangeListener listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
             @Override
             // Detects changes in Preference values
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
-                if(s.equals(KEY_PREF_BTN_SIZE)) {
+                if(s.equals(KEY_PREF_CTRL_POS)) {
+                    Log.d(DEBUGMSG, "Control Position changed");
+                    swapJoystickAndButtons(mLinearLayout);
+                }
+                else if(s.equals(KEY_PREF_STICK_LAYOUT)) {
+                    Log.d(DEBUGMSG, "Stick layout changed");
+                    swapJoystickControl(mLinearLayout);
+                }
+                else if(s.equals(KEY_PREF_BTN_STYLE)) {
+                    Log.d(DEBUGMSG, sharedPreferences.getString(s, ""));
+                }
+                else if(s.equals(KEY_PREF_BTN_SIZE)) {
                     Log.d(DEBUGMSG, sharedPreferences.getString(s, ""));
                 }
                 else if(s.equals(KEY_PREF_BTN_COLOR)) {
@@ -106,9 +122,10 @@ public class MainActivity extends Activity implements SensorEventListener {
                 else if(s.equals(KEY_PREF_VOLUME)) {
                     Log.d(DEBUGMSG, sharedPreferences.getString(s, ""));
                 }
+
             }
         };
-        sharedPref.registerOnSharedPreferenceChangeListener(listener);
+        prefs.registerOnSharedPreferenceChangeListener(listener);
 
         //Referencing also other views
         leftJoystick = (JoystickView) findViewById(R.id.leftJoystickView);
@@ -369,6 +386,17 @@ public class MainActivity extends Activity implements SensorEventListener {
         });
 
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+
+        // Check the saved Settings value
+        String controlPositionPref = prefs.getString(KEY_PREF_CTRL_POS, "");
+        String stickPositionPref = prefs.getString(KEY_PREF_STICK_LAYOUT, "");
+        if(controlPositionPref.equals("Buttons, Stick")) {
+            swapJoystickAndButtons(mLinearLayout);
+        }
+        if(stickPositionPref.equals("DPad")) {
+            swapJoystickControl(mLinearLayout);
+        }
+
 
     }
 
