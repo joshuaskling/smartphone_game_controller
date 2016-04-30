@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/brianhuynh/Desktop/Capstone/smartphone_game_controller/GameController 2 2/app/libs/joystickview.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="3e6510065a4867c6d4a9e2410873bbe8baa7a860">
+        <dex dex="/Users/brianhuynh/Desktop/Capstone/smartphone_game_controller/GameController 2 2/app/build/intermediates/pre-dexed/debug/joystickview-d86c8746ce2c20bc3f68963db70c47db2b42c379.jar" />
+    </item>
+
+</items>
