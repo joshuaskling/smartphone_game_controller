@@ -17,6 +17,7 @@ import android.widget.Toolbar;
 
 public class SettingsActivity extends PreferenceActivity {
 
+    // Reference: http://alvinalexander.com/android/android-tutorial-preferencescreen-preferenceactivity-preferencefragment
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
