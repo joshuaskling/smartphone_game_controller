@@ -1,9 +1,0 @@
-<preference-headers xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <header
-        android:fragment="edu.csumb.gamecontroller.SettingsFragment"
-        android:icon="@drawable/ic_info_black_24dp"
-        android:title="@string/pref_header_settings" />
-
-</preference-headers>
-<!-- From: file:/C:/Users/Sean%20Gardner/Desktop/phone/GameController%202%202/app/src/main/res/xml/pref_headers.xml -->
