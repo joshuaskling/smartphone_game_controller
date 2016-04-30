@@ -1,0 +1,181 @@
+<resources>
+    <string name="app_name">Augment</string>
+    <string name="alert_connect">Connect</string>
+    <string name="alert_cancel">Cancel</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="title_activity_settings">Settings</string>
+
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_settings">Settings</string>
+
+    <string name="pref_custom_buttons">Custom Buttons</string>
+    <string name="pref_summary_custom_buttons">Change the buttons size and colors</string>
+
+    <string name="pref_custom_skins">Custom Skins</string>
+
+    <string name="pref_bluetooth_settings">Bluetooth Settings</string>
+
+    <string name="pref_volume_controls">Volume Settings</string>
+
+    <string name="pref_title_social_recommendations">Enable social recommendations</string>
+    <string name="pref_description_social_recommendations">Recommendations for people to contact
+        based on your message history
+    </string>
+
+    <string name="pref_title_display_name">Display name</string>
+    <string name="pref_default_display_name">John Smith</string>
+
+    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
+    <string-array name="pref_example_list_titles">
+        <item>Always</item>
+        <item>When possible</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_example_list_values">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
+
+    <!-- Example settings for Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; sync</string>
+
+    <string name="pref_title_sync_frequency">Sync frequency</string>
+    <string-array name="pref_sync_frequency_titles">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>3 hours</item>
+        <item>6 hours</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>-1</item>
+    </string-array>
+
+    <string name="pref_title_system_sync_settings">System sync settings</string>
+
+    <!-- Example settings for Notifications -->
+    <string name="pref_header_notifications">Notifications</string>
+
+    <string name="pref_title_new_message_notifications">New message notifications</string>
+
+    <string name="pref_title_ringtone">Ringtone</string>
+    <string name="pref_ringtone_silent">Silent</string>
+
+    <string name="pref_title_vibrate">Vibrate</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+
+    <string name="title_activity_bluetooth">BluetoothActivity</string>
+
+
+    <string name="str_btn_settings">Settings</string>
+    <string name="str_btn_show">Show Values</string>
+
+    <string name="str_first_category_title">Custom Buttons</string>
+
+    <string name="str_cbp_checkbox_preference1_title">Small</string>
+    <string name="str_cbp_checkbox_preference2_title">Medium</string>
+    <string name="str_cbp_checkbox_preference3_title">Large</string>
+
+    <string name="str_second_category_title">Volume Settings</string>
+    <string name="str_fourth_category_title">Custom Skins</string>
+    <string name="lp_list_preference_title">Mute Volume</string>
+    <string name="lp_list_preference_size">Button Size</string>
+    <string name="lp_list_preference_background">Change Background</string>
+    <string name="lp_list_preference_color">Button Colors</string>
+
+    <string name="rtp_ringtone_preference_title">Ringtone Preference</string>
+
+    <string name="str_third_category_title">Bluetooth Settings</string>
+
+    <string name="more">More Settings      \u00A0 \u00A0 \u00A0&gt;&gt;&gt;</string>
+
+    <string name="default_control_position">Sitck, Buttons</string>
+    <string name="default_stick_layout">Joystick</string>
+    <string name="default_button_style">Round</string>
+
+    <string-array name="control_positions">
+        <item>Sitck, Buttons</item>
+        <item>Buttons, Stick</item>
+    </string-array>
+    <string-array name="stick_layouts">
+        <item>Joystick</item>
+        <item>DPad</item>
+    </string-array>
+    <string-array name="button_styles">
+        <item>Round</item>
+        <item>Square</item>
+    </string-array>
+
+    <!--Volume-->
+    <string-array name="array_list_preference_entries">
+        <item>Sound</item>
+        <item>No Sound</item>
+
+    </string-array>
+
+    <string-array name="array_list_preference_entry_values">
+        <item>Item1</item>
+        <item>Item2</item>
+
+    </string-array>
+
+
+    <!--Background-->
+    <string-array name="array_list_preference_entries_background">
+        <item>One</item>
+        <item>Two</item>
+
+    </string-array>
+
+    <string-array name="array_list_preference_entry_values_background">
+        <item>1</item>
+        <item>2</item>
+
+    </string-array>
+
+
+    <!--Button-->
+    <string-array name="array_list_preference_size">
+        <item>Small</item>
+        <item>Medium</item>
+        <item>Large</item>
+
+    </string-array>
+
+    <string-array name="array_list_preference_entry__size_values">
+        <item>m1</item>
+        <item>m2</item>
+        <item>m3</item>
+    </string-array>
+
+    <string-array name="array_list_preference_color">
+        <item>Red</item>
+        <item>Blue</item>
+        <item>Yellow</item>
+
+    </string-array>
+
+    <string-array name="array_list_preference_entry_color">
+        <item>md1</item>
+        <item>md2</item>
+        <item>md3</item>
+    </string-array>
+
+
+</resources>
