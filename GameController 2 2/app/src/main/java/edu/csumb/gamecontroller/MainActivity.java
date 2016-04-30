@@ -537,8 +537,6 @@ public class MainActivity extends Activity implements SensorEventListener {
 
 
     void sendOrientation(float deltaAlpha, float deltaBeta, float deltaGamma) {
-
-
             try {
 
                 String messageContent = new String("{alpha: " + deltaAlpha + ",beta: " + deltaBeta + ", gamma:" + deltaGamma + "}");
