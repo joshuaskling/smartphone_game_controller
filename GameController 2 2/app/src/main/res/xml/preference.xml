@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
+<<<<<<< HEAD
     <PreferenceCategory
         android:title="Layout Details"
         android:textSize="40px">
@@ -22,6 +23,8 @@
             android:entryValues="@array/stick_layouts"/>
     </PreferenceCategory>
 
+=======
+>>>>>>> 01ef4e7646051b289110c424693e9f2685168e42
     <!--Buttons Category-->
     <PreferenceCategory
         android:title="@string/str_first_category_title"
@@ -33,13 +36,19 @@
             android:icon="@drawable/a_button_small_pressed"
             android:textSize="20px"
             android:entries="@array/array_list_preference_size"
+<<<<<<< HEAD
             android:entryValues="@array/array_list_preference_size" />
+=======
+            android:entryValues="@array/array_list_preference_size"
+            />
+>>>>>>> 01ef4e7646051b289110c424693e9f2685168e42
         <ListPreference
             android:key="button_color_preference"
             android:title="@string/lp_list_preference_color"
             android:icon="@drawable/b_button_small_pressed"
             android:textSize="20px"
             android:entries="@array/array_list_preference_color"
+<<<<<<< HEAD
             android:entryValues="@array/array_list_preference_color" />
         <ListPreference
             android:key="button_style"
@@ -48,6 +57,10 @@
             android:entries="@array/button_styles"
             android:entryValues="@array/button_styles" />
 
+=======
+            android:entryValues="@array/array_list_preference_color"
+            />
+>>>>>>> 01ef4e7646051b289110c424693e9f2685168e42
     </PreferenceCategory>
 
     <!--Skins Category-->
@@ -85,5 +98,8 @@
             >
         </PreferenceCategory>
     </PreferenceScreen>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 01ef4e7646051b289110c424693e9f2685168e42
 </PreferenceScreen>

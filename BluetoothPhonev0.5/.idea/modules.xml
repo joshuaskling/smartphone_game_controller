@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ProjectModuleManager">
+<<<<<<< HEAD
     <modules />
+=======
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/BluetoothPhonev0.5.iml" filepath="$PROJECT_DIR$/BluetoothPhonev0.5.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+    </modules>
+>>>>>>> 01ef4e7646051b289110c424693e9f2685168e42
   </component>
 </project>

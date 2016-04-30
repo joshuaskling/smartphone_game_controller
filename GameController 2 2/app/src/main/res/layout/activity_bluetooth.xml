@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -27,3 +28,39 @@
 
 
 </android.support.design.widget.CoordinatorLayout>
+=======
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:text="Paired Devices"
+        android:id="@+id/tvPD"
+        />
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/tvPD"
+        >
+    </ListView>
+    <EditText
+        android:id="@+id/ETSend"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/listView"
+        >
+    </EditText>
+    <Button
+        android:id="@+id/btSend"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@id/ETSend"
+        >
+    </Button>
+
+</RelativeLayout>
+>>>>>>> 01ef4e7646051b289110c424693e9f2685168e42

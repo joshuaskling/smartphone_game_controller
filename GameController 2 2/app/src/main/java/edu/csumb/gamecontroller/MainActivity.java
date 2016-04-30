@@ -21,6 +21,10 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+<<<<<<< HEAD
+=======
+import android.net.Uri;
+>>>>>>> 01ef4e7646051b289110c424693e9f2685168e42
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
@@ -49,6 +53,7 @@ public class MainActivity extends Activity implements SensorEventListener {
     //long positionTimer = System.currentTimeMillis();
     public static Vibrator vibrator;
     public LinearLayout mLinearLayout;
+<<<<<<< HEAD
     private JoystickView leftJoystick;
     private RelativeLayout leftDPad;
     private RelativeLayout leftButtonLayout;
@@ -60,26 +65,38 @@ public class MainActivity extends Activity implements SensorEventListener {
 
     public SharedPreferences prefs;
     public SharedPreferences.OnSharedPreferenceChangeListener listener;
+=======
+    public Intent mServiceIntent;
+>>>>>>> 01ef4e7646051b289110c424693e9f2685168e42
 
     public final String DEBUGMSG = "MainActivity";
     public final String KEY_PREF_BTN_SIZE = "button_size_preference";
     public final String KEY_PREF_BTN_COLOR = "button_color_preference";
     public final String KEY_PREF_BACKGROUND = "background_preference";
     public final String KEY_PREF_VOLUME = "volume_preference";
+<<<<<<< HEAD
     public final String KEY_PREF_CTRL_POS = "layout_preference";
     public final String KEY_PREF_STICK_LAYOUT = "layout_stick";
     public final String KEY_PREF_BTN_STYLE = "button_style";
+=======
+
+>>>>>>> 01ef4e7646051b289110c424693e9f2685168e42
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mLinearLayout = new LinearLayout(this);
 
+<<<<<<< HEAD
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+=======
+        vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+>>>>>>> 01ef4e7646051b289110c424693e9f2685168e42
 
         //set orientation to landscape
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
+<<<<<<< HEAD
         //get size of screen
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
@@ -111,6 +128,15 @@ public class MainActivity extends Activity implements SensorEventListener {
                     Log.d(DEBUGMSG, sharedPreferences.getString(s, ""));
                 }
                 else if(s.equals(KEY_PREF_BTN_SIZE)) {
+=======
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.OnSharedPreferenceChangeListener listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+            @Override
+            // Detects changes in Preference values
+            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+                if(s.equals(KEY_PREF_BTN_SIZE)) {
+>>>>>>> 01ef4e7646051b289110c424693e9f2685168e42
                     Log.d(DEBUGMSG, sharedPreferences.getString(s, ""));
                 }
                 else if(s.equals(KEY_PREF_BTN_COLOR)) {
@@ -122,6 +148,7 @@ public class MainActivity extends Activity implements SensorEventListener {
                 else if(s.equals(KEY_PREF_VOLUME)) {
                     Log.d(DEBUGMSG, sharedPreferences.getString(s, ""));
                 }
+<<<<<<< HEAD
 
             }
         };
@@ -161,13 +188,47 @@ public class MainActivity extends Activity implements SensorEventListener {
         final ImageButton r_button2 = (ImageButton) findViewById(R.id.l_button2);
         final ImageButton r_button3 = (ImageButton) findViewById(R.id.l_button3);
         final ImageButton r_button4 = (ImageButton) findViewById(R.id.l_button4);
+=======
+            }
+        };
+        sharedPref.registerOnSharedPreferenceChangeListener(listener);
+
+
+
+        //get size of screen
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        final int screenWidth = size.x;
+        final int screenHeight = size.y;
+
+        // Connection to server
+        //connect();
+
+        // Attempt to draw EdgeEffect on view
+        //setContentView(new DrawDemo(this));
+        setContentView(R.layout.activity_main);
+
+        // Controller buttons
+        final ImageButton button1 = (ImageButton) findViewById(R.id.button1);
+        final ImageButton button2 = (ImageButton) findViewById(R.id.button2);
+        final ImageButton button3 = (ImageButton) findViewById(R.id.button3);
+        final ImageButton button4 = (ImageButton) findViewById(R.id.button4);
+>>>>>>> 01ef4e7646051b289110c424693e9f2685168e42
 
         final Button settingsBtn = (Button) findViewById(R.id.settingsBtn);
         final Button startBtn = (Button) findViewById(R.id.startBtn);
         final Button selectBtn = (Button) findViewById(R.id.selectBtn);
 
+<<<<<<< HEAD
         //dPad output
         leftDPad.setOnTouchListener(new View.OnTouchListener() {
+=======
+        final View touchView = findViewById(R.id.joystickLayout);
+
+        //joystick controls
+        touchView.setOnTouchListener(new View.OnTouchListener() {
+>>>>>>> 01ef4e7646051b289110c424693e9f2685168e42
             @Override
             public boolean onTouch(View v, MotionEvent event) {
 
@@ -184,6 +245,7 @@ public class MainActivity extends Activity implements SensorEventListener {
             }
         });
 
+<<<<<<< HEAD
         rightDPad.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
@@ -200,11 +262,19 @@ public class MainActivity extends Activity implements SensorEventListener {
 
             }
         });
+=======
+
+>>>>>>> 01ef4e7646051b289110c424693e9f2685168e42
 
         startBtn.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 Log.d(DEBUGMSG, "Start btn touched");
+<<<<<<< HEAD
+=======
+                Intent mIntent = new Intent(MainActivity.this, BluetoothActivity.class);
+                startActivity(mIntent);
+>>>>>>> 01ef4e7646051b289110c424693e9f2685168e42
                 return false;
             }
         });
@@ -226,6 +296,13 @@ public class MainActivity extends Activity implements SensorEventListener {
                             case MotionEvent.ACTION_DOWN: {
                                 //button1.setBackgroundResource(R.drawable.x_button_small_pressed);
                                 //vibrator.vibrate(30);
+<<<<<<< HEAD
+=======
+                                mServiceIntent = new Intent(MainActivity.this, SendActivity.class);
+                                // String is not an encoded URI string
+                                mServiceIntent.setData(Uri.parse("btn1"));
+                                MainActivity.this.startService(mServiceIntent);
+>>>>>>> 01ef4e7646051b289110c424693e9f2685168e42
                                 sendFire("btn1", "down");
                                 //Log.i("AIPSERVER", "Message sent to server: fire!");
                                 break;
@@ -253,12 +330,21 @@ public class MainActivity extends Activity implements SensorEventListener {
                                 //v.invalidate();
                                 vibrator.vibrate(30);
                                 sendFire("btn2", "down");
+<<<<<<< HEAD
+=======
+
+>>>>>>> 01ef4e7646051b289110c424693e9f2685168e42
                                 //Log.i("AIPSERVER", "Message sent to server: fire!");
                                 break;
                             }
                             case MotionEvent.ACTION_UP: {
                                 //v.getBackground().clearColorFilter();
                                 //v.invalidate();
+<<<<<<< HEAD
+=======
+                                Intent mIntent = new Intent(MainActivity.this, SendActivity.class);
+                                startActivity(mIntent);
+>>>>>>> 01ef4e7646051b289110c424693e9f2685168e42
                                 sendFire("btn2", "up");
                                 break;
                             }
@@ -320,6 +406,7 @@ public class MainActivity extends Activity implements SensorEventListener {
                 }
         );
 
+<<<<<<< HEAD
         r_button1.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -398,6 +485,10 @@ public class MainActivity extends Activity implements SensorEventListener {
         }
 
 
+=======
+        mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+
+>>>>>>> 01ef4e7646051b289110c424693e9f2685168e42
     }
 
 
@@ -427,6 +518,7 @@ public class MainActivity extends Activity implements SensorEventListener {
 
         AlertDialog dialog = builder.create();
         dialog.show();
+<<<<<<< HEAD
     }
 
     public void swapJoystickControl(View view) {
@@ -496,6 +588,13 @@ public class MainActivity extends Activity implements SensorEventListener {
         }
 
     }
+=======
+
+    }
+
+
+
+>>>>>>> 01ef4e7646051b289110c424693e9f2685168e42
 
     //stick listeners
     @Override
@@ -537,6 +636,11 @@ public class MainActivity extends Activity implements SensorEventListener {
 
 
     void sendOrientation(float deltaAlpha, float deltaBeta, float deltaGamma) {
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 01ef4e7646051b289110c424693e9f2685168e42
             try {
 
                 String messageContent = new String("{alpha: " + deltaAlpha + ",beta: " + deltaBeta + ", gamma:" + deltaGamma + "}");
