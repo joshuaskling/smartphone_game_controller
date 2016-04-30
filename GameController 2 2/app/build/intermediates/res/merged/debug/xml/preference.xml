@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <PreferenceCategory
+        android:title="Layout Details"
+        android:textSize="40px">
+        <ListPreference
+            android:key="layout_preference"
+            android:title="Control Positions"
+            android:textSize="20px"
+            android:defaultValue="@string/default_control_position"
+            android:entries="@array/control_positions"
+            android:entryValues="@array/control_positions" />
+        <ListPreference
+            android:key="layout_stick"
+            android:title="Stick layout"
+            android:textSize="20px"
+            android:defaultValue="@string/default_stick_layout"
+            android:entries="@array/stick_layouts"
+            android:entryValues="@array/stick_layouts"/>
+    </PreferenceCategory>
+
+    <!--Buttons Category-->
+    <PreferenceCategory
+        android:title="@string/str_first_category_title"
+        android:textSize="40px"
+        >
+        <ListPreference
+            android:key="button_size_preference"
+            android:title="@string/lp_list_preference_size"
+            android:icon="@drawable/a_button_small_pressed"
+            android:textSize="20px"
+            android:entries="@array/array_list_preference_size"
+            android:entryValues="@array/array_list_preference_size" />
+        <ListPreference
+            android:key="button_color_preference"
+            android:title="@string/lp_list_preference_color"
+            android:icon="@drawable/b_button_small_pressed"
+            android:textSize="20px"
+            android:entries="@array/array_list_preference_color"
+            android:entryValues="@array/array_list_preference_color" />
+        <ListPreference
+            android:key="button_style"
+            android:title="Button Style"
+            android:textSize="20px"
+            android:entries="@array/button_styles"
+            android:entryValues="@array/button_styles" />
+
+    </PreferenceCategory>
+
+    <!--Skins Category-->
+    <PreferenceCategory
+        android:title="@string/str_fourth_category_title"
+        >
+        <ListPreference
+            android:key="background_preference"
+            android:title="@string/lp_list_preference_background"
+            android:icon="@drawable/bb"
+            android:entries="@array/array_list_preference_entries_background"
+            android:entryValues="@array/array_list_preference_entry_values_background"
+            />
+    </PreferenceCategory>
+
+    <!--Volume Category-->
+    <PreferenceCategory
+        android:title="@string/str_second_category_title"
+        >
+        <ListPreference
+            android:key="volume_preference"
+            android:title="@string/lp_list_preference_title"
+            android:icon="@drawable/sound"
+            android:entries="@array/array_list_preference_entries"
+            android:entryValues="@array/array_list_preference_entry_values"
+            />
+    </PreferenceCategory>
+
+    <!--Bluetooth Settings-->
+    <PreferenceScreen
+        android:title="@string/more"
+        >
+        <PreferenceCategory
+            android:title="@string/str_third_category_title"
+            >
+        </PreferenceCategory>
+    </PreferenceScreen>
+</PreferenceScreen>
+<!-- From: file:/C:/Users/Sean%20Gardner/Desktop/phone/GameController%202%202/app/src/main/res/xml/preference.xml -->
