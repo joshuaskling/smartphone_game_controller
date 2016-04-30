@@ -158,7 +158,6 @@
             android:layout_marginTop="150dp"
             android:layout_marginLeft="25dp"
             android:text="Start"
-            android:onClick="swapJoystickAndButtons"
             android:id="@+id/startBtn" />
 
         <Button
@@ -167,7 +166,6 @@
             android:layout_marginTop="10dp"
             android:layout_marginLeft="25dp"
             android:text="Select"
-            android:onClick="swapJoystickControl"
             android:id="@+id/selectBtn" />
     </LinearLayout>
 </RelativeLayout>

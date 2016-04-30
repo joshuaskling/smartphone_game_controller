@@ -22,8 +22,6 @@
             android:entryValues="@array/stick_layouts"/>
     </PreferenceCategory>
 
-
-
     <!--Buttons Category-->
     <PreferenceCategory
         android:title="@string/str_first_category_title"
