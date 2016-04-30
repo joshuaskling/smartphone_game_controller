@@ -28,7 +28,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class BlueActivity extends Activity implements OnItemClickListener {
+public class MainActivity extends Activity implements OnItemClickListener {
 
 	ArrayAdapter<String> listAdapter;
 	ListView listView;
@@ -88,7 +88,7 @@ public class BlueActivity extends Activity implements OnItemClickListener {
         	if(!btAdapter.isEnabled()){
         		turnOnBT();
         	}
-        	
+
         	getPairedDevices();
         	startDiscovery();
         }
@@ -99,7 +99,7 @@ public class BlueActivity extends Activity implements OnItemClickListener {
 		// TODO Auto-generated method stub
 		btAdapter.cancelDiscovery();
 		btAdapter.startDiscovery();
-		
+
 	}
 	private void turnOnBT() {
 		// TODO Auto-generated method stub
@@ -112,7 +112,7 @@ public class BlueActivity extends Activity implements OnItemClickListener {
 		if(devicesArray.size()>0){
 			for(BluetoothDevice device:devicesArray){
 				pairedDevices.add(device.getName());
-				
+
 			}
 		}
 	}
@@ -131,40 +131,40 @@ public class BlueActivity extends Activity implements OnItemClickListener {
 			public void onReceive(Context context, Intent intent) {
 				// TODO Auto-generated method stub
 				String action = intent.getAction();
-				
+
 				if(BluetoothDevice.ACTION_FOUND.equals(action)){
 					BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
 					devices.add(device);
 					String s = "";
 					for(int a = 0; a < pairedDevices.size(); a++){
 						if(device.getName().equals(pairedDevices.get(a))){
-							//append 
+							//append
 							s = "(Paired)";
 							break;
 						}
 					}
-			
+
 					listAdapter.add(device.getName()+" "+s+" "+"\n"+device.getAddress());
 				}
-				
+
 				else if(BluetoothAdapter.ACTION_DISCOVERY_STARTED.equals(action)){
 					// run some code
 				}
 				else if(BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)){
 					// run some code
-			
-					
-				
+
+
+
 				}
 				else if(BluetoothAdapter.ACTION_STATE_CHANGED.equals(action)){
 					if(btAdapter.getState() == btAdapter.STATE_OFF){
 						turnOnBT();
 					}
 				}
-		  
+
 			}
 		};
-		
+
 		registerReceiver(receiver, filter);
 		 filter = new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
 		registerReceiver(receiver, filter);
@@ -173,8 +173,8 @@ public class BlueActivity extends Activity implements OnItemClickListener {
 		 filter = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
 		registerReceiver(receiver, filter);
 	}
-	
-	
+
+
 	@Override
 	protected void onPause() {
 		// TODO Auto-generated method stub
@@ -194,27 +194,30 @@ public class BlueActivity extends Activity implements OnItemClickListener {
 		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 				long arg3) {
 			// TODO Auto-generated method stub
-			
+			Log.i(tag, String.valueOf(arg2));
+
 			if(btAdapter.isDiscovering()){
 				btAdapter.cancelDiscovery();
 			}
+
 			if(listAdapter.getItem(arg2).contains("Paired")){
-		
+
 				BluetoothDevice selectedDevice = devices.get(arg2);
 				ConnectThread connect = new ConnectThread(selectedDevice);
 				connect.start();
 				Log.i(tag, "in click listener");
+
 			}
 			else{
 				Toast.makeText(getApplicationContext(), "device is not paired", Toast.LENGTH_SHORT).show();
 			}
 		}
-		
+
 		private class ConnectThread extends Thread {
-		
+
 			private final BluetoothSocket mmSocket;
 		    private final BluetoothDevice mmDevice;
-		 
+
 		    public ConnectThread(BluetoothDevice device) {
 		        // Use a temporary object that is later assigned to mmSocket,
 		        // because mmSocket is final
@@ -225,13 +228,13 @@ public class BlueActivity extends Activity implements OnItemClickListener {
 		        try {
 		            // MY_UUID is the app's UUID string, also used by the server code
 		            tmp = device.createRfcommSocketToServiceRecord(MY_UUID);
-		        } catch (IOException e) { 
+		        } catch (IOException e) {
 		        	Log.i(tag, "get socket failed");
-		        	
+
 		        }
 		        mmSocket = tmp;
 		    }
-		 
+
 		    public void run() {
 		        // Cancel discovery because it will slow down the connection
 		        btAdapter.cancelDiscovery();
@@ -248,12 +251,12 @@ public class BlueActivity extends Activity implements OnItemClickListener {
 		            } catch (IOException closeException) { }
 		            return;
 		        }
-		 
+
 		        // Do work to manage the connection (in a separate thread)
 				Log.i(tag, "test-send");
 				mHandler.obtainMessage(SUCCESS_CONNECT, mmSocket).sendToTarget();
 		    }
-		 
+
 
 
 			/** Will cancel an in-progress connection, and close the socket */
@@ -327,23 +330,23 @@ public class BlueActivity extends Activity implements OnItemClickListener {
 		    private final BluetoothSocket mmSocket;
 		    private final InputStream mmInStream;
 		    private final OutputStream mmOutStream;
-		 
+
 		    public ConnectedThread(BluetoothSocket socket) {
 		        mmSocket = socket;
 		        InputStream tmpIn = null;
 		        OutputStream tmpOut = null;
-		 
+
 		        // Get the input and output streams, using temp objects because
 		        // member streams are final
 		        try {
 		            tmpIn = socket.getInputStream();
 		            tmpOut = socket.getOutputStream();
 		        } catch (IOException e) { }
-		 
+
 		        mmInStream = tmpIn;
 		        mmOutStream = tmpOut;
 		    }
-		 
+
 		    public void run() {
 		        byte[] buffer;  // buffer store for the stream
 		        int bytes; // bytes returned from read()
@@ -372,7 +375,7 @@ public class BlueActivity extends Activity implements OnItemClickListener {
 				Log.i(tag, "test-7");
 
 			}
-		 
+
 		    /* Call this from the main activity to send data to the remote device */
 		    public void write(byte[] bytes) {
 
@@ -380,7 +383,7 @@ public class BlueActivity extends Activity implements OnItemClickListener {
 		            mmOutStream.write(bytes);
 		        } catch (IOException e) { }
 		    }
-		 
+
 		    /* Call this from the main activity to shutdown the connection */
 		    public void cancel() {
 		        try {
