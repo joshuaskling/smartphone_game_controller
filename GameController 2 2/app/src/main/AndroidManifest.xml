@@ -5,10 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
-<<<<<<< HEAD
-=======
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
->>>>>>> 01ef4e7646051b289110c424693e9f2685168e42
 
     <application
         android:allowBackup="true"
@@ -50,15 +47,9 @@
             </intent-filter>
         </activity>
 
-<<<<<<< HEAD
-=======
         <service
             android:name=".SendActivity"
             android:exported="false"/>
->>>>>>> 01ef4e7646051b289110c424693e9f2685168e42
-
-
-
         <activity
             android:name=".BluetoothActivity"
             android:label="@string/title_activity_bluetooth"
