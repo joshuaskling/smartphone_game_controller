@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:orientation="vertical"
+
+    android:layout_width="fill_parent"
+
+    android:layout_height="fill_parent"
+
+    >
+
+    <TextView
+
+        android:layout_width="fill_parent"
+
+        android:layout_height="wrap_content"
+
+        android:text= " @string/hello"
+
+        />
+
+    <TextView
+
+        android:id="@+id/pref"
+
+        android:layout_width="fill_parent"
+
+        android:layout_height="wrap_content"
+
+        />
+
+    <Button
+
+        android:id="@+id/setpref"
+
+        android:layout_width="fill_parent"
+
+        android:layout_height="wrap_content"
+
+        android:text="Set Preferences"
+
+        />
+
+    <Button
+        android:id="@+id/btn_settings"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/str_btn_settings"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="20dp"
+        />
+
+    <Button
+        android:id="@+id/btn_show"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/str_btn_show"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="20dp"
+        />
+
+</LinearLayout><!-- From: file:/C:/Users/Sean%20Gardner/Desktop/phone/GameController%202%202/app/src/main/res/layout/main.xml -->
