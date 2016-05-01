@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" />
+=======
   <component name="EntryPointsManager">
     <entry_points version="2.0" />
   </component>
@@ -59,4 +62,8 @@
       </state>
     </states>
   </component>
+<<<<<<< HEAD:GameController 2 2/.idea/misc.xml
+=======
+>>>>>>> 01ef4e7646051b289110c424693e9f2685168e42
+>>>>>>> e5fe262ca52ef1bf93133c54d9a546f9c6b6e92a:BluetoothPhonev0.5/.idea/misc.xml
 </project>
