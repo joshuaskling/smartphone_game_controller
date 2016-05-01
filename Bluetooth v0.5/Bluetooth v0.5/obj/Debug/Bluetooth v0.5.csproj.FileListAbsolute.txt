@@ -32,6 +32,3 @@ C:\Users\Sean Gardner\Desktop\Bluetooth v0.5\Bluetooth v0.5\obj\Debug\Bluetooth 
 C:\Users\Sean Gardner\Desktop\phone\Bluetooth v0.5\Bluetooth v0.5\bin\Debug\Bluetooth v0.5.exe.config
 C:\Users\Sean Gardner\Desktop\phone\Bluetooth v0.5\Bluetooth v0.5\obj\Debug\Bluetooth v0.5.exe
 C:\Users\Sean Gardner\Desktop\phone\Bluetooth v0.5\Bluetooth v0.5\obj\Debug\Bluetooth v0.5.pdb
-C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\bin\Debug\Bluetooth v0.5.exe.config
-C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\obj\Debug\Bluetooth v0.5.exe
-C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\obj\Debug\Bluetooth v0.5.pdb

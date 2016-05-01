@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">Augment</string>
-<<<<<<< HEAD
-    <string name="action_settings">Settings</string>
-=======
     <string name="alert_connect">Connect</string>
     <string name="alert_cancel">Cancel</string>
     <string name="action_settings">Settings</string>
@@ -180,9 +177,5 @@
         <item>md3</item>
     </string-array>
 
-<<<<<<< HEAD
->>>>>>> 885b9c0c8f74af190a459dd1ff5abb1bc01cbe73
-=======
 
->>>>>>> e5fe262ca52ef1bf93133c54d9a546f9c6b6e92a
 </resources>
