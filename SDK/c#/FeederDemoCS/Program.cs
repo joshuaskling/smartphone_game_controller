@@ -26,6 +26,15 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 
+
+//bluetooth connections
+using InTheHand;
+using InTheHand.Net.Bluetooth;
+using InTheHand.Net.Ports;
+using InTheHand.Net.Sockets;
+using System.IO;
+
+
 // Don't forget to add this
 using vJoyInterfaceWrap;
 

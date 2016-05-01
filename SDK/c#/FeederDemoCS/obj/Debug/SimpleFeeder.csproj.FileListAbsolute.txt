@@ -11,5 +11,3 @@ C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\SD
 C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\SDK\c#\FeederDemoCS\obj\Debug\SimpleFeeder.csprojResolveAssemblyReference.cache
 C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\SDK\c#\FeederDemoCS\obj\Debug\SimpleFeeder.exe
 C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\SDK\c#\FeederDemoCS\obj\Debug\SimpleFeeder.pdb
-C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\SDK\c#\FeederDemoCS\bin\Debug\SimpleFeeder.exe.CodeAnalysisLog.xml
-C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\SDK\c#\FeederDemoCS\bin\Debug\SimpleFeeder.exe.lastcodeanalysissucceeded
