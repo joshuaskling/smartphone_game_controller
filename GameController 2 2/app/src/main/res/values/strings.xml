@@ -6,6 +6,7 @@
 
     <string name="title_activity_settings">Settings</string>
 
+
     <!-- Strings related to Settings -->
 
     <!-- Example General settings -->
@@ -73,11 +74,13 @@
 
     <string name="pref_title_vibrate">Vibrate</string>
 
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-<<<<<<< HEAD
+
+
+
     <string name="title_activity_bluetooth">BluetoothActivity</string>
-=======
 
 
     <string name="str_btn_settings">Settings</string>
@@ -101,6 +104,23 @@
     <string name="str_third_category_title">Bluetooth Settings</string>
 
     <string name="more">More Settings      \u00A0 \u00A0 \u00A0&gt;&gt;&gt;</string>
+
+    <string name="default_control_position">Sitck, Buttons</string>
+    <string name="default_stick_layout">Joystick</string>
+    <string name="default_button_style">Round</string>
+
+    <string-array name="control_positions">
+        <item>Sitck, Buttons</item>
+        <item>Buttons, Stick</item>
+    </string-array>
+    <string-array name="stick_layouts">
+        <item>Joystick</item>
+        <item>DPad</item>
+    </string-array>
+    <string-array name="button_styles">
+        <item>Round</item>
+        <item>Square</item>
+    </string-array>
 
     <!--Volume-->
     <string-array name="array_list_preference_entries">
@@ -158,10 +178,4 @@
     </string-array>
 
 
-
-
-
-
-
->>>>>>> b3fda1ca297dd64010693b107e25ee9107d77b86
 </resources>
