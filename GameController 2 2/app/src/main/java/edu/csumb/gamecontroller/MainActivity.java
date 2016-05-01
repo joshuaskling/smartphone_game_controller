@@ -39,6 +39,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 //import android.support.v4.app.DialogFragment;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MainActivity extends Activity implements SensorEventListener {
@@ -56,6 +57,8 @@ public class MainActivity extends Activity implements SensorEventListener {
     private JoystickView rightJoystick;
     private RelativeLayout rightDPad;
     private RelativeLayout rightButtonLayout;
+    private JSONObject controler_status;
+
     private boolean leftJoystickVisible = true;
     private boolean rightJoystickVisble = false;
 
@@ -63,7 +66,10 @@ public class MainActivity extends Activity implements SensorEventListener {
     public SharedPreferences prefs;
     public SharedPreferences.OnSharedPreferenceChangeListener listener;
 
+    // Log tag
     public final String DEBUGMSG = "MainActivity";
+
+    // Preference keys
     public final String KEY_PREF_BTN_SIZE = "button_size_preference";
     public final String KEY_PREF_BTN_COLOR = "button_color_preference";
     public final String KEY_PREF_BACKGROUND = "background_preference";
@@ -96,6 +102,7 @@ public class MainActivity extends Activity implements SensorEventListener {
         //setContentView(new DrawDemo(this));
         setContentView(R.layout.activity_main);
 
+        // Listens to changes in settings menu
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
             @Override
@@ -129,7 +136,20 @@ public class MainActivity extends Activity implements SensorEventListener {
         };
         prefs.registerOnSharedPreferenceChangeListener(listener);
 
-        //Referencing also other views
+        controler_status = new JSONObject();
+        try {
+            controler_status.put("x", 0.0);
+            controler_status.put("y", 0.0);
+            controler_status.put("btn1", false);
+            controler_status.put("btn2", false);
+            controler_status.put("btn3", false);
+            controler_status.put("btn4", false);
+        }
+        catch(JSONException error) {
+            Log.d(DEBUGMSG, error.getMessage());
+        }
+
+        // References controls on both sides of the app
         leftJoystick = (JoystickView) findViewById(R.id.leftJoystickView);
         leftDPad = (RelativeLayout) findViewById(R.id.leftDpadView);
         leftButtonLayout = (RelativeLayout) findViewById(R.id.leftButtonLayout);
@@ -142,6 +162,15 @@ public class MainActivity extends Activity implements SensorEventListener {
             public void onValueChanged(double x, double y) {
                 // TODO Auto-generated method stub
                 Log.d(DEBUGMSG, String.valueOf(x) + ","  +String.valueOf(y));
+                try {
+                    controler_status.put("x", x);
+                    controler_status.put("y", y);
+                }
+                catch(JSONException error) {
+                    Log.d(DEBUGMSG, "Left Joystick: " + error.getMessage());
+                }
+                Log.d(DEBUGMSG, controler_status.toString());
+
             }
         }, JoystickView.DEFAULT_LOOP_INTERVAL);
 
@@ -149,6 +178,14 @@ public class MainActivity extends Activity implements SensorEventListener {
             @Override
             public void onValueChanged(double x, double y) {
                 Log.d(DEBUGMSG, String.valueOf(x) + ","  +String.valueOf(y));
+
+                try {
+                    controler_status.put("x", x);
+                    controler_status.put("y", y);
+                }
+                catch(JSONException error) {
+                    Log.d(DEBUGMSG, "Right Joystick: " + error.getMessage());
+                }
             }
         }, JoystickView.DEFAULT_LOOP_INTERVAL);
 
@@ -168,7 +205,6 @@ public class MainActivity extends Activity implements SensorEventListener {
         final Button startBtn = (Button) findViewById(R.id.startBtn);
         final Button selectBtn = (Button) findViewById(R.id.selectBtn);
 
-        //dPad output
         leftDPad.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -177,6 +213,14 @@ public class MainActivity extends Activity implements SensorEventListener {
 
                     float x = (event.getRawX() - (screenWidth / 5));
                     float y = (event.getRawY() - (screenHeight / 2)) * -1;
+
+                    try {
+                        controler_status.put("x", x);
+                        controler_status.put("y", y);
+                    }
+                    catch(JSONException error) {
+                        Log.d(DEBUGMSG, "Left DPad: " + error.getMessage());
+                    }
 
                     Log.d(DEBUGMSG, "(" + Float.toString(x) + "," + Float.toString(y) + ")");
                     sendMovement(x, y);
@@ -193,6 +237,14 @@ public class MainActivity extends Activity implements SensorEventListener {
 
                     float x = (event.getRawX() - (screenWidth / 5));
                     float y = (event.getRawY() - (screenHeight / 2)) * -1;
+
+                    try {
+                        controler_status.put("x", x);
+                        controler_status.put("y", y);
+                    }
+                    catch(JSONException error) {
+                        Log.d(DEBUGMSG, "Right DPad: " + error.getMessage());
+                    }
 
                     Log.d(DEBUGMSG, "(" + Float.toString(x) + "," + Float.toString(y) + ")");
                     sendMovement(x, y);
@@ -225,28 +277,33 @@ public class MainActivity extends Activity implements SensorEventListener {
                 new View.OnTouchListener(){
                     @Override
                     public boolean onTouch (View v, MotionEvent event){
-                        //darken button when pressed
                         switch (event.getAction()) {
                             case MotionEvent.ACTION_DOWN: {
-                                //button1.setBackgroundResource(R.drawable.x_button_small_pressed);
-                                //vibrator.vibrate(30);
-                                sendFire("btn1", "down");
+                                Log.d(DEBUGMSG, "btn 1 down");
+                                try {
+                                    controler_status.put("btn1", true);
+                                }
+                                catch(JSONException error) {
+                                    Log.d(DEBUGMSG, "Left btn1: " + error.getMessage());
+                                }
                                 mServiceIntent = new Intent(MainActivity.this, SendActivity.class);
-                                // String is not an encoded URI string
+                                // String is NOT an encoded URI string
                                 mServiceIntent.setData(Uri.parse("btn1"));
                                 MainActivity.this.startService(mServiceIntent);
-                                //Log.i("AIPSERVER", "Message sent to server: fire!");
                                 break;
                             }
                             case MotionEvent.ACTION_UP: {
-                                //v.getBackground().clearColorFilter();
-                                //v.invalidate();
-                                //button1.setImageResource(R.drawable.x_button_small);
-                                sendFire("btn1", "up");
+                                Log.d(DEBUGMSG, "btn 1 up");
+                                try {
+                                    controler_status.put("btn1", false);
+                                }
+                                catch(JSONException error) {
+                                    Log.d(DEBUGMSG, "Left btn1: " + error.getMessage());
+                                }
                                 break;
                             }
                         }
-                    return true;
+                        return true;
                     }
                 }
         );
@@ -254,20 +311,25 @@ public class MainActivity extends Activity implements SensorEventListener {
                 new View.OnTouchListener() {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
-                        //darken button when pressed
                         switch (event.getAction()) {
                             case MotionEvent.ACTION_DOWN: {
-                                //v.getBackground().setColorFilter(0xe0f47521, PorterDuff.Mode.SRC_ATOP);
-                                //v.invalidate();
-                                vibrator.vibrate(30);
-                                sendFire("btn2", "down");
-                                //Log.i("AIPSERVER", "Message sent to server: fire!");
+                                Log.d(DEBUGMSG, "btn 2 down");
+                                try {
+                                    controler_status.put("btn2", true);
+                                }
+                                catch(JSONException error) {
+                                    Log.d(DEBUGMSG, "Left btn2: " + error.getMessage());
+                                }
                                 break;
                             }
                             case MotionEvent.ACTION_UP: {
-                                //v.getBackground().clearColorFilter();
-                                //v.invalidate();
-                                sendFire("btn2", "up");
+                                Log.d(DEBUGMSG, "btn 2 up");
+                                try {
+                                    controler_status.put("btn2", false);
+                                }
+                                catch(JSONException error) {
+                                    Log.d(DEBUGMSG, "Left btn2: " + error.getMessage());
+                                }
                                 break;
                             }
                         }
@@ -279,21 +341,25 @@ public class MainActivity extends Activity implements SensorEventListener {
                 new View.OnTouchListener() {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
-
-                        //darken button when pressed
                         switch (event.getAction()) {
                             case MotionEvent.ACTION_DOWN: {
-                                //v.getBackground().setColorFilter(0xe0f47521, PorterDuff.Mode.SRC_ATOP);
-                                //v.invalidate();
-                                vibrator.vibrate(30);
-                                sendFire("btn3", "down");
-                                //Log.i("AIPSERVER", "Message sent to server: fire!");
+                                Log.d(DEBUGMSG, "btn 3 down");
+                                try {
+                                    controler_status.put("btn3", true);
+                                }
+                                catch(JSONException error) {
+                                    Log.d(DEBUGMSG, "Left btn3: " + error.getMessage());
+                                }
                                 break;
                             }
                             case MotionEvent.ACTION_UP: {
-                                //v.getBackground().clearColorFilter();
-                                //v.invalidate();
-                                sendFire("btn3", "up");
+                                Log.d(DEBUGMSG, "btn 3 up");
+                                try {
+                                    controler_status.put("btn3", false);
+                                }
+                                catch(JSONException error) {
+                                    Log.d(DEBUGMSG, "Left btn3: " + error.getMessage());
+                                }
                                 break;
                             }
                         }
@@ -306,20 +372,25 @@ public class MainActivity extends Activity implements SensorEventListener {
                 new View.OnTouchListener() {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
-                        //darken button when pressed
                         switch (event.getAction()) {
                             case MotionEvent.ACTION_DOWN: {
-                                //v.getBackground().setColorFilter(0xe0f47521, PorterDuff.Mode.SRC_ATOP);
-                                //v.invalidate();
-                                vibrator.vibrate(30);
-                                sendFire("btn4", "down");
-                                //Log.i("AIPSERVER", "Message sent to server: fire!");
+                                Log.d(DEBUGMSG, "btn 4 down");
+                                try {
+                                    controler_status.put("btn4", true);
+                                }
+                                catch(JSONException error) {
+                                    Log.d(DEBUGMSG, "Left btn4: " + error.getMessage());
+                                }
                                 break;
                             }
                             case MotionEvent.ACTION_UP: {
-                                //v.getBackground().clearColorFilter();
-                                //v.invalidate();
-                                sendFire("btn4", "up");
+                                Log.d(DEBUGMSG, "btn 4 up");
+                                try {
+                                    controler_status.put("btn4", false);
+                                }
+                                catch(JSONException error) {
+                                    Log.d(DEBUGMSG, "Left btn4: " + error.getMessage());
+                                }
                                 break;
                             }
                         }
@@ -334,10 +405,22 @@ public class MainActivity extends Activity implements SensorEventListener {
                 switch(motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN: {
                         Log.d(DEBUGMSG, "btn 1 down");
+                        try {
+                            controler_status.put("btn1", true);
+                        }
+                        catch(JSONException error) {
+                            Log.d(DEBUGMSG, "Right btn1: " + error.getMessage());
+                        }
                         break;
                     }
                     case MotionEvent.ACTION_UP: {
                         Log.d(DEBUGMSG, "btn 1 up");
+                        try {
+                            controler_status.put("btn1", false);
+                        }
+                        catch(JSONException error) {
+                            Log.d(DEBUGMSG, "Right btn1: " + error.getMessage());
+                        }
                         break;
                     }
                 }
@@ -350,10 +433,22 @@ public class MainActivity extends Activity implements SensorEventListener {
                 switch(motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN: {
                         Log.d(DEBUGMSG, "btn 2 down");
+                        try {
+                            controler_status.put("btn2", true);
+                        }
+                        catch(JSONException error) {
+                            Log.d(DEBUGMSG, "Right btn2: " + error.getMessage());
+                        }
                         break;
                     }
                     case MotionEvent.ACTION_UP: {
                         Log.d(DEBUGMSG, "btn 2 up");
+                        try {
+                            controler_status.put("btn2", false);
+                        }
+                        catch(JSONException error) {
+                            Log.d(DEBUGMSG, "Right btn2: " + error.getMessage());
+                        }
                         break;
                     }
                 }
@@ -366,10 +461,22 @@ public class MainActivity extends Activity implements SensorEventListener {
                 switch(motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN: {
                         Log.d(DEBUGMSG, "btn 3 down");
+                        try {
+                            controler_status.put("btn3", true);
+                        }
+                        catch(JSONException error) {
+                            Log.d(DEBUGMSG, "Right btn3: " + error.getMessage());
+                        }
                         break;
                     }
                     case MotionEvent.ACTION_UP: {
                         Log.d(DEBUGMSG, "btn 3 up");
+                        try {
+                            controler_status.put("btn3", false);
+                        }
+                        catch(JSONException error) {
+                            Log.d(DEBUGMSG, "Right btn3: " + error.getMessage());
+                        }
                         break;
                     }
                 }
@@ -382,10 +489,22 @@ public class MainActivity extends Activity implements SensorEventListener {
                 switch(motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN: {
                         Log.d(DEBUGMSG, "btn 4 down");
+                        try {
+                            controler_status.put("btn4", true);
+                        }
+                        catch(JSONException error) {
+                            Log.d(DEBUGMSG, "Right btn4: " + error.getMessage());
+                        }
                         break;
                     }
                     case MotionEvent.ACTION_UP: {
                         Log.d(DEBUGMSG, "btn 4 up");
+                        try {
+                            controler_status.put("btn4", false);
+                        }
+                        catch(JSONException error) {
+                            Log.d(DEBUGMSG, "Right btn4: " + error.getMessage());
+                        }
                         break;
                     }
                 }
@@ -395,7 +514,7 @@ public class MainActivity extends Activity implements SensorEventListener {
 
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 
-        // Check the saved Settings value
+        // Load Settings values
         String controlPositionPref = prefs.getString(KEY_PREF_CTRL_POS, "");
         String stickPositionPref = prefs.getString(KEY_PREF_STICK_LAYOUT, "");
         if(controlPositionPref.equals("Buttons, Stick")) {
@@ -404,11 +523,9 @@ public class MainActivity extends Activity implements SensorEventListener {
         if(stickPositionPref.equals("DPad")) {
             swapJoystickControl(mLinearLayout);
         }
-
-
     }
 
-
+    // Display settings activity
     public void loadSettings(View view) {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
@@ -437,6 +554,7 @@ public class MainActivity extends Activity implements SensorEventListener {
         dialog.show();
     }
 
+    // Swaps joystick or DPad
     public void swapJoystickControl(View view) {
 
         if(leftButtonLayout.getVisibility() == View.GONE) {
@@ -465,6 +583,7 @@ public class MainActivity extends Activity implements SensorEventListener {
         }
     }
 
+    // Inverses controls
     public void swapJoystickAndButtons(View view) {
 
         if(rightButtonLayout.getVisibility() == View.VISIBLE) {
@@ -536,28 +655,22 @@ public class MainActivity extends Activity implements SensorEventListener {
         // not in use
     }
 
-    void sendFire(String input, String state) {
-        // get the angle around the z-axis rotated
-        Log.d(DEBUGMSG, "Input: " + input + ", State: " + state);
-
-    }
-
     void sendOrientation(float deltaAlpha, float deltaBeta, float deltaGamma) {
-            try {
+        try {
 
-                String messageContent = new String("{alpha: " + deltaAlpha + ",beta: " + deltaBeta + ", gamma:" + deltaGamma + "}");
+            String messageContent = new String("{alpha: " + deltaAlpha + ",beta: " + deltaBeta + ", gamma:" + deltaGamma + "}");
 
-                JSONObject message = new JSONObject(messageContent);
+            JSONObject message = new JSONObject(messageContent);
 
-                if (socket.isConnected()) {
-                    socket.emit("orientation", message);
-                    Log.i("AIPSERVER", "Message sent to server: " + message.getString("alpha"));
+            if (socket.isConnected()) {
+                socket.emit("orientation", message);
+                Log.i("AIPSERVER", "Message sent to server: " + message.getString("alpha"));
 
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
             }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
