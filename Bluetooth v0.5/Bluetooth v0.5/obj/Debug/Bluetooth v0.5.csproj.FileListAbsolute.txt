@@ -43,3 +43,6 @@ C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\Bl
 C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\obj\Debug\Bluetooth_v0._5.Form1.resources
 C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\obj\Debug\Bluetooth_v0._5.Properties.Resources.resources
 C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\obj\Debug\Bluetooth v0.5.csproj.GenerateResource.Cache
+C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\bin\Debug\SimpleFeeder.exe
+C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\bin\Debug\vJoyInterfaceWrap.dll
+C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\bin\Debug\SimpleFeeder.pdb

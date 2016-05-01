@@ -160,7 +160,7 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>REM copy $(ProjectDir)..\..\vJoyInterface\objfre_wxp_x86\i386\*.dll $(TargetDir)\.
-copy $(SolutionDir)..\x64\vJoyInterface.dll  $(TargetDir).</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>

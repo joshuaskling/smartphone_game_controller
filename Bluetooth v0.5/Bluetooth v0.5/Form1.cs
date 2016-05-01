@@ -12,15 +12,25 @@ using InTheHand.Net.Bluetooth;
 using InTheHand.Net.Ports;
 using InTheHand.Net.Sockets;
 using System.IO;
+using FeederDemoCS;
+
 namespace Bluetooth_v0._5
 {
     public partial class Form1 : Form
     {
+        //create vjoy class
+        FeederDemoCS.VJoyProgram vjoy;
+
         List<string> items;
         public Form1()
         {
             items = new List<string>();
             InitializeComponent();
+            vjoy = new FeederDemoCS.VJoyProgram();
+
+            String[] spoofArray = new String[0];
+
+            //vjoy.vjoyRun(spoofArray);
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
