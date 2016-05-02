@@ -136,6 +136,7 @@ public class MainActivity extends Activity implements SensorEventListener {
         };
         prefs.registerOnSharedPreferenceChangeListener(listener);
 
+        // Initialize payload of controller status
         controler_status = new JSONObject();
         try {
             controler_status.put("x", 0.0);
@@ -144,6 +145,8 @@ public class MainActivity extends Activity implements SensorEventListener {
             controler_status.put("btn2", false);
             controler_status.put("btn3", false);
             controler_status.put("btn4", false);
+            controler_status.put("startBtn", false);
+            controler_status.put("selectBtn", false);
         }
         catch(JSONException error) {
             Log.d(DEBUGMSG, error.getMessage());
