@@ -38,7 +38,7 @@ namespace FeederDemoCS
         static public uint id = 1;
 
 
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             // Create one joystick object and a position structure.
             joystick = new vJoy();
@@ -124,7 +124,7 @@ namespace FeederDemoCS
                 Console.WriteLine("Acquired: vJoy device number {0}.\n", id);
 
             Console.WriteLine("\npress enter to stat feeding");
-            Console.ReadKey(true);
+            //Console.ReadKey(true);
 
             int X, Y, Z, ZR, XR;
             uint count = 0;

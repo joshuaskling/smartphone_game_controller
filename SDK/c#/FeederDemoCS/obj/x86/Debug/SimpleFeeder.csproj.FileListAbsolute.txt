@@ -1,0 +1,7 @@
+C:\Users\Trucker\Desktop\smartphone_game_controller\SDK\c#\FeederDemoCS\bin\x86\Debug\SimpleFeeder.exe.config
+C:\Users\Trucker\Desktop\smartphone_game_controller\SDK\c#\FeederDemoCS\bin\x86\Debug\vJoyInterface.dll
+C:\Users\Trucker\Desktop\smartphone_game_controller\SDK\c#\FeederDemoCS\bin\x86\Debug\SimpleFeeder.exe
+C:\Users\Trucker\Desktop\smartphone_game_controller\SDK\c#\FeederDemoCS\bin\x86\Debug\SimpleFeeder.pdb
+C:\Users\Trucker\Desktop\smartphone_game_controller\SDK\c#\FeederDemoCS\bin\x86\Debug\vJoyInterfaceWrap.dll
+C:\Users\Trucker\Desktop\smartphone_game_controller\SDK\c#\FeederDemoCS\obj\x86\Debug\SimpleFeeder.exe
+C:\Users\Trucker\Desktop\smartphone_game_controller\SDK\c#\FeederDemoCS\obj\x86\Debug\SimpleFeeder.pdb

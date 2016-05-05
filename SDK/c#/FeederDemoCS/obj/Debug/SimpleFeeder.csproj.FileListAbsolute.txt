@@ -12,3 +12,10 @@ C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\SD
 C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\SDK\c#\FeederDemoCS\obj\Debug\SimpleFeeder.csprojResolveAssemblyReference.cache
 C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\SDK\c#\FeederDemoCS\obj\Debug\SimpleFeeder.exe
 C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\SDK\c#\FeederDemoCS\obj\Debug\SimpleFeeder.pdb
+C:\Users\Trucker\Desktop\smartphone_game_controller\SDK\c#\FeederDemoCS\bin\Debug\SimpleFeeder.exe.config
+C:\Users\Trucker\Desktop\smartphone_game_controller\SDK\c#\FeederDemoCS\bin\Debug\SimpleFeeder.exe
+C:\Users\Trucker\Desktop\smartphone_game_controller\SDK\c#\FeederDemoCS\bin\Debug\SimpleFeeder.pdb
+C:\Users\Trucker\Desktop\smartphone_game_controller\SDK\c#\FeederDemoCS\bin\Debug\vJoyInterfaceWrap.dll
+C:\Users\Trucker\Desktop\smartphone_game_controller\SDK\c#\FeederDemoCS\obj\Debug\SimpleFeeder.csprojResolveAssemblyReference.cache
+C:\Users\Trucker\Desktop\smartphone_game_controller\SDK\c#\FeederDemoCS\obj\Debug\SimpleFeeder.exe
+C:\Users\Trucker\Desktop\smartphone_game_controller\SDK\c#\FeederDemoCS\obj\Debug\SimpleFeeder.pdb
