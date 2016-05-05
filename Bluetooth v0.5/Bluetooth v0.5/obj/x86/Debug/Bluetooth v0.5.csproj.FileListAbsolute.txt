@@ -1,0 +1,15 @@
+C:\Users\Trucker\Desktop\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\bin\x86\Debug\Bluetooth v0.5.exe.config
+C:\Users\Trucker\Desktop\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\bin\x86\Debug\vJoyInterface.dll
+C:\Users\Trucker\Desktop\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\bin\x86\Debug\Bluetooth v0.5.exe
+C:\Users\Trucker\Desktop\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\bin\x86\Debug\Bluetooth v0.5.pdb
+C:\Users\Trucker\Desktop\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\bin\x86\Debug\InTheHand.Net.Personal.dll
+C:\Users\Trucker\Desktop\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\bin\x86\Debug\SimpleFeeder.exe
+C:\Users\Trucker\Desktop\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\bin\x86\Debug\vJoyInterfaceWrap.dll
+C:\Users\Trucker\Desktop\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\bin\x86\Debug\SimpleFeeder.pdb
+C:\Users\Trucker\Desktop\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\bin\x86\Debug\InTheHand.Net.Personal.xml
+C:\Users\Trucker\Desktop\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\obj\x86\Debug\Bluetooth v0.5.csprojResolveAssemblyReference.cache
+C:\Users\Trucker\Desktop\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\obj\x86\Debug\Bluetooth_v0._5.Form1.resources
+C:\Users\Trucker\Desktop\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\obj\x86\Debug\Bluetooth_v0._5.Properties.Resources.resources
+C:\Users\Trucker\Desktop\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\obj\x86\Debug\Bluetooth v0.5.csproj.GenerateResource.Cache
+C:\Users\Trucker\Desktop\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\obj\x86\Debug\Bluetooth v0.5.exe
+C:\Users\Trucker\Desktop\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\obj\x86\Debug\Bluetooth v0.5.pdb

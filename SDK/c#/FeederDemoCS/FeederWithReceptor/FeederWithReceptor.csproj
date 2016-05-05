@@ -97,8 +97,9 @@
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="vJoyInterfaceWrap">
-      <HintPath>..\..\x64\vJoyInterfaceWrap.dll</HintPath>
+    <Reference Include="vJoyInterfaceWrap, Version=0.2.1.6, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\x86\vJoyInterfaceWrap.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -160,7 +161,7 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>REM copy $(ProjectDir)..\..\vJoyInterface\objfre_wxp_x86\i386\*.dll $(TargetDir)\.
-copy $(SolutionDir)..\x64\vJoyInterface.dll  $(TargetDir).</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>

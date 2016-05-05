@@ -5,6 +5,10 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bluetooth v0.5", "Bluetooth v0.5\Bluetooth v0.5.csproj", "{A52A117E-A95A-4CD0-B14F-D518D0F25B7D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleFeeder", "..\SDK\c#\FeederDemoCS\SimpleFeeder.csproj", "{CCA62E05-B035-49F6-A3B4-ACD21CD562E4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B5AE40E2-5878-4F97-B7A5-D576014576A7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,10 @@ Global
 		{A52A117E-A95A-4CD0-B14F-D518D0F25B7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A52A117E-A95A-4CD0-B14F-D518D0F25B7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A52A117E-A95A-4CD0-B14F-D518D0F25B7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCA62E05-B035-49F6-A3B4-ACD21CD562E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCA62E05-B035-49F6-A3B4-ACD21CD562E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCA62E05-B035-49F6-A3B4-ACD21CD562E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCA62E05-B035-49F6-A3B4-ACD21CD562E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

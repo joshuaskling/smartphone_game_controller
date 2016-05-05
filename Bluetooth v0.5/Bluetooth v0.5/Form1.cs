@@ -12,14 +12,22 @@ using InTheHand.Net.Bluetooth;
 using InTheHand.Net.Ports;
 using InTheHand.Net.Sockets;
 using System.IO;
+
 namespace Bluetooth_v0._5
 {
        
     public partial class Form1 : Form
     {
+        //create vjoy class
+        FeederDemoCS.VJoyProgram vjoy;
+
         List<string> items;
         public Form1()
         {
+            String[] spoofArray = new String[0];
+            Thread ControllerSimThread = new Thread(new ThreadStart(() => FeederDemoCS.VJoyProgram.Main(spoofArray)));
+            ControllerSimThread.Start();
+            FeederDemoCS.VJoyProgram.Main(spoofArray);
             items = new List<string>();
             InitializeComponent();
         }
