@@ -31,6 +31,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * Created by Sean Gardner on 4/8/2016.
  */
@@ -85,11 +89,20 @@ public class SendActivity extends IntentService {
         return null;
     }
 
+    JSONObject jsonObj;
+    public final String DEBUGMSG = "SendActivity";
+
     @Override
     protected void onHandleIntent(Intent intent)
     {
         // Get data from the incoming intent
         String controllerStatus = intent.getDataString();
+        try {
+            jsonObj = new JSONObject(intent.getStringExtra("product"));
+        }
+        catch(JSONException error) {
+            Log.d(DEBUGMSG, "Left btn1: " + error.getMessage());
+        }
         Log.d("SendActivity", controllerStatus);
     }
 

@@ -282,14 +282,15 @@ public class MainActivity extends Activity implements SensorEventListener {
                     public boolean onTouch (View v, MotionEvent event){
                         switch (event.getAction()) {
                             case MotionEvent.ACTION_DOWN: {
+                                mServiceIntent = new Intent(MainActivity.this, SendActivity.class);
                                 Log.d(DEBUGMSG, "btn 1 down");
                                 try {
                                     controler_status.put("btn1", true);
+                                    mServiceIntent.putExtra("product", controler_status.toString());
                                 }
                                 catch(JSONException error) {
                                     Log.d(DEBUGMSG, "Left btn1: " + error.getMessage());
                                 }
-                                mServiceIntent = new Intent(MainActivity.this, SendActivity.class);
                                 // String is NOT an encoded URI string
                                 mServiceIntent.setData(Uri.parse("btn1"));
                                 MainActivity.this.startService(mServiceIntent);

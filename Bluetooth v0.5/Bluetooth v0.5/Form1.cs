@@ -14,6 +14,7 @@ using InTheHand.Net.Sockets;
 using System.IO;
 namespace Bluetooth_v0._5
 {
+       
     public partial class Form1 : Form
     {
         List<string> items;
