@@ -24,6 +24,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Newtonsoft.Json.Linq;
 
 // Don't forget to add this
 using vJoyInterfaceWrap;
@@ -36,7 +37,16 @@ namespace FeederDemoCS
         static public vJoy joystick;
         static public vJoy.JoystickState iReport;
         static public uint id = 1;
+        public static int X, Y;
 
+
+        public void setValues(JObject payload)
+        {
+            Console.WriteLine(payload);
+            //parse json here
+            X = (int)payload["x"];
+            Y = (int)payload["y"];
+        }
 
         public static void Main(string[] args)
         {
@@ -86,9 +96,9 @@ namespace FeederDemoCS
             // Check which axes are supported
             bool AxisX = joystick.GetVJDAxisExist(id, HID_USAGES.HID_USAGE_X);
             bool AxisY = joystick.GetVJDAxisExist(id, HID_USAGES.HID_USAGE_Y);
-            bool AxisZ = joystick.GetVJDAxisExist(id, HID_USAGES.HID_USAGE_Z);
-            bool AxisRX = joystick.GetVJDAxisExist(id, HID_USAGES.HID_USAGE_RX);
-            bool AxisRZ = joystick.GetVJDAxisExist(id, HID_USAGES.HID_USAGE_RZ);
+            //bool AxisZ = joystick.GetVJDAxisExist(id, HID_USAGES.HID_USAGE_Z);
+            //bool AxisRX = joystick.GetVJDAxisExist(id, HID_USAGES.HID_USAGE_RX);
+            //bool AxisRZ = joystick.GetVJDAxisExist(id, HID_USAGES.HID_USAGE_RZ);
             // Get the number of buttons and POV Hat switchessupported by this vJoy device
             int nButtons = joystick.GetVJDButtonNumber(id);
             int ContPovNumber = joystick.GetVJDContPovNumber(id);
@@ -101,9 +111,9 @@ namespace FeederDemoCS
             Console.WriteLine("Numner of Descrete POVs\t\t{0}\n", DiscPovNumber);
             Console.WriteLine("Axis X\t\t{0}\n", AxisX ? "Yes" : "No");
             Console.WriteLine("Axis Y\t\t{0}\n", AxisX ? "Yes" : "No");
-            Console.WriteLine("Axis Z\t\t{0}\n", AxisX ? "Yes" : "No");
-            Console.WriteLine("Axis Rx\t\t{0}\n", AxisRX ? "Yes" : "No");
-            Console.WriteLine("Axis Rz\t\t{0}\n", AxisRZ ? "Yes" : "No");
+            //Console.WriteLine("Axis Z\t\t{0}\n", AxisX ? "Yes" : "No");
+            //Console.WriteLine("Axis Rx\t\t{0}\n", AxisRX ? "Yes" : "No");
+            //Console.WriteLine("Axis Rz\t\t{0}\n", AxisRZ ? "Yes" : "No");
 
             // Test if DLL matches the driver
             UInt32 DllVer = 0, DrvVer = 0;
@@ -126,15 +136,15 @@ namespace FeederDemoCS
             Console.WriteLine("\npress enter to stat feeding");
             //Console.ReadKey(true);
 
-            int X, Y, Z, ZR, XR;
+            
             uint count = 0;
             long maxval = 0;
 
             X = 20;
             Y = 30;
-            Z = 40;
-            XR = 60;
-            ZR = 80;
+            //Z = 40;
+            //XR = 60;
+            //ZR = 80;
 
             joystick.GetVJDAxisMax(id, HID_USAGES.HID_USAGE_X, ref maxval);
 
@@ -149,17 +159,20 @@ namespace FeederDemoCS
         // Set position of 4 axes
         res = joystick.SetAxis(X, id, HID_USAGES.HID_USAGE_X);
         res = joystick.SetAxis(Y, id, HID_USAGES.HID_USAGE_Y);
-        res = joystick.SetAxis(Z, id, HID_USAGES.HID_USAGE_Z);
-        res = joystick.SetAxis(XR, id, HID_USAGES.HID_USAGE_RX);
-        res = joystick.SetAxis(ZR, id, HID_USAGES.HID_USAGE_RZ);
+        //res = joystick.SetAxis(Z, id, HID_USAGES.HID_USAGE_Z);
+        //res = joystick.SetAxis(XR, id, HID_USAGES.HID_USAGE_RX);
+        //res = joystick.SetAxis(ZR, id, HID_USAGES.HID_USAGE_RZ);
 
         // Press/Release Buttons
         res = joystick.SetBtn(true, id, count / 50);
         res = joystick.SetBtn(false, id, 1 + count / 50);
 
+        //Console.WriteLine(X);
+        //Console.WriteLine(Y);
+
         // If Continuous POV hat switches installed - make them go round
         // For high values - put the switches in neutral state
-        if (ContPovNumber>0)
+        /*if (ContPovNumber>0)
         {
             if ((count * 70) < 30000)
             {
@@ -175,11 +188,11 @@ namespace FeederDemoCS
                 res = joystick.SetContPov(-1, id, 3);
                 res = joystick.SetContPov(-1, id, 4);
             };
-        };
+        };*/
 
         // If Discrete POV hat switches installed - make them go round
         // From time to time - put the switches in neutral state
-        if (DiscPovNumber>0)
+        /*if (DiscPovNumber>0)
         {
             if (count < 550)
             {
@@ -195,14 +208,14 @@ namespace FeederDemoCS
                 joystick.SetDiscPov(-1, id, 3);
                 joystick.SetDiscPov(-1, id, 4);
             };
-        };
+        };*/
 
         System.Threading.Thread.Sleep(20);
-        X += 150; if (X > maxval) X = 0;
-        Y += 250; if (Y > maxval) Y = 0;
-        Z += 350; if (Z > maxval) Z = 0;
-        XR += 220; if (XR > maxval) XR = 0;  
-        ZR += 200; if (ZR > maxval) ZR = 0;  
+        if (X > maxval) X = 0;
+        if (Y > maxval) Y = 0;
+        //Z += 350; if (Z > maxval) Z = 0;
+        //XR += 220; if (XR > maxval) XR = 0;  
+        //ZR += 200; if (ZR > maxval) ZR = 0;  
         count++;
 
         if (count > 640)
@@ -211,6 +224,8 @@ namespace FeederDemoCS
     } // While (Robust)
 
 #endif // ROBUST
+
+/*
 #if EFFICIENT
 
             byte[] pov = new byte[4];
@@ -257,6 +272,7 @@ namespace FeederDemoCS
 		};
 
         /*** Feed the driver with the position packet - is fails then wait for input then try to re-acquire device ***/
+            /*
         if (!joystick.UpdateVJD(id, ref iReport))
         {
             Console.WriteLine("Feeding vJoy device number {0} failed - try to enable device then press enter\n", id);
@@ -276,7 +292,9 @@ namespace FeederDemoCS
          
       }; // While
 
-#endif // EFFICIENT
+#endif
+        
+        // EFFICIENT*/
 
         } // Main
     } // class Program

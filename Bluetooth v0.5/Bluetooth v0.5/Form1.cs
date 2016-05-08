@@ -12,6 +12,7 @@ using InTheHand.Net.Bluetooth;
 using InTheHand.Net.Ports;
 using InTheHand.Net.Sockets;
 using System.IO;
+using Newtonsoft.Json.Linq;
 
 namespace Bluetooth_v0._5
 {
@@ -23,6 +24,9 @@ namespace Bluetooth_v0._5
         List<string> items;
         public Form1()
         {
+
+            vjoy = new FeederDemoCS.VJoyProgram();
+
             String[] spoofArray = new String[0];
             Thread ControllerSimThread = new Thread(new ThreadStart(() => FeederDemoCS.VJoyProgram.Main(spoofArray)));
             ControllerSimThread.Start();
@@ -107,7 +111,17 @@ namespace Bluetooth_v0._5
                 {
                     byte[] received = new byte[1024];
                     mStream.Read(received, 0, received.Length);
+
+                   
+
                     updateUI("Received" + Encoding.ASCII.GetString(received));
+
+                    //parse json here
+                    JObject payload = JObject.Parse(Encoding.ASCII.GetString(received));
+
+                    //send updates to vjoy program
+                    vjoy.setValues(payload);
+
                     byte[] sent = Encoding.ASCII.GetBytes("Hello World");
                     mStream.Write(sent, 0, sent.Length);
                 }
