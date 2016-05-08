@@ -26,7 +26,7 @@ namespace Bluetooth_v0._5
             String[] spoofArray = new String[0];
             Thread ControllerSimThread = new Thread(new ThreadStart(() => FeederDemoCS.VJoyProgram.Main(spoofArray)));
             ControllerSimThread.Start();
-            FeederDemoCS.VJoyProgram.Main(spoofArray);
+            //FeederDemoCS.VJoyProgram.Main(spoofArray);
             items = new List<string>();
             InitializeComponent();
         }

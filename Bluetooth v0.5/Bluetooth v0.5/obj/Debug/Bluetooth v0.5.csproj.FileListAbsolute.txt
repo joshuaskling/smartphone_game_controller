@@ -37,7 +37,6 @@ C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\Bl
 C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\obj\Debug\Bluetooth v0.5.pdb
 C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\bin\Debug\Bluetooth v0.5.exe
 C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\bin\Debug\Bluetooth v0.5.pdb
-C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\bin\Debug\InTheHand.Net.Personal.dll
 C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\bin\Debug\InTheHand.Net.Personal.xml
 C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\obj\Debug\Bluetooth v0.5.csprojResolveAssemblyReference.cache
 C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\obj\Debug\Bluetooth_v0._5.Form1.resources
@@ -59,3 +58,4 @@ C:\Users\Trucker\Desktop\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.
 C:\Users\Trucker\Desktop\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\obj\Debug\Bluetooth v0.5.csproj.GenerateResource.Cache
 C:\Users\Trucker\Desktop\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\obj\Debug\Bluetooth v0.5.exe
 C:\Users\Trucker\Desktop\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\obj\Debug\Bluetooth v0.5.pdb
+C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\bin\Debug\vJoyInterface.dll
