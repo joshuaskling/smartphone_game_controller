@@ -66,6 +66,10 @@ public class MainActivity extends Activity implements SensorEventListener {
     public SharedPreferences prefs;
     public SharedPreferences.OnSharedPreferenceChangeListener listener;
 
+    // Joystick max x and y axis value (Nexus 7)
+    public final int max = 174;
+
+
     // Log tag
     public final String DEBUGMSG = "MainActivity";
 
@@ -147,6 +151,7 @@ public class MainActivity extends Activity implements SensorEventListener {
             controler_status.put("btn4", false);
             controler_status.put("startBtn", false);
             controler_status.put("selectBtn", false);
+            controler_status.put("maxVal", max);
         }
         catch(JSONException error) {
             Log.d(DEBUGMSG, error.getMessage());
@@ -173,7 +178,7 @@ public class MainActivity extends Activity implements SensorEventListener {
                     Log.d(DEBUGMSG, "Left Joystick: " + error.getMessage());
                 }
                 sendControllerStatus();
-                Log.d(DEBUGMSG, controler_status.toString());
+                //Log.d(DEBUGMSG, controler_status.toString());
 
             }
         }, JoystickView.DEFAULT_LOOP_INTERVAL);
@@ -228,7 +233,7 @@ public class MainActivity extends Activity implements SensorEventListener {
                         Log.d(DEBUGMSG, "Left DPad: " + error.getMessage());
                     }
 
-                    Log.d(DEBUGMSG, "(" + Integer.toString(x) + "," + Integer.toString(y) + ")");
+                    //Log.d(DEBUGMSG, "(" + Integer.toString(x) + "," + Integer.toString(y) + ")");
                     sendControllerStatus();
                     time = System.currentTimeMillis();
                 }
@@ -252,7 +257,7 @@ public class MainActivity extends Activity implements SensorEventListener {
                         Log.d(DEBUGMSG, "Right DPad: " + error.getMessage());
                     }
 
-                    Log.d(DEBUGMSG, "(" + Integer.toString(x) + "," + Integer.toString(y) + ")");
+                    //Log.d(DEBUGMSG, "(" + Integer.toString(x) + "," + Integer.toString(y) + ")");
                     sendControllerStatus();
                     time = System.currentTimeMillis();
                 }
@@ -574,6 +579,7 @@ public class MainActivity extends Activity implements SensorEventListener {
 
     // Sends status of controller to Bluetooth
     public void sendControllerStatus() {
+        Log.d(DEBUGMSG, controler_status.toString());
         mServiceIntent = new Intent(MainActivity.this, SendActivity.class);
         mServiceIntent.putExtra("payload", controler_status.toString());
         MainActivity.this.startService(mServiceIntent);
