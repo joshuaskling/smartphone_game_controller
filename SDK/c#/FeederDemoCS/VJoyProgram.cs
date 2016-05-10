@@ -37,15 +37,66 @@ namespace FeederDemoCS
         static public vJoy joystick;
         static public vJoy.JoystickState iReport;
         static public uint id = 1;
+        static readonly object _locker = new object();
         public static int X, Y;
+        public static bool res;
+        public static long maxval = 0;
 
+        //int used for setting maxval of java and c# code to be proportionally equal
+        public static int coefficient;
+
+        public void setCoefficient(JObject input)
+        {
+            coefficient = ((int)maxval/((int)input["maxVal"]));
+        }
 
         public void setValues(JObject payload)
         {
-            Console.WriteLine(payload);
+            //Console.WriteLine(payload);
             //parse json here
-            X = (int)payload["x"];
-            Y = (int)payload["y"];
+
+            //lock function, then set values
+
+            X = (int)payload["x"]*coefficient;
+            Y = (int)payload["y"]*coefficient;
+
+            //set button values
+            if ((int)payload["btn1"] == 1)
+            {
+                res = joystick.SetBtn(true, id, 1);
+            } else {
+                res = joystick.SetBtn(false, id, 1);
+            }
+
+            if ((int)payload["btn2"] == 1)
+            {
+                res = joystick.SetBtn(true, id, 2);
+            }
+            else
+            {
+                res = joystick.SetBtn(false, id, 2);
+            }
+
+            if ((int)payload["btn3"] == 1)
+            {
+                res = joystick.SetBtn(true, id, 3);
+            }
+            else
+            {
+                res = joystick.SetBtn(false, id, 3);
+            }
+
+            if ((int)payload["btn4"] == 1)
+            {
+                res = joystick.SetBtn(true, id, 4);
+            }
+            else
+            {
+                res = joystick.SetBtn(false, id, 4);
+            }
+
+            Console.WriteLine("INPUT X: " + X.ToString() + " Y: " + Y.ToString() + " btn1: " + res.ToString());
+            
         }
 
         public static void Main(string[] args)
@@ -96,9 +147,7 @@ namespace FeederDemoCS
             // Check which axes are supported
             bool AxisX = joystick.GetVJDAxisExist(id, HID_USAGES.HID_USAGE_X);
             bool AxisY = joystick.GetVJDAxisExist(id, HID_USAGES.HID_USAGE_Y);
-            //bool AxisZ = joystick.GetVJDAxisExist(id, HID_USAGES.HID_USAGE_Z);
-            //bool AxisRX = joystick.GetVJDAxisExist(id, HID_USAGES.HID_USAGE_RX);
-            //bool AxisRZ = joystick.GetVJDAxisExist(id, HID_USAGES.HID_USAGE_RZ);
+
             // Get the number of buttons and POV Hat switchessupported by this vJoy device
             int nButtons = joystick.GetVJDButtonNumber(id);
             int ContPovNumber = joystick.GetVJDContPovNumber(id);
@@ -111,9 +160,6 @@ namespace FeederDemoCS
             Console.WriteLine("Numner of Descrete POVs\t\t{0}\n", DiscPovNumber);
             Console.WriteLine("Axis X\t\t{0}\n", AxisX ? "Yes" : "No");
             Console.WriteLine("Axis Y\t\t{0}\n", AxisX ? "Yes" : "No");
-            //Console.WriteLine("Axis Z\t\t{0}\n", AxisX ? "Yes" : "No");
-            //Console.WriteLine("Axis Rx\t\t{0}\n", AxisRX ? "Yes" : "No");
-            //Console.WriteLine("Axis Rz\t\t{0}\n", AxisRZ ? "Yes" : "No");
 
             // Test if DLL matches the driver
             UInt32 DllVer = 0, DrvVer = 0;
@@ -136,36 +182,36 @@ namespace FeederDemoCS
             Console.WriteLine("\npress enter to stat feeding");
             //Console.ReadKey(true);
 
-            
             uint count = 0;
-            long maxval = 0;
+            
 
             X = 20;
             Y = 30;
-            //Z = 40;
-            //XR = 60;
-            //ZR = 80;
 
             joystick.GetVJDAxisMax(id, HID_USAGES.HID_USAGE_X, ref maxval);
 
 #if ROBUST
-    bool res;
+    
 	// Reset this device to default values
 	joystick.ResetVJD(id);
 
 	// Feed the device in endless loop
     while (true)
     {
-        // Set position of 4 axes
-        res = joystick.SetAxis(X, id, HID_USAGES.HID_USAGE_X);
-        res = joystick.SetAxis(Y, id, HID_USAGES.HID_USAGE_Y);
-        //res = joystick.SetAxis(Z, id, HID_USAGES.HID_USAGE_Z);
-        //res = joystick.SetAxis(XR, id, HID_USAGES.HID_USAGE_RX);
-        //res = joystick.SetAxis(ZR, id, HID_USAGES.HID_USAGE_RZ);
 
-        // Press/Release Buttons
-        res = joystick.SetBtn(true, id, count / 50);
-        res = joystick.SetBtn(false, id, 1 + count / 50);
+        lock (_locker)
+        {
+            //Console.WriteLine("JOYSTICK X: " + X.ToString() + " Y: " + Y.ToString());
+            //Console.WriteLine("coefficient: " + coefficient.ToString());
+
+            // Set position of 4 axes
+            res = joystick.SetAxis(X, id, HID_USAGES.HID_USAGE_X);
+            res = joystick.SetAxis(Y, id, HID_USAGES.HID_USAGE_Y);
+
+            // Press/Release Buttons
+            //res = joystick.SetBtn(true, id, count / 50);
+            //res = joystick.SetBtn(false, id, 1 + count / 50);
+        }
 
         //Console.WriteLine(X);
         //Console.WriteLine(Y);
@@ -177,7 +223,7 @@ namespace FeederDemoCS
             if ((count * 70) < 30000)
             {
                 res = joystick.SetContPov(((int)count * 70), id, 1);
-                res = joystick.SetContPov(((int)count * 70) + 2000, id, 2);
+                //res = joystick.SetContPov(((int)count * 70) + 2000, id, 2);
                 res = joystick.SetContPov(((int)count * 70) + 4000, id, 3);
                 res = joystick.SetContPov(((int)count * 70) + 6000, id, 4);
             }
@@ -216,10 +262,10 @@ namespace FeederDemoCS
         //Z += 350; if (Z > maxval) Z = 0;
         //XR += 220; if (XR > maxval) XR = 0;  
         //ZR += 200; if (ZR > maxval) ZR = 0;  
-        count++;
+        //count++;
 
-        if (count > 640)
-            count = 0;
+        //if (count > 640)
+        //    count = 0;
 
     } // While (Robust)
 
