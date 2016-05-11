@@ -50,6 +50,9 @@ public class SendActivity extends IntentService {
     public static UUID MY_UUID;
     String s;
     String tag = "debugging";
+    String payload;
+    JSONObject payload_json;
+
     protected static final int MESSAGE_READ = 1;
     protected static final int MESSAGE_SEND = 2;
     Handler mHandler = new Handler() {
@@ -83,6 +86,7 @@ public class SendActivity extends IntentService {
     };
     public SendActivity() {
         super("SendActivity");
+        payload_json = new JSONObject();
     }
     @Override
     public IBinder onBind(Intent arg0) {
@@ -109,24 +113,29 @@ public class SendActivity extends IntentService {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         // Let it continue running until it is stopped
-        Log.i(tag, "test-send-4");
+        //Log.i(tag, "test-send-4");
+
         if (start)
         {
             Log.i(tag, "test-2");
 
             s = "test send-2";
+            payload = intent.getStringExtra("payload").toString();
             try
             {
-                Log.i(tag, s);
+                Log.i("Sean", s);
                 bytes = s.getBytes();
-                mmOutStream.write(bytes);
+                // Commented out for testing
+                mmOutStream.write(payload.getBytes());
 
             }
+
             catch (IOException e)
             {
                 e.getMessage();
                 Log.i(tag, e.getMessage());
             }
+
             // mHandler.obtainMessage(MESSAGE_SEND, s).sendToTarget();
         }
         else
@@ -149,9 +158,20 @@ public class SendActivity extends IntentService {
             {
                 mmOutStream = mmSocket.getOutputStream();
                 Log.i(tag, "test-Out-success");
+                // Send JSON here
+                /*
+                try {
+                    payload_json.put("status", "Connected!");
+                }
+                catch(JSONException error) {
+                    Log.d(tag, error.getMessage());
+                }
+                */
                 s = "test send-3";
+
+
                 bytes = s.getBytes();
-                mmOutStream.write(s.getBytes(),0,s.getBytes().length);
+                //mmOutStream.write(payload_json.toString().getBytes());
             }
             catch (IOException e)
             {

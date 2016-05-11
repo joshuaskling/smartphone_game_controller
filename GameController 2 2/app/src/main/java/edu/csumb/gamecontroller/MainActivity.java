@@ -66,6 +66,10 @@ public class MainActivity extends Activity implements SensorEventListener {
     public SharedPreferences prefs;
     public SharedPreferences.OnSharedPreferenceChangeListener listener;
 
+    // Joystick max x and y axis value (Nexus 7)
+    public final int max = 174;
+
+
     // Log tag
     public final String DEBUGMSG = "MainActivity";
 
@@ -139,14 +143,15 @@ public class MainActivity extends Activity implements SensorEventListener {
         // Initialize payload of controller status
         controler_status = new JSONObject();
         try {
-            controler_status.put("x", 0.0);
-            controler_status.put("y", 0.0);
+            controler_status.put("x", 0);
+            controler_status.put("y", 0);
             controler_status.put("btn1", false);
             controler_status.put("btn2", false);
             controler_status.put("btn3", false);
             controler_status.put("btn4", false);
             controler_status.put("startBtn", false);
             controler_status.put("selectBtn", false);
+            controler_status.put("maxVal", max);
         }
         catch(JSONException error) {
             Log.d(DEBUGMSG, error.getMessage());
@@ -172,7 +177,8 @@ public class MainActivity extends Activity implements SensorEventListener {
                 catch(JSONException error) {
                     Log.d(DEBUGMSG, "Left Joystick: " + error.getMessage());
                 }
-                Log.d(DEBUGMSG, controler_status.toString());
+                sendControllerStatus();
+                //Log.d(DEBUGMSG, controler_status.toString());
 
             }
         }, JoystickView.DEFAULT_LOOP_INTERVAL);
@@ -189,6 +195,7 @@ public class MainActivity extends Activity implements SensorEventListener {
                 catch(JSONException error) {
                     Log.d(DEBUGMSG, "Right Joystick: " + error.getMessage());
                 }
+                sendControllerStatus();
             }
         }, JoystickView.DEFAULT_LOOP_INTERVAL);
 
@@ -214,8 +221,9 @@ public class MainActivity extends Activity implements SensorEventListener {
 
                 if (System.currentTimeMillis() - time > 100) {
 
-                    float x = (event.getRawX() - (screenWidth / 5));
-                    float y = (event.getRawY() - (screenHeight / 2)) * -1;
+                    // Used integer precision to conform to JoysitckView output
+                    int x = (int)(event.getRawX() - (screenWidth / 5));
+                    int y = (int)(event.getRawY() - (screenHeight / 2)) * -1;
 
                     try {
                         controler_status.put("x", x);
@@ -225,8 +233,8 @@ public class MainActivity extends Activity implements SensorEventListener {
                         Log.d(DEBUGMSG, "Left DPad: " + error.getMessage());
                     }
 
-                    Log.d(DEBUGMSG, "(" + Float.toString(x) + "," + Float.toString(y) + ")");
-                    sendMovement(x, y);
+                    //Log.d(DEBUGMSG, "(" + Integer.toString(x) + "," + Integer.toString(y) + ")");
+                    sendControllerStatus();
                     time = System.currentTimeMillis();
                 }
                 return true;
@@ -238,8 +246,8 @@ public class MainActivity extends Activity implements SensorEventListener {
             public boolean onTouch(View view, MotionEvent event) {
                 if (System.currentTimeMillis() - time > 100) {
 
-                    float x = (event.getRawX() - (screenWidth / 5));
-                    float y = (event.getRawY() - (screenHeight / 2)) * -1;
+                    int x = (int)(event.getRawX() - (screenWidth / 5));
+                    int y = (int)(event.getRawY() - (screenHeight / 2)) * -1;
 
                     try {
                         controler_status.put("x", x);
@@ -249,8 +257,8 @@ public class MainActivity extends Activity implements SensorEventListener {
                         Log.d(DEBUGMSG, "Right DPad: " + error.getMessage());
                     }
 
-                    Log.d(DEBUGMSG, "(" + Float.toString(x) + "," + Float.toString(y) + ")");
-                    sendMovement(x, y);
+                    //Log.d(DEBUGMSG, "(" + Integer.toString(x) + "," + Integer.toString(y) + ")");
+                    sendControllerStatus();
                     time = System.currentTimeMillis();
                 }
                 return true;
@@ -291,9 +299,13 @@ public class MainActivity extends Activity implements SensorEventListener {
                                 catch(JSONException error) {
                                     Log.d(DEBUGMSG, "Left btn1: " + error.getMessage());
                                 }
+<<<<<<< HEAD
                                 // String is NOT an encoded URI string
                                 mServiceIntent.setData(Uri.parse("btn1"));
                                 MainActivity.this.startService(mServiceIntent);
+=======
+                                sendControllerStatus();
+>>>>>>> a9fc1f8d24f441749231017dcd2b19820da87b94
                                 break;
                             }
                             case MotionEvent.ACTION_UP: {
@@ -304,6 +316,7 @@ public class MainActivity extends Activity implements SensorEventListener {
                                 catch(JSONException error) {
                                     Log.d(DEBUGMSG, "Left btn1: " + error.getMessage());
                                 }
+                                sendControllerStatus();
                                 break;
                             }
                         }
@@ -324,6 +337,7 @@ public class MainActivity extends Activity implements SensorEventListener {
                                 catch(JSONException error) {
                                     Log.d(DEBUGMSG, "Left btn2: " + error.getMessage());
                                 }
+                                sendControllerStatus();
                                 break;
                             }
                             case MotionEvent.ACTION_UP: {
@@ -334,6 +348,7 @@ public class MainActivity extends Activity implements SensorEventListener {
                                 catch(JSONException error) {
                                     Log.d(DEBUGMSG, "Left btn2: " + error.getMessage());
                                 }
+                                sendControllerStatus();
                                 break;
                             }
                         }
@@ -354,6 +369,7 @@ public class MainActivity extends Activity implements SensorEventListener {
                                 catch(JSONException error) {
                                     Log.d(DEBUGMSG, "Left btn3: " + error.getMessage());
                                 }
+                                sendControllerStatus();
                                 break;
                             }
                             case MotionEvent.ACTION_UP: {
@@ -364,6 +380,7 @@ public class MainActivity extends Activity implements SensorEventListener {
                                 catch(JSONException error) {
                                     Log.d(DEBUGMSG, "Left btn3: " + error.getMessage());
                                 }
+                                sendControllerStatus();
                                 break;
                             }
                         }
@@ -385,6 +402,7 @@ public class MainActivity extends Activity implements SensorEventListener {
                                 catch(JSONException error) {
                                     Log.d(DEBUGMSG, "Left btn4: " + error.getMessage());
                                 }
+                                sendControllerStatus();
                                 break;
                             }
                             case MotionEvent.ACTION_UP: {
@@ -395,6 +413,7 @@ public class MainActivity extends Activity implements SensorEventListener {
                                 catch(JSONException error) {
                                     Log.d(DEBUGMSG, "Left btn4: " + error.getMessage());
                                 }
+                                sendControllerStatus();
                                 break;
                             }
                         }
@@ -415,6 +434,7 @@ public class MainActivity extends Activity implements SensorEventListener {
                         catch(JSONException error) {
                             Log.d(DEBUGMSG, "Right btn1: " + error.getMessage());
                         }
+                        sendControllerStatus();
                         break;
                     }
                     case MotionEvent.ACTION_UP: {
@@ -425,6 +445,7 @@ public class MainActivity extends Activity implements SensorEventListener {
                         catch(JSONException error) {
                             Log.d(DEBUGMSG, "Right btn1: " + error.getMessage());
                         }
+                        sendControllerStatus();
                         break;
                     }
                 }
@@ -443,6 +464,7 @@ public class MainActivity extends Activity implements SensorEventListener {
                         catch(JSONException error) {
                             Log.d(DEBUGMSG, "Right btn2: " + error.getMessage());
                         }
+                        sendControllerStatus();
                         break;
                     }
                     case MotionEvent.ACTION_UP: {
@@ -453,6 +475,7 @@ public class MainActivity extends Activity implements SensorEventListener {
                         catch(JSONException error) {
                             Log.d(DEBUGMSG, "Right btn2: " + error.getMessage());
                         }
+                        sendControllerStatus();
                         break;
                     }
                 }
@@ -471,6 +494,7 @@ public class MainActivity extends Activity implements SensorEventListener {
                         catch(JSONException error) {
                             Log.d(DEBUGMSG, "Right btn3: " + error.getMessage());
                         }
+                        sendControllerStatus();
                         break;
                     }
                     case MotionEvent.ACTION_UP: {
@@ -481,6 +505,7 @@ public class MainActivity extends Activity implements SensorEventListener {
                         catch(JSONException error) {
                             Log.d(DEBUGMSG, "Right btn3: " + error.getMessage());
                         }
+                        sendControllerStatus();
                         break;
                     }
                 }
@@ -499,6 +524,7 @@ public class MainActivity extends Activity implements SensorEventListener {
                         catch(JSONException error) {
                             Log.d(DEBUGMSG, "Right btn4: " + error.getMessage());
                         }
+                        sendControllerStatus();
                         break;
                     }
                     case MotionEvent.ACTION_UP: {
@@ -509,6 +535,7 @@ public class MainActivity extends Activity implements SensorEventListener {
                         catch(JSONException error) {
                             Log.d(DEBUGMSG, "Right btn4: " + error.getMessage());
                         }
+                        sendControllerStatus();
                         break;
                     }
                 }
@@ -556,6 +583,14 @@ public class MainActivity extends Activity implements SensorEventListener {
 
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    // Sends status of controller to Bluetooth
+    public void sendControllerStatus() {
+        Log.d(DEBUGMSG, controler_status.toString());
+        mServiceIntent = new Intent(MainActivity.this, SendActivity.class);
+        mServiceIntent.putExtra("payload", controler_status.toString());
+        MainActivity.this.startService(mServiceIntent);
     }
 
     // Swaps joystick or DPad

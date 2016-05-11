@@ -5,13 +5,6 @@ C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\SDK\c#\FeederDemoCS\bin\Debug
 C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\SDK\c#\FeederDemoCS\obj\Debug\SimpleFeeder.csprojResolveAssemblyReference.cache
 C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\SDK\c#\FeederDemoCS\obj\Debug\SimpleFeeder.exe
 C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\SDK\c#\FeederDemoCS\obj\Debug\SimpleFeeder.pdb
-C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\SDK\c#\FeederDemoCS\bin\Debug\SimpleFeeder.exe.config
-C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\SDK\c#\FeederDemoCS\bin\Debug\SimpleFeeder.exe
-C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\SDK\c#\FeederDemoCS\bin\Debug\SimpleFeeder.pdb
-C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\SDK\c#\FeederDemoCS\bin\Debug\vJoyInterfaceWrap.dll
-C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\SDK\c#\FeederDemoCS\obj\Debug\SimpleFeeder.csprojResolveAssemblyReference.cache
-C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\SDK\c#\FeederDemoCS\obj\Debug\SimpleFeeder.exe
-C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\SDK\c#\FeederDemoCS\obj\Debug\SimpleFeeder.pdb
 C:\Users\Trucker\Desktop\smartphone_game_controller\SDK\c#\FeederDemoCS\bin\Debug\SimpleFeeder.exe.config
 C:\Users\Trucker\Desktop\smartphone_game_controller\SDK\c#\FeederDemoCS\bin\Debug\SimpleFeeder.exe
 C:\Users\Trucker\Desktop\smartphone_game_controller\SDK\c#\FeederDemoCS\bin\Debug\SimpleFeeder.pdb
@@ -19,3 +12,13 @@ C:\Users\Trucker\Desktop\smartphone_game_controller\SDK\c#\FeederDemoCS\bin\Debu
 C:\Users\Trucker\Desktop\smartphone_game_controller\SDK\c#\FeederDemoCS\obj\Debug\SimpleFeeder.csprojResolveAssemblyReference.cache
 C:\Users\Trucker\Desktop\smartphone_game_controller\SDK\c#\FeederDemoCS\obj\Debug\SimpleFeeder.exe
 C:\Users\Trucker\Desktop\smartphone_game_controller\SDK\c#\FeederDemoCS\obj\Debug\SimpleFeeder.pdb
+C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\SDK\c#\FeederDemoCS\bin\Debug\vJoyInterface.dll
+C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\SDK\c#\FeederDemoCS\bin\Debug\SimpleFeeder.exe.config
+C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\SDK\c#\FeederDemoCS\bin\Debug\SimpleFeeder.exe
+C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\SDK\c#\FeederDemoCS\bin\Debug\SimpleFeeder.pdb
+C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\SDK\c#\FeederDemoCS\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\SDK\c#\FeederDemoCS\bin\Debug\vJoyInterfaceWrap.dll
+C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\SDK\c#\FeederDemoCS\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\SDK\c#\FeederDemoCS\obj\Debug\SimpleFeeder.csprojResolveAssemblyReference.cache
+C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\SDK\c#\FeederDemoCS\obj\Debug\SimpleFeeder.exe
+C:\Users\Josh\Documents\CSUMB Spring 2016\Capstone\smartphone_game_controller\SDK\c#\FeederDemoCS\obj\Debug\SimpleFeeder.pdb

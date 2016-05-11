@@ -47,8 +47,7 @@
             </intent-filter>
         </activity>
 
-
-
+        <service android:name="edu.csumb.gamecontroller.SendActivity"></service>
 
         <activity
             android:name=".BluetoothActivity"
