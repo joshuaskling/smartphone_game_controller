@@ -12,13 +12,26 @@ using InTheHand.Net.Bluetooth;
 using InTheHand.Net.Ports;
 using InTheHand.Net.Sockets;
 using System.IO;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+
 namespace Bluetooth_v0._5
 {
     public partial class Form1 : Form
     {
+        //create vjoy class
+        FeederDemoCS.VJoyProgram vjoy;
+
         List<string> items;
         public Form1()
         {
+
+            vjoy = new FeederDemoCS.VJoyProgram();
+
+            String[] spoofArray = new String[0];
+            Thread ControllerSimThread = new Thread(new ThreadStart(() => FeederDemoCS.VJoyProgram.Main(spoofArray)));
+            ControllerSimThread.Start();
+            //FeederDemoCS.VJoyProgram.Main(spoofArray);
             items = new List<string>();
             InitializeComponent();
         }
@@ -93,13 +106,45 @@ namespace Bluetooth_v0._5
             conn = blueListener.AcceptBluetoothClient();
             updateUI("Client has connected");
             Stream mStream = conn.GetStream();
+
+            bool initialized = false;
+
             while(true)
             {
                 try
                 {
                     byte[] received = new byte[1024];
                     mStream.Read(received, 0, received.Length);
+
                     updateUI("Received" + Encoding.ASCII.GetString(received));
+
+                    if (initialized == false)
+                    {
+                        //parse json here
+                        JObject input = JObject.Parse(Encoding.ASCII.GetString(received));
+
+                        //send updates to vjoy program
+                        vjoy.setCoefficient(input);
+
+                        initialized = true;
+                    }
+                    //Console.WriteLine("recieved: " + received);
+
+                    try
+                    {
+                        //parse json here
+                        JObject payload = JObject.Parse(Encoding.ASCII.GetString(received));
+
+                        //send updates to vjoy program
+                        vjoy.setValues(payload);
+                    }
+                    catch(JsonReaderException bluetoothError)
+                    {
+                        Console.WriteLine("BLUETOOTH ERROR: " + bluetoothError.ToString());
+                    }
+
+                    
+
                     byte[] sent = Encoding.ASCII.GetBytes("Hello World");
                     mStream.Write(sent, 0, sent.Length);
                 }

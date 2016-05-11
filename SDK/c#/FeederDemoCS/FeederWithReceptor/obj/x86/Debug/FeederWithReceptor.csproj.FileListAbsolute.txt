@@ -1,0 +1,9 @@
+C:\Users\Trucker\Desktop\smartphone_game_controller\SDK\c#\FeederDemoCS\FeederWithReceptor\bin\x86\Debug\FeederWithReceptor.exe.config
+C:\Users\Trucker\Desktop\smartphone_game_controller\SDK\c#\FeederDemoCS\FeederWithReceptor\bin\x86\Debug\FeederWithReceptor.exe
+C:\Users\Trucker\Desktop\smartphone_game_controller\SDK\c#\FeederDemoCS\FeederWithReceptor\bin\x86\Debug\FeederWithReceptor.pdb
+C:\Users\Trucker\Desktop\smartphone_game_controller\SDK\c#\FeederDemoCS\FeederWithReceptor\bin\x86\Debug\vJoyInterfaceWrap.dll
+C:\Users\Trucker\Desktop\smartphone_game_controller\SDK\c#\FeederDemoCS\FeederWithReceptor\obj\x86\Debug\FeederWithReceptor.Properties.Resources.resources
+C:\Users\Trucker\Desktop\smartphone_game_controller\SDK\c#\FeederDemoCS\FeederWithReceptor\obj\x86\Debug\WrapperTest.TesterForm.resources
+C:\Users\Trucker\Desktop\smartphone_game_controller\SDK\c#\FeederDemoCS\FeederWithReceptor\obj\x86\Debug\FeederWithReceptor.csproj.GenerateResource.Cache
+C:\Users\Trucker\Desktop\smartphone_game_controller\SDK\c#\FeederDemoCS\FeederWithReceptor\obj\x86\Debug\FeederWithReceptor.exe
+C:\Users\Trucker\Desktop\smartphone_game_controller\SDK\c#\FeederDemoCS\FeederWithReceptor\obj\x86\Debug\FeederWithReceptor.pdb

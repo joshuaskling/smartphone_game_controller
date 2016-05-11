@@ -1,0 +1,4 @@
+C:\Users\Trucker\Desktop\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\obj\Release\Bluetooth v0.5.csprojResolveAssemblyReference.cache
+C:\Users\Trucker\Desktop\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\obj\Release\Bluetooth_v0._5.Form1.resources
+C:\Users\Trucker\Desktop\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\obj\Release\Bluetooth_v0._5.Properties.Resources.resources
+C:\Users\Trucker\Desktop\smartphone_game_controller\Bluetooth v0.5\Bluetooth v0.5\obj\Release\Bluetooth v0.5.csproj.GenerateResource.Cache
