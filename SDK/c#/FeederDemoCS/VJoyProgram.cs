@@ -39,6 +39,7 @@ namespace FeederDemoCS
         static public uint id = 1;
         static readonly object _locker = new object();
         public static int X, Y;
+        public static int RX, RY, RZ;
         public static bool res;
         public static long maxval = 0;
 
@@ -59,6 +60,9 @@ namespace FeederDemoCS
 
             X = (int)payload["x"]*coefficient;
             Y = (int)payload["y"]*coefficient;
+            //RX = (int)payload["accel_x"] * coefficient;
+            //RY = (int)payload["accel_y"] * coefficient;
+            //RZ = (int)payload["accel_z"] * coefficient;
 
             //set button values
             if ((int)payload["btn1"] == 1)
@@ -147,6 +151,9 @@ namespace FeederDemoCS
             // Check which axes are supported
             bool AxisX = joystick.GetVJDAxisExist(id, HID_USAGES.HID_USAGE_X);
             bool AxisY = joystick.GetVJDAxisExist(id, HID_USAGES.HID_USAGE_Y);
+            //bool AxisRX = joystick.GetVJDAxisExist(id, HID_USAGES.HID_USAGE_RX);
+            //bool AxisRY = joystick.GetVJDAxisExist(id, HID_USAGES.HID_USAGE_RY);
+            //bool AxisRZ = joystick.GetVJDAxisExist(id, HID_USAGES.HID_USAGE_RZ);
 
             // Get the number of buttons and POV Hat switchessupported by this vJoy device
             int nButtons = joystick.GetVJDButtonNumber(id);
@@ -159,7 +166,10 @@ namespace FeederDemoCS
             Console.WriteLine("Numner of Continuous POVs\t{0}\n", ContPovNumber);
             Console.WriteLine("Numner of Descrete POVs\t\t{0}\n", DiscPovNumber);
             Console.WriteLine("Axis X\t\t{0}\n", AxisX ? "Yes" : "No");
-            Console.WriteLine("Axis Y\t\t{0}\n", AxisX ? "Yes" : "No");
+            Console.WriteLine("Axis Y\t\t{0}\n", AxisY ? "Yes" : "No");
+            //Console.WriteLine("Axis RX\t\t{0}\n", AxisRX ? "Yes" : "No");
+            //Console.WriteLine("Axis RY\t\t{0}\n", AxisRY ? "Yes" : "No");
+            //Console.WriteLine("Axis RZ\t\t{0}\n", AxisRZ ? "Yes" : "No");
 
             // Test if DLL matches the driver
             UInt32 DllVer = 0, DrvVer = 0;
@@ -207,6 +217,9 @@ namespace FeederDemoCS
             // Set position of 4 axes
             res = joystick.SetAxis(X, id, HID_USAGES.HID_USAGE_X);
             res = joystick.SetAxis(Y, id, HID_USAGES.HID_USAGE_Y);
+            //res = joystick.SetAxis(RY, id, HID_USAGES.HID_USAGE_RX);
+            //res = joystick.SetAxis(RY, id, HID_USAGES.HID_USAGE_RY);
+            //res = joystick.SetAxis(RZ, id, HID_USAGES.HID_USAGE_RZ);
 
             // Press/Release Buttons
             //res = joystick.SetBtn(true, id, count / 50);
