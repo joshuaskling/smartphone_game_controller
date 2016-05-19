@@ -36,7 +36,7 @@ namespace FeederDemoCS
         // Declaring one joystick (Device id 1) and a position structure. 
         static public vJoy joystick;
         static public vJoy.JoystickState iReport;
-        static public uint id = 1;
+        static public uint id = 15;
         static readonly object _locker = new object();
         public static int X, Y;
         public static int RX, RY, RZ;
