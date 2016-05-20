@@ -99,6 +99,15 @@ namespace FeederDemoCS
                 res = joystick.SetBtn(false, id, 4);
             }
 
+            if ((int)payload["startBtn"] == 1)
+            {
+                res = joystick.SetBtn(true, id, 8);
+            }
+            else
+            {
+                res = joystick.SetBtn(false, id, 8);
+            }
+
             Console.WriteLine("INPUT X: " + X.ToString() + " Y: " + Y.ToString() + " btn1: " + res.ToString());
             
         }
