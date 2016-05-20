@@ -171,8 +171,8 @@ public class MainActivity extends Activity implements SensorEventListener {
                 // TODO Auto-generated method stub
                 Log.d(DEBUGMSG, String.valueOf(x) + ","  +String.valueOf(y));
                 try {
-                    controler_status.put("x", x);
-                    controler_status.put("y", y);
+                    controler_status.put("x", x - 54);
+                    controler_status.put("y", y - 54);
                 }
                 catch(JSONException error) {
                     Log.d(DEBUGMSG, "Left Joystick: " + error.getMessage());
@@ -189,8 +189,8 @@ public class MainActivity extends Activity implements SensorEventListener {
                 Log.d(DEBUGMSG, String.valueOf(x) + ","  +String.valueOf(y));
 
                 try {
-                    controler_status.put("x", x);
-                    controler_status.put("y", y);
+                    controler_status.put("x", x - 54);
+                    controler_status.put("y", y - 54);
                 }
                 catch(JSONException error) {
                     Log.d(DEBUGMSG, "Right Joystick: " + error.getMessage());
@@ -270,6 +270,30 @@ public class MainActivity extends Activity implements SensorEventListener {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 Log.d(DEBUGMSG, "Start btn touched");
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {
+                        Log.d(DEBUGMSG, "Start btn down");
+                        try {
+                            controler_status.put("startBtn", true);
+                        }
+                        catch(JSONException error) {
+                            Log.d(DEBUGMSG, "Start btn: " + error.getMessage());
+                        }
+                        sendControllerStatus();
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP: {
+                        Log.d(DEBUGMSG, "Start btn up");
+                        try {
+                            controler_status.put("startBtn", false);
+                        }
+                        catch(JSONException error) {
+                            Log.d(DEBUGMSG, "Start btn: " + error.getMessage());
+                        }
+                        sendControllerStatus();
+                        break;
+                    }
+                }
                 return false;
             }
         });
