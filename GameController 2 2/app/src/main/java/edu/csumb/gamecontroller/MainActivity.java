@@ -150,7 +150,7 @@ public class MainActivity extends Activity implements SensorEventListener {
             controler_status.put("btn3", false);
             controler_status.put("btn4", false);
             controler_status.put("startBtn", false);
-            controler_status.put("selectBtn", false);
+            controler_status.put("bluetoothBtn", false);
             controler_status.put("maxVal", max);
         }
         catch(JSONException error) {
@@ -171,8 +171,8 @@ public class MainActivity extends Activity implements SensorEventListener {
                 // TODO Auto-generated method stub
                 Log.d(DEBUGMSG, String.valueOf(x) + ","  +String.valueOf(y));
                 try {
-                    controler_status.put("x", x);
-                    controler_status.put("y", y);
+                    controler_status.put("x", x - 54);
+                    controler_status.put("y", y - 54);
                 }
                 catch(JSONException error) {
                     Log.d(DEBUGMSG, "Left Joystick: " + error.getMessage());
@@ -189,8 +189,8 @@ public class MainActivity extends Activity implements SensorEventListener {
                 Log.d(DEBUGMSG, String.valueOf(x) + ","  +String.valueOf(y));
 
                 try {
-                    controler_status.put("x", x);
-                    controler_status.put("y", y);
+                    controler_status.put("x", x - 54);
+                    controler_status.put("y", y - 54);
                 }
                 catch(JSONException error) {
                     Log.d(DEBUGMSG, "Right Joystick: " + error.getMessage());
@@ -213,7 +213,7 @@ public class MainActivity extends Activity implements SensorEventListener {
 
         final Button settingsBtn = (Button) findViewById(R.id.settingsBtn);
         final Button startBtn = (Button) findViewById(R.id.startBtn);
-        final Button selectBtn = (Button) findViewById(R.id.selectBtn);
+        final Button bluetoothBtn = (Button) findViewById(R.id.bluetoothBtn);
 
         leftDPad.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -270,16 +270,40 @@ public class MainActivity extends Activity implements SensorEventListener {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 Log.d(DEBUGMSG, "Start btn touched");
-                Intent mIntent = new Intent(MainActivity.this, BluetoothActivity.class);
-                startActivity(mIntent);
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {
+                        Log.d(DEBUGMSG, "Start btn down");
+                        try {
+                            controler_status.put("startBtn", true);
+                        }
+                        catch(JSONException error) {
+                            Log.d(DEBUGMSG, "Start btn: " + error.getMessage());
+                        }
+                        sendControllerStatus();
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP: {
+                        Log.d(DEBUGMSG, "Start btn up");
+                        try {
+                            controler_status.put("startBtn", false);
+                        }
+                        catch(JSONException error) {
+                            Log.d(DEBUGMSG, "Start btn: " + error.getMessage());
+                        }
+                        sendControllerStatus();
+                        break;
+                    }
+                }
                 return false;
             }
         });
 
-        selectBtn.setOnTouchListener(new View.OnTouchListener() {
+        bluetoothBtn.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                Log.d(DEBUGMSG, "Select btn touched");
+                Log.d(DEBUGMSG, "Bluetooth btn touched");
+                Intent mIntent = new Intent(MainActivity.this, BluetoothActivity.class);
+                startActivity(mIntent);
                 return false;
             }
         });

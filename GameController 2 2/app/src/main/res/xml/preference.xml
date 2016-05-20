@@ -2,22 +2,26 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     >
     <PreferenceCategory
         android:title="Layout Details"
-        android:textSize="40px">
+        android:textSize="40px"
+        >
         <ListPreference
             android:key="layout_preference"
             android:title="Control Positions"
             android:textSize="20px"
             android:defaultValue="@string/default_control_position"
             android:entries="@array/control_positions"
+            android:icon="@drawable/dpad"
             android:entryValues="@array/control_positions" />
         <ListPreference
             android:key="layout_stick"
             android:title="Stick layout"
             android:textSize="20px"
             android:defaultValue="@string/default_stick_layout"
+            android:icon="@drawable/joystick"
             android:entries="@array/stick_layouts"
             android:entryValues="@array/stick_layouts"/>
     </PreferenceCategory>
@@ -30,21 +34,16 @@
         <ListPreference
             android:key="button_size_preference"
             android:title="@string/lp_list_preference_size"
-            android:icon="@drawable/a_button_small_pressed"
+            android:icon="@drawable/green_s_button"
             android:textSize="20px"
             android:entries="@array/array_list_preference_size"
             android:entryValues="@array/array_list_preference_size" />
-        <ListPreference
-            android:key="button_color_preference"
-            android:title="@string/lp_list_preference_color"
-            android:icon="@drawable/b_button_small_pressed"
-            android:textSize="20px"
-            android:entries="@array/array_list_preference_color"
-            android:entryValues="@array/array_list_preference_color" />
+
         <ListPreference
             android:key="button_style"
             android:title="Button Style"
             android:textSize="20px"
+            android:icon="@drawable/yellow_s_button_square"
             android:entries="@array/button_styles"
             android:entryValues="@array/button_styles" />
 
@@ -57,7 +56,7 @@
         <ListPreference
             android:key="background_preference"
             android:title="@string/lp_list_preference_background"
-            android:icon="@drawable/bb"
+            android:icon="@drawable/back_1"
             android:entries="@array/array_list_preference_entries_background"
             android:entryValues="@array/array_list_preference_entry_values_background"
             />
@@ -70,7 +69,7 @@
         <ListPreference
             android:key="volume_preference"
             android:title="@string/lp_list_preference_title"
-            android:icon="@drawable/sound"
+            android:icon="@drawable/volume"
             android:entries="@array/array_list_preference_entries"
             android:entryValues="@array/array_list_preference_entry_values"
             />

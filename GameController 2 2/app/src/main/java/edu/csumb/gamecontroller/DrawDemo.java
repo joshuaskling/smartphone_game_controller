@@ -21,7 +21,6 @@ public class DrawDemo extends View {
         leftEdge = new EdgeEffect(context);
 
     }
-
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
