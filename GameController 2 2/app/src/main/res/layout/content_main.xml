@@ -44,9 +44,9 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:id="@+id/l_button1"
-            android:background="@drawable/blue_s_button"
-            android:layout_alignTop="@+id/l_button2"
-            android:layout_toStartOf="@+id/l_button3" />
+            android:background="@drawable/green_s_button"
+            android:layout_below="@+id/l_button2"
+            android:layout_centerHorizontal="true" />
 
         <ImageButton
             android:layout_width="50dp"
@@ -54,23 +54,24 @@
             android:id="@+id/l_button2"
             android:background="@drawable/red_s_button"
             android:layout_centerVertical="true"
-            android:layout_toEndOf="@+id/l_button3" />
+            android:layout_toEndOf="@+id/l_button1"
+            />
 
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:id="@+id/l_button3"
-            android:background="@drawable/yellow_s_button"
-            android:layout_above="@+id/l_button1"
-            android:layout_alignStart="@+id/l_button4" />
+            android:background="@drawable/blue_s_button"
+            android:layout_alignTop="@+id/l_button2"
+            android:layout_toStartOf="@+id/l_button1"/>
 
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:id="@+id/l_button4"
-            android:background="@drawable/green_s_button"
-            android:layout_below="@+id/l_button2"
-            android:layout_centerHorizontal="true" />
+            android:background="@drawable/yellow_s_button"
+            android:layout_above="@+id/l_button2"
+            android:layout_alignStart="@+id/l_button1" />
 
     </RelativeLayout>
 
@@ -104,15 +105,13 @@
         android:layout_below="@+id/startBtn"
         android:layout_alignParentEnd="true">
 
-
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:id="@+id/r_button1"
-            android:background="@drawable/blue_s_button"
-            android:layout_alignTop="@+id/r_button2"
-            android:layout_toStartOf="@+id/r_button3" />
-
+            android:background="@drawable/green_s_button"
+            android:layout_below="@+id/r_button2"
+            android:layout_centerHorizontal="true" />
 
         <ImageButton
             android:layout_width="50dp"
@@ -120,25 +119,24 @@
             android:id="@+id/r_button2"
             android:background="@drawable/red_s_button"
             android:layout_centerVertical="true"
-            android:layout_toEndOf="@+id/r_button3" />
-
+            android:layout_toEndOf="@+id/r_button1"
+            />
 
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:id="@+id/r_button3"
-            android:background="@drawable/yellow_s_button"
-            android:layout_above="@+id/r_button1"
-            android:layout_alignStart="@+id/r_button4" />
-
+            android:background="@drawable/blue_s_button"
+            android:layout_alignTop="@+id/r_button2"
+            android:layout_toStartOf="@+id/r_button1"/>
 
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:id="@+id/r_button4"
-            android:background="@drawable/green_s_button"
-            android:layout_below="@+id/r_button2"
-            android:layout_centerHorizontal="true" />
+            android:background="@drawable/yellow_s_button"
+            android:layout_above="@+id/r_button2"
+            android:layout_alignStart="@+id/r_button1" />
 
     </RelativeLayout>
 
