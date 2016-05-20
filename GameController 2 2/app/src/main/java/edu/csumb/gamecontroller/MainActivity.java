@@ -43,109 +43,180 @@ import org.json.JSONObject;
 
 public class MainActivity extends Activity implements SensorEventListener {
 
+    private IOSocket socket;
+    private SensorManager mSensorManager;
+    static long time = System.currentTimeMillis();
+    //long positionTimer = System.currentTimeMillis();
+    public static Vibrator vibrator;
+    public LinearLayout mLinearLayout;
+    private JoystickView leftJoystick;
+    private RelativeLayout leftDPad;
+    private RelativeLayout leftButtonLayout;
+    private JoystickView rightJoystick;
+    private RelativeLayout rightDPad;
+    private RelativeLayout rightButtonLayout;
+    private RelativeLayout back1;
+    private RelativeLayout back2;
+    private boolean back1vis;
+    private boolean back2vis;
+    private boolean leftJoystickVisible = true;
+    private boolean rightJoystickVisble = false;
+    private JSONObject controller_status;
 
-  private IOSocket socket;
-  private SensorManager mSensorManager;
-  static long time = System.currentTimeMillis();
-  //long positionTimer = System.currentTimeMillis();
-  public static Vibrator vibrator;
-  public LinearLayout mLinearLayout;
-  private JoystickView leftJoystick;
-  private RelativeLayout leftDPad;
-  private RelativeLayout leftButtonLayout;
-  private JoystickView rightJoystick;
-  private RelativeLayout rightDPad;
-  private RelativeLayout rightButtonLayout;
-  private JSONObject controler_status;
+    public Intent mServiceIntent;
+    public SharedPreferences prefs;
+    public SharedPreferences.OnSharedPreferenceChangeListener listener;
 
-  private boolean leftJoystickVisible = true;
-  private boolean rightJoystickVisble = false;
+    public final String DEBUGMSG = "MainActivity";
+    public final String KEY_PREF_BTN_SIZE = "button_size_preference";
+    public final String KEY_PREF_BTN_COLOR = "button_color_preference";
+    public final String KEY_PREF_BACKGROUND = "background_preference";
+    public final String KEY_PREF_VOLUME = "volume_preference";
+    public final String KEY_PREF_CTRL_POS = "layout_preference";
+    public final String KEY_PREF_STICK_LAYOUT = "layout_stick";
+    public final String KEY_PREF_BTN_STYLE = "button_style";
 
-  public Intent mServiceIntent;
-  public SharedPreferences prefs;
-  public SharedPreferences.OnSharedPreferenceChangeListener listener;
 
-  // Log tag
-  public final String DEBUGMSG = "MainActivity";
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mLinearLayout = new LinearLayout(this);
 
-  // Preference keys
-  public final String KEY_PREF_BTN_SIZE = "button_size_preference";
-  public final String KEY_PREF_BTN_COLOR = "button_color_preference";
-  public final String KEY_PREF_BACKGROUND = "background_preference";
-  public final String KEY_PREF_VOLUME = "volume_preference";
-  public final String KEY_PREF_CTRL_POS = "layout_preference";
-  public final String KEY_PREF_STICK_LAYOUT = "layout_stick";
-  public final String KEY_PREF_BTN_STYLE = "button_style";
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    mLinearLayout = new LinearLayout(this);
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
-    vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        //set orientation to landscape
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
-    //set orientation to landscape
-    this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        //get size of screen
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        final int screenWidth = size.x;
+        final int screenHeight = size.y;
 
-    //get size of screen
-    Display display = getWindowManager().getDefaultDisplay();
-    Point size = new Point();
-    display.getSize(size);
-    final int screenWidth = size.x;
-    final int screenHeight = size.y;
+        // Connection to server
+        //connect();
 
-    // Connection to server
-    //connect();
+        // Attempt to draw EdgeEffect on view
+        //setContentView(new DrawDemo(this));
+        setContentView(R.layout.activity_main);
 
-    // Attempt to draw EdgeEffect on view
-    //setContentView(new DrawDemo(this));
-    setContentView(R.layout.activity_main);
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+            @Override
+            // Detects changes in Preference values
+            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+                if(s.equals(KEY_PREF_CTRL_POS)) {
+                    Log.d(DEBUGMSG, "Control Position changed");
+                    swapJoystickAndButtons(mLinearLayout);
+                }
+                else if(s.equals(KEY_PREF_STICK_LAYOUT)) {
+                    Log.d(DEBUGMSG, "Stick layout changed");
+                    swapJoystickControl(mLinearLayout);
+                }
+                else if(s.equals(KEY_PREF_BTN_STYLE)) {
+                    Log.d(DEBUGMSG, sharedPreferences.getString(s, ""));
 
-    // Listens to changes in settings menu
-    prefs = PreferenceManager.getDefaultSharedPreferences(this);
-    listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
-      @Override
-      // Detects changes in Preference values
-      public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
-        if(s.equals(KEY_PREF_CTRL_POS)) {
-          Log.d(DEBUGMSG, "Control Position changed");
-          swapJoystickAndButtons(mLinearLayout);
-        }
-        else if(s.equals(KEY_PREF_STICK_LAYOUT)) {
-          Log.d(DEBUGMSG, "Stick layout changed");
-          swapJoystickControl(mLinearLayout);
-        }
-        else if(s.equals(KEY_PREF_BTN_STYLE)) {
-          Log.d(DEBUGMSG, sharedPreferences.getString(s, ""));
-        }
-        else if(s.equals(KEY_PREF_BTN_SIZE)) {
-          Log.d(DEBUGMSG, sharedPreferences.getString(s, ""));
-        }
-        else if(s.equals(KEY_PREF_BTN_COLOR)) {
-          Log.d(DEBUGMSG, sharedPreferences.getString(s, ""));
-        }
-        else if(s.equals(KEY_PREF_BACKGROUND)) {
-          Log.d(DEBUGMSG, sharedPreferences.getString(s, ""));
-        }
-        else if(s.equals(KEY_PREF_VOLUME)) {
-          Log.d(DEBUGMSG, sharedPreferences.getString(s, ""));
-        }
+                }
+                else if(s.equals(KEY_PREF_BTN_SIZE)) {
+                    Log.d(DEBUGMSG, sharedPreferences.getString(s, ""));
+                }
+                else if(s.equals(KEY_PREF_BACKGROUND)) {
+                    Log.d(DEBUGMSG, sharedPreferences.getString(s, ""));
+                    swapBackground(mLinearLayout);
+                }
+                else if(s.equals(KEY_PREF_VOLUME)) {
+                    Log.d(DEBUGMSG, sharedPreferences.getString(s, ""));
+                }
 
-      }
-    };
+            }
+        };
+        prefs.registerOnSharedPreferenceChangeListener(listener);
+
+        //Referencing also other views
+        leftJoystick = (JoystickView) findViewById(R.id.leftJoystickView);
+        leftDPad = (RelativeLayout) findViewById(R.id.leftDpadView);
+        leftButtonLayout = (RelativeLayout) findViewById(R.id.leftButtonLayout);
+        rightJoystick = (JoystickView) findViewById(R.id.rightJoystickView);
+        rightDPad = (RelativeLayout) findViewById(R.id.rightDpadView);
+        rightButtonLayout = (RelativeLayout) findViewById(R.id.rightButtonLayout);
+        back1 = (RelativeLayout) findViewById(R.id.backround);
+
+
+
+
+        leftJoystick.setOnJoystickMoveListener(new JoystickView.OnJoystickMoveListener() {
+            @Override
+            public void onValueChanged(double x, double y) {
+                // TODO Auto-generated method stub
+                Log.d(DEBUGMSG, String.valueOf(x) + ","  +String.valueOf(y));
+            }
+        }, JoystickView.DEFAULT_LOOP_INTERVAL);
+
+        rightJoystick.setOnJoystickMoveListener(new JoystickView.OnJoystickMoveListener() {
+            @Override
+            public void onValueChanged(double x, double y) {
+                Log.d(DEBUGMSG, String.valueOf(x) + ","  +String.valueOf(y));
+            }
+        }, JoystickView.DEFAULT_LOOP_INTERVAL);
+
+
+
+        // Left controller buttons
+        final ImageButton button1 = (ImageButton) findViewById(R.id.r_button1);
+        final ImageButton button2 = (ImageButton) findViewById(R.id.r_button2);
+        final ImageButton button3 = (ImageButton) findViewById(R.id.r_button3);
+        final ImageButton button4 = (ImageButton) findViewById(R.id.r_button4);
+
+        //Right controller buttons
+        final ImageButton r_button1 = (ImageButton) findViewById(R.id.l_button1);
+        final ImageButton r_button2 = (ImageButton) findViewById(R.id.l_button2);
+        final ImageButton r_button3 = (ImageButton) findViewById(R.id.l_button3);
+        final ImageButton r_button4 = (ImageButton) findViewById(R.id.l_button4);
+
+        final Button settingsBtn = (Button) findViewById(R.id.settingsBtn);
+        final Button startBtn = (Button) findViewById(R.id.startBtn);
+        final Button bluetoothBtn = (Button) findViewById(R.id.bluetoothBtn);
+
+        //dPad output
+        leftDPad.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                if (System.currentTimeMillis() - time > 100) {
+
+                    float x = (event.getRawX() - (screenWidth / 5));
+                    float y = (event.getRawY() - (screenHeight / 2)) * -1;
+                    Log.d(DEBUGMSG, "(" + Float.toString(x) + "," + Float.toString(y) + ")");
+                    sendMovement(x, y);
+                    time = System.currentTimeMillis();
+                }
+                return true;
+            }
+        });
+
+        rightDPad.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                if (System.currentTimeMillis() - time > 100) {
+                }
+                return false;
+            }
+        });
     prefs.registerOnSharedPreferenceChangeListener(listener);
 
     // Initialize payload of controller status
-    controler_status = new JSONObject();
+    controller_status = new JSONObject();
     try {
-      controler_status.put("x", 0.0);
-      controler_status.put("y", 0.0);
-      controler_status.put("btn1", false);
-      controler_status.put("btn2", false);
-      controler_status.put("btn3", false);
-      controler_status.put("btn4", false);
-      controler_status.put("startBtn", false);
-      controler_status.put("selectBtn", false);
+      controller_status.put("x", 0.0);
+      controller_status.put("y", 0.0);
+      controller_status.put("btn1", false);
+      controller_status.put("btn2", false);
+      controller_status.put("btn3", false);
+      controller_status.put("btn4", false);
+      controller_status.put("startBtn", false);
+
     }
     catch(JSONException error) {
       Log.d(DEBUGMSG, error.getMessage());
@@ -160,52 +231,35 @@ public class MainActivity extends Activity implements SensorEventListener {
     rightButtonLayout = (RelativeLayout) findViewById(R.id.rightButtonLayout);
 
     leftJoystick.setOnJoystickMoveListener(new JoystickView.OnJoystickMoveListener() {
-      @Override
-      public void onValueChanged(double x, double y) {
-        // TODO Auto-generated method stub
-        Log.d(DEBUGMSG, String.valueOf(x) + ","  +String.valueOf(y));
-        try {
-          controler_status.put("x", x);
-          controler_status.put("y", y);
-        }
-        catch(JSONException error) {
-          Log.d(DEBUGMSG, "Left Joystick: " + error.getMessage());
-        }
-        Log.d(DEBUGMSG, controler_status.toString());
+        @Override
+        public void onValueChanged(double x, double y) {
+            // TODO Auto-generated method stub
+            Log.d(DEBUGMSG, String.valueOf(x) + "," + String.valueOf(y));
+            try {
+                controller_status.put("x", x);
+                controller_status.put("y", y);
+            } catch (JSONException error) {
+                Log.d(DEBUGMSG, "Left Joystick: " + error.getMessage());
+            }
+            Log.d(DEBUGMSG, controller_status.toString());
 
-      }
+        }
     }, JoystickView.DEFAULT_LOOP_INTERVAL);
-
+        
     rightJoystick.setOnJoystickMoveListener(new JoystickView.OnJoystickMoveListener() {
-      @Override
-      public void onValueChanged(double x, double y) {
-        Log.d(DEBUGMSG, String.valueOf(x) + ","  +String.valueOf(y));
+        @Override
+        public void onValueChanged(double x, double y) {
+            Log.d(DEBUGMSG, String.valueOf(x) + "," + String.valueOf(y));
 
-        try {
-          controler_status.put("x", x);
-          controler_status.put("y", y);
+            try {
+                controller_status.put("x", x);
+                controller_status.put("y", y);
+            } catch (JSONException error) {
+                Log.d(DEBUGMSG, "Right Joystick: " + error.getMessage());
+            }
         }
-        catch(JSONException error) {
-          Log.d(DEBUGMSG, "Right Joystick: " + error.getMessage());
-        }
-      }
     }, JoystickView.DEFAULT_LOOP_INTERVAL);
 
-    // Left controller buttons
-    final ImageButton button1 = (ImageButton) findViewById(R.id.r_button1);
-    final ImageButton button2 = (ImageButton) findViewById(R.id.r_button2);
-    final ImageButton button3 = (ImageButton) findViewById(R.id.r_button3);
-    final ImageButton button4 = (ImageButton) findViewById(R.id.r_button4);
-
-    //Right controller buttons
-    final ImageButton r_button1 = (ImageButton) findViewById(R.id.l_button1);
-    final ImageButton r_button2 = (ImageButton) findViewById(R.id.l_button2);
-    final ImageButton r_button3 = (ImageButton) findViewById(R.id.l_button3);
-    final ImageButton r_button4 = (ImageButton) findViewById(R.id.l_button4);
-
-    final Button settingsBtn = (Button) findViewById(R.id.settingsBtn);
-    final Button startBtn = (Button) findViewById(R.id.startBtn);
-    final Button selectBtn = (Button) findViewById(R.id.selectBtn);
 
     leftDPad.setOnTouchListener(new View.OnTouchListener() {
       @Override
@@ -217,8 +271,8 @@ public class MainActivity extends Activity implements SensorEventListener {
           float y = (event.getRawY() - (screenHeight / 2)) * -1;
 
           try {
-            controler_status.put("x", x);
-            controler_status.put("y", y);
+            controller_status.put("x", x);
+            controller_status.put("y", y);
           }
           catch(JSONException error) {
             Log.d(DEBUGMSG, "Left DPad: " + error.getMessage());
@@ -241,8 +295,8 @@ public class MainActivity extends Activity implements SensorEventListener {
           float y = (event.getRawY() - (screenHeight / 2)) * -1;
 
           try {
-            controler_status.put("x", x);
-            controler_status.put("y", y);
+            controller_status.put("x", x);
+            controller_status.put("y", y);
           }
           catch(JSONException error) {
             Log.d(DEBUGMSG, "Right DPad: " + error.getMessage());
@@ -261,54 +315,70 @@ public class MainActivity extends Activity implements SensorEventListener {
       @Override
       public boolean onTouch(View view, MotionEvent motionEvent) {
         Log.d(DEBUGMSG, "Start btn touched");
-        Intent mIntent = new Intent(MainActivity.this, BluetoothActivity.class);
-        startActivity(mIntent);
-        return false;
-      }
-    });
-
-    selectBtn.setOnTouchListener(new View.OnTouchListener() {
-      @Override
-      public boolean onTouch(View view, MotionEvent motionEvent) {
-        Log.d(DEBUGMSG, "Select btn touched");
-        return false;
-      }
-    });
-
-    button1.setOnTouchListener(
-            new View.OnTouchListener(){
-              @Override
-              public boolean onTouch (View v, MotionEvent event){
-                switch (event.getAction()) {
-                  case MotionEvent.ACTION_DOWN: {
-                    Log.d(DEBUGMSG, "btn 1 down");
-                    try {
-                      controler_status.put("btn1", true);
-                    }
-                    catch(JSONException error) {
-                      Log.d(DEBUGMSG, "Left btn1: " + error.getMessage());
-                    }
-                    mServiceIntent = new Intent(MainActivity.this, SendActivity.class);
-                    // String is NOT an encoded URI string
-                    mServiceIntent.setData(Uri.parse("btn1"));
-                    MainActivity.this.startService(mServiceIntent);
-                    break;
+          switch (motionEvent.getAction()) {
+              case MotionEvent.ACTION_DOWN: {
+                  try {
+                      controller_status.put("startBtn", true);
                   }
-                  case MotionEvent.ACTION_UP: {
-                    Log.d(DEBUGMSG, "btn 1 up");
-                    try {
-                      controler_status.put("btn1", false);
-                    }
-                    catch(JSONException error) {
-                      Log.d(DEBUGMSG, "Left btn1: " + error.getMessage());
-                    }
-                    break;
+                  catch(JSONException error) {
+                      Log.d(DEBUGMSG, "Start btn: " + error.getMessage());
                   }
-                }
-                return true;
+                  break;
               }
+              case MotionEvent.ACTION_UP: {
+                  try {
+                      controller_status.put("startBtn", false);
+                  }
+                  catch(JSONException error) {
+                      Log.d(DEBUGMSG, "Start btn: " + error.getMessage());
+                  }
+                  break;
+              }
+          }
+        return false;
+      }
+    });
+
+
+        bluetoothBtn.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                Log.d(DEBUGMSG, "Bluetooth btn touched");
+                Intent mIntent = new Intent(MainActivity.this, BluetoothActivity.class);
+                startActivity(mIntent);
+                return false;
             }
-    );
+        });
+
+        button1.setOnTouchListener(
+                new View.OnTouchListener(){
+                    @Override
+                    public boolean onTouch (View v, MotionEvent event){
+                        //darken button when pressed
+                        switch (event.getAction()) {
+                            case MotionEvent.ACTION_DOWN: {
+                                //button1.setBackgroundResource(R.drawable.x_button_small_pressed);
+                                //vibrator.vibrate(30);
+                                //sendFire("btn1", "down");
+                                mServiceIntent = new Intent(MainActivity.this, SendActivity.class);
+                                // String is not an encoded URI string
+                                mServiceIntent.setData(Uri.parse("btn1"));
+                                MainActivity.this.startService(mServiceIntent);
+                                //Log.i("AIPSERVER", "Message sent to server: fire!");
+                                break;
+                            }
+                            case MotionEvent.ACTION_UP: {
+                                //v.getBackground().clearColorFilter();
+                                //v.invalidate();
+                                //button1.setImageResource(R.drawable.x_button_small);
+                                //sendFire("btn1", "up");
+                                break;
+                            }
+                        }
+                    return true;
+                    }
+                }
+        );
     button2.setOnTouchListener(
             new View.OnTouchListener() {
               @Override
@@ -317,7 +387,7 @@ public class MainActivity extends Activity implements SensorEventListener {
                   case MotionEvent.ACTION_DOWN: {
                     Log.d(DEBUGMSG, "btn 2 down");
                     try {
-                      controler_status.put("btn2", true);
+                      controller_status.put("btn2", true);
                     }
                     catch(JSONException error) {
                       Log.d(DEBUGMSG, "Left btn2: " + error.getMessage());
@@ -327,7 +397,7 @@ public class MainActivity extends Activity implements SensorEventListener {
                   case MotionEvent.ACTION_UP: {
                     Log.d(DEBUGMSG, "btn 2 up");
                     try {
-                      controler_status.put("btn2", false);
+                      controller_status.put("btn2", false);
                     }
                     catch(JSONException error) {
                       Log.d(DEBUGMSG, "Left btn2: " + error.getMessage());
@@ -347,7 +417,7 @@ public class MainActivity extends Activity implements SensorEventListener {
                   case MotionEvent.ACTION_DOWN: {
                     Log.d(DEBUGMSG, "btn 3 down");
                     try {
-                      controler_status.put("btn3", true);
+                      controller_status.put("btn3", true);
                     }
                     catch(JSONException error) {
                       Log.d(DEBUGMSG, "Left btn3: " + error.getMessage());
@@ -357,7 +427,7 @@ public class MainActivity extends Activity implements SensorEventListener {
                   case MotionEvent.ACTION_UP: {
                     Log.d(DEBUGMSG, "btn 3 up");
                     try {
-                      controler_status.put("btn3", false);
+                      controller_status.put("btn3", false);
                     }
                     catch(JSONException error) {
                       Log.d(DEBUGMSG, "Left btn3: " + error.getMessage());
@@ -378,7 +448,7 @@ public class MainActivity extends Activity implements SensorEventListener {
                   case MotionEvent.ACTION_DOWN: {
                     Log.d(DEBUGMSG, "btn 4 down");
                     try {
-                      controler_status.put("btn4", true);
+                      controller_status.put("btn4", true);
                     }
                     catch(JSONException error) {
                       Log.d(DEBUGMSG, "Left btn4: " + error.getMessage());
@@ -388,7 +458,7 @@ public class MainActivity extends Activity implements SensorEventListener {
                   case MotionEvent.ACTION_UP: {
                     Log.d(DEBUGMSG, "btn 4 up");
                     try {
-                      controler_status.put("btn4", false);
+                      controller_status.put("btn4", false);
                     }
                     catch(JSONException error) {
                       Log.d(DEBUGMSG, "Left btn4: " + error.getMessage());
@@ -408,7 +478,7 @@ public class MainActivity extends Activity implements SensorEventListener {
           case MotionEvent.ACTION_DOWN: {
             Log.d(DEBUGMSG, "btn 1 down");
             try {
-              controler_status.put("btn1", true);
+              controller_status.put("btn1", true);
             }
             catch(JSONException error) {
               Log.d(DEBUGMSG, "Right btn1: " + error.getMessage());
@@ -418,7 +488,7 @@ public class MainActivity extends Activity implements SensorEventListener {
           case MotionEvent.ACTION_UP: {
             Log.d(DEBUGMSG, "btn 1 up");
             try {
-              controler_status.put("btn1", false);
+              controller_status.put("btn1", false);
             }
             catch(JSONException error) {
               Log.d(DEBUGMSG, "Right btn1: " + error.getMessage());
@@ -436,7 +506,7 @@ public class MainActivity extends Activity implements SensorEventListener {
           case MotionEvent.ACTION_DOWN: {
             Log.d(DEBUGMSG, "btn 2 down");
             try {
-              controler_status.put("btn2", true);
+              controller_status.put("btn2", true);
             }
             catch(JSONException error) {
               Log.d(DEBUGMSG, "Right btn2: " + error.getMessage());
@@ -446,7 +516,7 @@ public class MainActivity extends Activity implements SensorEventListener {
           case MotionEvent.ACTION_UP: {
             Log.d(DEBUGMSG, "btn 2 up");
             try {
-              controler_status.put("btn2", false);
+              controller_status.put("btn2", false);
             }
             catch(JSONException error) {
               Log.d(DEBUGMSG, "Right btn2: " + error.getMessage());
@@ -464,7 +534,7 @@ public class MainActivity extends Activity implements SensorEventListener {
           case MotionEvent.ACTION_DOWN: {
             Log.d(DEBUGMSG, "btn 3 down");
             try {
-              controler_status.put("btn3", true);
+              controller_status.put("btn3", true);
             }
             catch(JSONException error) {
               Log.d(DEBUGMSG, "Right btn3: " + error.getMessage());
@@ -474,7 +544,7 @@ public class MainActivity extends Activity implements SensorEventListener {
           case MotionEvent.ACTION_UP: {
             Log.d(DEBUGMSG, "btn 3 up");
             try {
-              controler_status.put("btn3", false);
+              controller_status.put("btn3", false);
             }
             catch(JSONException error) {
               Log.d(DEBUGMSG, "Right btn3: " + error.getMessage());
@@ -492,7 +562,7 @@ public class MainActivity extends Activity implements SensorEventListener {
           case MotionEvent.ACTION_DOWN: {
             Log.d(DEBUGMSG, "btn 4 down");
             try {
-              controler_status.put("btn4", true);
+              controller_status.put("btn4", true);
             }
             catch(JSONException error) {
               Log.d(DEBUGMSG, "Right btn4: " + error.getMessage());
@@ -502,7 +572,7 @@ public class MainActivity extends Activity implements SensorEventListener {
           case MotionEvent.ACTION_UP: {
             Log.d(DEBUGMSG, "btn 4 up");
             try {
-              controler_status.put("btn4", false);
+              controller_status.put("btn4", false);
             }
             catch(JSONException error) {
               Log.d(DEBUGMSG, "Right btn4: " + error.getMessage());
@@ -625,6 +695,32 @@ public class MainActivity extends Activity implements SensorEventListener {
     }
 
   }
+    // Swaps joystick or DPad
+    public void swapBackground(View view) {
+
+        if(back1.getVisibility() == View.GONE) {
+            if(back1.getVisibility() == View.VISIBLE) {
+                back1.setVisibility(View.GONE);
+                back1vis = false;
+            }
+            else {
+                back2.setVisibility(View.VISIBLE);
+                back2vis = true;
+            }
+        }
+        else if(back2.getVisibility() == View.GONE) {
+            if(back2.getVisibility() == View.VISIBLE) {
+                back2.setVisibility(View.GONE);
+
+                back2vis = false;
+            }
+            else {
+                back1.setVisibility(View.VISIBLE);
+
+                back1vis = true;
+            }
+        }
+    }
 
   //stick listeners
   @Override

@@ -13,11 +13,24 @@
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:layout_below="@+id/tvPD"
         >
     </ListView>
-
+    <EditText
+        android:id="@+id/ETSend"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/listView"
+        >
+    </EditText>
+    <Button
+        android:id="@+id/btSend"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@id/ETSend"
+        >
+    </Button>
 
 </RelativeLayout>
-<!-- From: file:/C:/Users/smfg/Desktop/BluetoothPhonev0.5/app/src/main/res/layout/activity_main.xml -->
+<!-- From: file:/C:/Users/Sean%20Gardner/Desktop/BluetoothPhonev0.5/app/src/main/res/layout/activity_main.xml -->
